@@ -1,0 +1,61 @@
+.container {
+    display: flex;
+    gap: 10px;
+}
+
+.search_form {
+    display: flex;
+    background: #f4f2f2f7;
+    opacity: 1;
+    position: relative;
+    border: 0 solid rgba(230, 228, 228, 0.62);
+    border-radius: 10px;
+    height: 28px;
+    overflow: hidden;
+    margin: auto 0;
+    width: 100%;
+}
+
+.search_input {
+    background: #f4f2f2f7;
+    text-align: left;
+    height: 25px;
+    flex-grow: 1;
+    margin-left: 6px;
+}
+
+input::placeholder {
+    /* text-align: left; */
+    font-size: 0.821rem;
+    /* padding-left: 7px; */
+    border: none;
+}
+
+input:focus {
+    outline: none;
+}
+
+
+/* ---- icon ---------------------- */
+.icon {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    width: 24px;
+    height: 24px;
+
+    display: inline-block;
+    overflow: hidden;
+    text-indent: -999px;
+}
+
+.search_dodbogi {
+    background: transparent
+    url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M15.5 14H14.71L14.43 13.73C15.41 12.59 16 11.11 16 9.5C16 5.91 13.09 3 9.5 3C5.91 3 3 5.91 3 9.5C3 13.09 5.91 16 9.5 16C11.11 16 12.59 15.41 13.73 14.43L14 14.71V15.5L19 20.49L20.49 19L15.5 14ZM9.5 14C7.01 14 5 11.99 5 9.5C5 7.01 7.01 5 9.5 5C11.99 5 14 7.01 14 9.5C14 11.99 11.99 14 9.5 14Z' fill='black' fill-opacity='0.87'/%3E%3C/svg%3E%0A")
+    no-repeat center;
+    background-position: 0% 0.2rem;
+    border: 0px;
+    border-radius: 10px;
+    height: 30px;
+}

@@ -22,7 +22,7 @@ public class TestController {
 
     @GetMapping ("/add")
     public Member addMember(Member member){
-        member.setUsername("jaejae3");
+        member.setUsername("jaejae1");
         return memberRepository.save(member);
     }
 }
