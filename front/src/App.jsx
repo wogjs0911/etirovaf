@@ -1,13 +1,18 @@
 import './App.css'
-import Api from "./components/Api.jsx";
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
+import Home from "./pages/Home/index.jsx";
+import Search from "./pages/Search/index.jsx";
+import Layout from "./components/Layout/index.jsx";
 
 function App() {
 
     return (
-        <>
-            hi react!123
-            <Api/>
-        </>
+        <Layout>
+         <Routes>
+             <Route path='/' element={<Home />}/>
+             <Route path='/search/:q' element={<Search />}/>
+         </Routes>
+        </Layout>
     )
 }
 
