@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import {useLocation, useNavigate, useParams, useSearchParams} from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import Searchbar from "../../components/Searchbar/index.jsx";
 import style from "./styled.module.css";
 import {fetchDream} from "../pagesApi.js";
 
-export default function Search(){
+const Search = () => {
     const params = useParams();
     const [ dream, setDream ] = useState();
 
@@ -30,3 +30,5 @@ export default function Search(){
         </div>
     );
 }
+
+export default Search;

@@ -1,4 +1,5 @@
 import style from "./styled.module.css";
+import globalStyle from "../../styles/style.module.css";
 import { useState, useEffect } from "react";
 import {useNavigate} from "react-router-dom";
 
@@ -29,14 +30,17 @@ const Searchbar = ({ q }) => {
     return (
         <div className={style.container}>
             <div className={style.search_form}>
-                <h1 className={`${style.icon} ${style.search_dodbogi}`}>돋보기</h1>
+                <h1 className={`${globalStyle.icon} ${style.icon_dodbogi}`}>돋보기</h1>
                 <input
                     className={style.search_input}
-                    value={search}
+                    value={search || ''}
                     onKeyDown={onKeyDown}
                     onChange={onChangeSearch}
                     placeholder="검색어를 입력하세요..."
                 />
+            </div>
+            <div className={style.container}>
+                <h1 className={`${globalStyle.icon} ${style.icon_alarm}`}>알림</h1>
             </div>
         </div>
     );

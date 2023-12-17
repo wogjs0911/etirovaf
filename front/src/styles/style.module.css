@@ -1,5 +1,70 @@
+/* ---- font-style ---------------------- */
 
-/* ---- icon ---------------------- */
+.f_family {
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+.f_size {
+    font-size: 16px;
+}
+
+.f_size_1 {
+    font-size: 0.88em;
+}
+
+.f_size_2 {
+    font-size: 1.125em;
+}
+
+.f_size_3 {
+    font-size: 50px;
+}
+
+.f_color {
+    color: #000;
+}
+
+.f_color_2 {
+    color: #ca8d94;
+}
+
+.f_weight {
+    font-weight: bold;
+}
+
+.f_weight_eb {
+    font-weight: 900;
+}
+
+/* ---- header-style ---------------------- */
+
+.hd_title_box {
+    width: 100%;
+    text-align: center;
+}
+
+.hd_title_box > .hd_title {
+    margin-top: 5px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* ============ logo-style ============ */
+
+.logo_main {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+
+    width: 207px;
+    height: 45px;
+
+    display: inline-block;
+    overflow: hidden;
+    text-indent: -999px;
+}
+
+/* ---- icon-style ---------------------- */
 .icon {
     background-repeat: no-repeat;
     background-position: center;
@@ -11,4 +76,38 @@
     display: inline-block;
     overflow: hidden;
     text-indent: -999px;
+}
+
+/* ------------- error-message-modal  ------------- */
+.black_bg {
+    position: fixed;
+    background: rgba(0, 0, 0, 0.7);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.error_box {
+    position: absolute;
+    width: 300px;
+    height: 70px;
+    background: #ffffff;
+    border-radius: 10px;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    line-height: 70px;
+    text-align: center;
+    font-size: 13px;
+}
+.error_close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 9px;
+    height: 9px;
+    background-image: url("data:image/svg+xml,%3Csvg width='9' height='9' viewBox='0 0 9 9' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M0.360716 2.09522C-0.120239 1.61939 -0.120239 0.841672 0.360716 0.360716C0.836555 -0.120239 1.61427 -0.120239 2.09522 0.360716L4.5 2.76549L6.90478 0.360716C7.38062 -0.120239 8.15833 -0.115122 8.63929 0.360716C9.12024 0.836555 9.12024 1.61427 8.63929 2.09522L6.23451 4.5L8.63929 6.90478C9.12024 7.38062 9.11512 8.15833 8.63929 8.63929C8.16345 9.12024 7.38573 9.12024 6.90478 8.63929L4.5 6.23451L2.09522 8.63929C1.61939 9.12024 0.841672 9.11512 0.360716 8.63929C-0.120239 8.16345 -0.120239 7.38573 0.360716 6.90478L2.76549 4.5L0.360716 2.09522Z' fill='%23585858'/%3E%3C/svg%3E%0A");
+    background-repeat: no-repeat;
+    background-size: cover;
+    cursor: pointer;
 }
