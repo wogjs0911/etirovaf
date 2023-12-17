@@ -4,13 +4,44 @@ import { fetchDreams } from "../pagesApi.js";
 import Searchbar from "../../components/Searchbar/index.jsx";
 import Notification from "../../components/Notification/index.jsx";
 import Category from "../../components/Category/index.jsx";
+import TopDreamList from "../../components/TopDreamList/index.jsx";
 
 
 const Home = () => {
-    const [dreams, setDreams] = useState([]);
+    const mockData = [
+        {
+            id: 0,
+            title: "백엔드 개발자 직업 체험 모집",
+            place: "안암역 2번 출구",
+            hashTag: "#개발자",
+            deadline: "5일전",
+            createDate: new Date().getTime(),
+        },
+        {
+            id: 1,
+            title: "웹 디자이너 직업 체험 모집",
+            place: "강남역 2번 출구",
+            hashTag: "#디자이너",
+            deadline: "3일전",
+            createDate: new Date().getTime(),
+        },
+        {
+            id: 2,
+            title: "웹 기획자 직업 체험 모집",
+            place: "논현역 2번 출구",
+            hashTag: "#기획자",
+            deadline: "1일전",
+            createDate: new Date().getTime(),
+        }
+    ]
+
+    const [dreams, setDreams] = useState(mockData);
+
+
+    // 추후 api 있으면 이곳 변경하기 : 이것땜에 props 데이터를 유지 못하는 에러 발생!(라이프 사이클 주의*)
     const setInitData = async () => {
-        const data = await fetchDreams();
-        setDreams(data);
+        // const data = await fetchDreams();
+        setDreams(mockData);
     }
 
     useEffect(() => {
@@ -27,7 +58,10 @@ const Home = () => {
                 <Notification />
             </div>
             <div className={style.category}>
-                <Category/>
+                <Category />
+            </div>
+            <div className={style.category}>
+                <TopDreamList dreams={dreams}/>
             </div>
         </div>
     );

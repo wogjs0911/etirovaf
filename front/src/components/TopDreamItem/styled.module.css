@@ -1,0 +1,220 @@
+.box {
+    height: 147px;
+    position: relative;
+    width: 164px;
+    background-color: white;
+    border-radius: 5px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.box .view {
+    height: 147px;
+    left: 0;
+    top: 0;
+    width: 168px;
+}
+
+.box .element {
+    height: 20px;
+    left: 2px;
+    position: absolute;
+    top: 93px;
+    width: 47px;
+}
+
+.box .overlap_group {
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    height: 20px;
+    position: relative;
+    width: 45px;
+}
+
+.box .text_wrapper {
+    color: #000000;
+    font-size: 7px;
+    font-weight: 500;
+    left: 9px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    text-align: center;
+    top: 5px;
+    width: 28px;
+}
+
+.box .overlap_wrapper {
+    height: 20px;
+    left: 54px;
+    position: absolute;
+    top: 93px;
+    width: 47px;
+}
+
+.box .div {
+    color: #000000;
+    font-size: 7px;
+    font-weight: 500;
+    left: 7px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    text-align: center;
+    top: 5px;
+    width: 31px;
+}
+
+.box .p {
+    color: #000000;
+    font-size: 12px;
+    font-weight: 500;
+    left: 0;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 42px;
+    width: 158px;
+}
+
+.box .chick {
+    height: 20px;
+    left: 0;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    width: 20px;
+}
+
+.box .group {
+    height: 12px;
+    left: 1px;
+    position: absolute;
+    top: 67px;
+    width: 63px;
+}
+
+.box .text_wrapper_2 {
+    color: #00000085;
+    font-size: 8px;
+    font-weight: 400;
+    left: 7px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 0;
+}
+
+.box .vector {
+    height: 7px;
+    left: 0;
+    position: absolute;
+    top: 2px;
+    width: 5px;
+}
+
+.box .group_wrapper {
+    height: 10px;
+    left: 3px;
+    position: absolute;
+    top: 131px;
+    width: 17px;
+}
+
+.box .div_wrapper {
+    height: 10px;
+    position: relative;
+    width: 19px;
+}
+
+.box .text_wrapper_3 {
+    color: #00000085;
+    font-size: 7px;
+    font-weight: 400;
+    left: 0;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 0;
+}
+
+.box .element_2 {
+    color: #00000085;
+    font-size: 10px;
+    font-weight: 400;
+    left: 0;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 25px;
+}
+
+.box .group_2 {
+    background-position: 50% 50%;
+    background-size: cover;
+    height: 15px;
+    left: 147px;
+    position: absolute;
+    top: 0;
+    width: 15px;
+}
+
+.box .overlap_group_wrapper {
+    height: 24px;
+    left: 92px;
+    position: absolute;
+    top: 123px;
+    width: 74px;
+}
+
+.box .overlap {
+    background-color: #0089d6;
+    border-radius: 5px;
+    height: 24px;
+    position: relative;
+    width: 72px;
+}
+
+.box .text_wrapper_4 {
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 700;
+    height: 13px;
+    left: 13px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    text-align: center;
+    top: 5px;
+    white-space: nowrap;
+    width: 45px;
+}
+
+/*    추가    */
+
+.container {
+    width: 220px;
+    background-color: white;
+    border-radius: 5px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.flag_img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.content {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.name {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 0px;
+}

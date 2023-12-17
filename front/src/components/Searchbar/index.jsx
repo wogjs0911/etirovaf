@@ -39,8 +39,8 @@ const Searchbar = ({ q }) => {
                     placeholder="검색어를 입력하세요..."
                 />
             </div>
-            <div className={style.container}>
-                <h1 className={`${globalStyle.icon} ${style.icon_alarm}`}>알림</h1>
+            <div className={style.category_setting}>
+                <h1 className={`${globalStyle.icon} ${style.icon_category_setting}`}>알림</h1>
             </div>
         </div>
     );
