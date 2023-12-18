@@ -11,25 +11,28 @@ const Home = () => {
     const mockData = [
         {
             id: 0,
+            organiser: "고려대학교",
             title: "백엔드 개발자 직업 체험 모집",
             place: "안암역 2번 출구",
-            hashTag: "#개발자",
+            hashTag: "개발자",
             deadline: "5일전",
             createDate: new Date().getTime(),
         },
         {
             id: 1,
+            organiser: "연세대학교",
             title: "웹 디자이너 직업 체험 모집",
             place: "강남역 2번 출구",
-            hashTag: "#디자이너",
+            hashTag: "디자이너",
             deadline: "3일전",
             createDate: new Date().getTime(),
         },
         {
             id: 2,
+            organiser: "KAIST",
             title: "웹 기획자 직업 체험 모집",
             place: "논현역 2번 출구",
-            hashTag: "#기획자",
+            hashTag: "기획자",
             deadline: "1일전",
             createDate: new Date().getTime(),
         }

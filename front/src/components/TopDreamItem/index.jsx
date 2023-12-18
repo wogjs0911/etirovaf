@@ -1,47 +1,50 @@
 import React from "react";
 import style from "./styled.module.css";
+import btnStyle from "../../styles/button.module.css";
 
 const TopDreamItem = ({
       id,
+      organiser,
       title,
       place,
       hashTag,
       deadline,
       createDate,
 }) => {
-
-    console.log(" id : " + id + " title : " + title + " place : " +  place
-        + " hashTag : " + hashTag + " deadline : " + deadline + " createDate : " + createDate);
-
     return (
-        <div className={style.box}>
-            <div className={style.view}>
-                <div className={style.element}>
-                    <div className={style.overlap_group}>
-                        <div className={style.text_wrapper}>{ hashTag }</div>
+        <div className={style.list_wrap}>
+            <div className={style.dream_list}>
+                <div className={style.list_grid}>
+                    <div className={style.top_list_pic}>
+                        {/*<img className={style.listview_image} src={"../../"} alt="img"/>*/}
+                        <div className={style.listview_image}></div>
                     </div>
-                </div>
-                <p className={style.p}>{ title }</p>
-                <img className={style.chick} alt="Chick" src="chick-1.png" />
-                <div className={style.group}>
-                    <div className={style.text_wrapper_2}>{ place }</div>
-                    <img className={style.vector} alt="Vector" src="vector.svg" />
-                </div>
-                <div className={style.group_wrapper}>
-                    <div className={style.div_wrapper}>
-                        <div className={style.text_wrapper_3}>{ deadline }</div>
+                    <div className={`${style.list_heart} ${style.icon_heart}`}></div>
+                    <div className={style.list_organ_form}>
+                        <span className={style.list_organ}>
+                                { organiser }
+                        </span>
                     </div>
-                </div>
-                <div className={style.element_2}>{ place }</div>
-                <div className={style.group_2} />
-                <div className={style.overlap_group_wrapper}>
-                    <div className={style.overlap}>
-                        <div className={style.text_wrapper_4}>신청하기</div>
+                    <div className={style.list_title}>{title}</div>
+                    <div className={style.list_place_form}>
+                        <span className={style.list_place}>
+                                { place }
+                        </span>
+                    </div>
+                    <div className={style.list_hashtag_form}>
+                        <span className={style.list_hashtag}>
+                            { hashTag }
+                        </span>
+                    </div>
+                    <div className={`${style.list_dday} ${style.day_left}`}>{ deadline }</div>
+                    <div className={style.list_btn_form}>
+                        <button className={style.list_btn}>신청하기</button>
                     </div>
                 </div>
             </div>
         </div>
-    );
+
+    )
 };
 
 export default TopDreamItem;
