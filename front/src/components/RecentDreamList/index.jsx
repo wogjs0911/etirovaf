@@ -1,12 +1,12 @@
 import React from "react";
 import style from "./styled.module.css";
-import DreamItem from "../DreamItem/index.jsx";
+import RecentDreamItem from "../RecentDreamItem/index.jsx";
 
-const DreamList = ({ dreams }) => {
+const RecentDreamList = ({ dreams }) => {
     return (
         <div className={style.dream_list_form}>
             {dreams.map((dream) => (
-                <DreamItem
+                <RecentDreamItem
                     dream={dream}
                     key={dream.id}
                     {...dream} />
@@ -15,4 +15,4 @@ const DreamList = ({ dreams }) => {
     );
 };
 
-export default DreamList;
+export default RecentDreamList;

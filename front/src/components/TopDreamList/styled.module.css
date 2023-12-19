@@ -1,15 +1,18 @@
-.box {
-    height: 172px;
-    width: 186px;
+.dream_list_form {
+    height: 195px;
+    width: 360px;
     display: flex;
-    flex-wrap: wrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;		/* 끝에서 바운스 되도록*/
+    scroll-snap-type: x mandatory;
+    -ms-overflow-style: none;
     gap: 20px;
 }
 
-.box .image {
-    height: 180px;
-    left: 0;
-    position: fixed;
-    top: 0;
-    width: 194px;
+.dream_list_form::-webkit-scrollbar{
+    display:none;
+}
+
+.dream_list{
+    scroll-snap-align: start;
 }

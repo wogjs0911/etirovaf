@@ -5,6 +5,9 @@ import Searchbar from "../../components/Searchbar/index.jsx";
 import Notification from "../../components/Notification/index.jsx";
 import Category from "../../components/Category/index.jsx";
 import TopDreamList from "../../components/TopDreamList/index.jsx";
+import DreamList from "../../components/DreamList/index.jsx";
+import RecentDreamItem from "../../components/RecentDreamItem/index.jsx";
+import RecentDreamList from "../../components/RecentDreamList/index.jsx";
 
 
 const Home = () => {
@@ -63,8 +66,31 @@ const Home = () => {
             <div className={style.category}>
                 <Category />
             </div>
-            <div className={style.category}>
-                <TopDreamList dreams={dreams}/>
+            <div className={style.top_list_form}>
+                <div className={style.top_list_explain}>
+                    <div>
+                        가장 인기있는 목록
+                    </div>
+                    <div className={style.f_blue}>
+                        자세히 보기
+                    </div>
+                </div>
+                <div className={style.top_list}>
+                    <TopDreamList dreams={dreams}/>
+                </div>
+            </div>
+            <div className={style.top_list_form}>
+                <div className={style.top_list_explain}>
+                    <div>
+                        최근 업로드된 목록
+                    </div>
+                    <div className={style.f_blue}>
+                        자세히 보기
+                    </div>
+                </div>
+                <div className={style.recent_list}>
+                    <RecentDreamList dreams={dreams}/>
+                </div>
             </div>
         </div>
     );

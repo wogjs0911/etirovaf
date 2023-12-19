@@ -1,10 +1,16 @@
-.main{
-    max-width: 360px;
-    margin: 0 auto;
-    padding: 40px 10px;
+.category_form{
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    -ms-overflow-style: none;
 }
 
-.category_box {
+.category_form::-webkit-scrollbar{
+    display:none;
+}
+
+.category_list {
     display: flex;
     justify-content: flex-start;
     margin-top: 12px;
@@ -12,6 +18,8 @@
     gap: 0.6rem;
     padding-bottom: 13px;
     border:none;
+    flex: 0 0 90%;
+    scroll-snap-align: start;
 }
 
 .basic_category {

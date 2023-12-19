@@ -1,23 +1,19 @@
 .list_wrap {
-    margin: 0 auto 46px auto;
-    width: 223px;
-    height: 186.5px;
-    background-color: #ffffff;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
-    inset 1px 4px 4px rgba(0, 0, 0, 0.03);
-    border-radius: 15px;
-    border: none;
+    margin: 0 auto 20px auto;
+    display: flex;
 }
 
 .dream_list {
     padding: 12px 0;
+    border-bottom: 0.5px rgb(0, 0, 0, 0.3) solid;
+    border-bottom: 0.3px #d5d5d5 solid;
     box-sizing: border-box;
 }
 
 /* 320 * aa  */
 .list_grid {
     display: grid;
-    grid-template-columns: 50px 8px minmax(80px, auto) 8px 55px;
+    grid-template-columns: 68px 10px minmax(174px, auto) 10px 70px;
     grid-template-rows: 20px 10px 10px 17px 12px 20px 15px 10px;
     grid-template-areas:
     "pic . . . ht"
@@ -28,9 +24,10 @@
     "plc plc plc plc ."
     "hash hash hash . ."
     ". . . . ."
-    "dday . btn btn .";
+    "dday . . btn btn";
     align-items: center;
     cursor: pointer;
+    margin-top: 13px;
     margin-left: 11px;
     margin-right: 11px;
 }
@@ -190,7 +187,7 @@
     color: #828690;
     display: grid;
     margin-top: 15px;
-    margin-left: 70px;
+    margin-left: 2px;
 }
 
 .list_btn{

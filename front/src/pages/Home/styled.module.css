@@ -14,5 +14,28 @@
 }
 
 .category{
+    display: flex;
+}
 
+.top_list_form{
+    display: flex;
+    flex-direction: column;
+}
+
+.top_list_explain{
+    display: flex;
+    justify-content: space-between;
+}
+
+.top_list{
+    margin-top: 12px;
+}
+
+.recent_list{
+    margin-top: 12px;
+}
+
+.f_blue{
+    color: #008AD7;
+    cursor: pointer;
 }

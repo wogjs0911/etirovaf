@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./styled.module.css";
 
-const TopDreamItem = ({
+const DreamItem = ({
       id,
       organiser,
       title,
@@ -46,4 +46,4 @@ const TopDreamItem = ({
     )
 };
 
-export default TopDreamItem;
+export default DreamItem;

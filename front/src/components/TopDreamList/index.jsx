@@ -3,13 +3,11 @@ import style from "./styled.module.css";
 import TopDreamItem from "../TopDreamItem/index.jsx";
 
 const TopDreamList = ({ dreams }) => {
-
-    console.log(dreams);
-
     return (
-        <div className={style.box}>
+        <div className={style.dream_list_form}>
             {dreams.map((dream) => (
                 <TopDreamItem
+                    className={style.dream_list}
                     dream={dream}
                     key={dream.id}
                     {...dream} />
