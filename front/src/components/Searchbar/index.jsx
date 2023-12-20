@@ -23,7 +23,7 @@ const Searchbar = ({ q }) => {
 
     const onClickSearch = () => {
         if (search !== "") {
-            nav(`/search/${search}`);
+            nav(`/search?q=${search}`);
         }
     };
 

@@ -2,14 +2,14 @@ import React from "react";
 import style from "./styled.module.css";
 
 const DreamItem = ({
-      id,
-      organiser,
-      title,
-      place,
-      hashTag,
-      deadline,
-      createDate,
-}) => {
+                             id,
+                             organizer,
+                             title,
+                             place,
+                             hashTag,
+                             deadline,
+                             createDate,
+                         }) => {
     return (
         <div className={style.list_wrap}>
             <div className={style.dream_list}>
@@ -19,20 +19,20 @@ const DreamItem = ({
                         <div className={style.listview_image}></div>
                     </div>
                     <div className={`${style.list_heart} ${style.icon_heart}`}></div>
+                    <div className={style.list_title}>{title}</div>
                     <div className={style.list_organ_form}>
                         <span className={style.list_organ}>
-                                { organiser }
-                        </span>
-                    </div>
-                    <div className={style.list_title}>{title}</div>
-                    <div className={style.list_place_form}>
-                        <span className={style.list_place}>
-                                { place }
+                                { organizer }
                         </span>
                     </div>
                     <div className={style.list_hashtag_form}>
                         <span className={style.list_hashtag}>
                             { hashTag }
+                        </span>
+                    </div>
+                    <div className={style.list_place_form}>
+                        <span className={style.list_place}>
+                                { place }
                         </span>
                     </div>
                     <div className={`${style.list_dday} ${style.day_left}`}>{ deadline }</div>

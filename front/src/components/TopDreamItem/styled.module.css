@@ -1,5 +1,5 @@
 .list_wrap {
-    margin: 0 auto 46px auto;
+    margin: 0 auto 0px auto;
     width: 223px;
     height: 186.5px;
     background-color: #ffffff;
@@ -204,7 +204,7 @@
     cursor: pointer;
     color: #ffffff;
 }
-
+z
 .dream_list img {
     width: 100%;
     height: 100%;

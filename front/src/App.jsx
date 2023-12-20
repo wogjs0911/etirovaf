@@ -10,7 +10,7 @@ function App() {
         <Layout>
          <Routes>
              <Route path='/' element={<Home />}/>
-             <Route path='/search/:q' element={<Search />}/>
+             <Route path='/search' element={<Search />}/>
          </Routes>
         </Layout>
     )

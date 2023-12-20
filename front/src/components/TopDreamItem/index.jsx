@@ -3,7 +3,7 @@ import style from "./styled.module.css";
 
 const TopDreamItem = ({
       id,
-      organiser,
+      organizer,
       title,
       place,
       hashTag,
@@ -21,7 +21,7 @@ const TopDreamItem = ({
                     <div className={`${style.list_heart} ${style.icon_heart}`}></div>
                     <div className={style.list_organ_form}>
                         <span className={style.list_organ}>
-                                { organiser }
+                                { organizer }
                         </span>
                     </div>
                     <div className={style.list_title}>{title}</div>

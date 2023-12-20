@@ -1,15 +1,15 @@
 import React from "react";
 import style from "./styled.module.css";
 
-const RecentDreamItem = ({
-     id,
-     title,
-     place,
-     deadline,
-     organizer,
-     content,
-     hashTag,
-     createDate,
+const MostTopDreamItem = ({
+      id,
+      title,
+      place,
+      deadline,
+      organizer,
+      content,
+      hashTag,
+      createDate,
 }) => {
     return (
         <div className={style.list_wrap}>
@@ -44,7 +44,8 @@ const RecentDreamItem = ({
                 </div>
             </div>
         </div>
+
     )
 };
 
-export default RecentDreamItem;
+export default MostTopDreamItem;
