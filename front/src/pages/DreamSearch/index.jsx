@@ -40,7 +40,7 @@ const mockData = [
     }
 ]
 
-const Search = () => {
+const DreamSearch = () => {
     // const params = useParams();
     const [ searchParams, setSearchParams ] = useSearchParams();
     const q = searchParams.get("q");
@@ -89,4 +89,4 @@ const Search = () => {
     );
 }
 
-export default Search;
+export default DreamSearch;

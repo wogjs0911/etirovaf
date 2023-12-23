@@ -137,6 +137,10 @@
     margin-left: 13px;
 }
 
+.m_l_40{
+    margin-left: 40px;
+}
+
 .m_l_250{
     margin-left: 250px;
 }
@@ -231,6 +235,17 @@
 .d_f{
     display: flex;
 }
+
+.d_fl_ac{
+    display: flex;
+    align-items: center;
+}
+
+.d_fl_jf{
+    display: flex;
+    justify-content: center;
+}
+
 .d_f_ac{
     display: flex;
     align-items: center;

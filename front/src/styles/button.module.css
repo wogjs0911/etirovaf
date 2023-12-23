@@ -13,3 +13,51 @@
     text-align: center;
     cursor: pointer;
 }
+
+
+/* -------- create2 file upload ------- - */
+.btn_file {
+    border: none;
+    border-radius: 10px;
+    width: 43px;
+    height: 40px;
+
+    background-color: #f6f6f6;
+    display: inline-block;
+    overflow: hidden;
+    /* text-indent: -999px; */
+    font-size: 10px;
+    text-align: center;
+    line-height: 65px;
+
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='48' width='48'%3E%3Cpath d='M25.5 29.1h3v-6.6h6.6v-3h-6.6v-6.6h-3v6.6h-6.6v3h6.6ZM13 38q-1.2 0-2.1-.9-.9-.9-.9-2.1V7q0-1.2.9-2.1.9-.9 2.1-.9h28q1.2 0 2.1.9.9.9.9 2.1v28q0 1.2-.9 2.1-.9.9-2.1.9Zm0-3h28V7H13v28Zm-6 9q-1.2 0-2.1-.9Q4 42.2 4 41V10h3v31h31v3Zm6-37v28V7Z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center 5px;
+    background-size: 50% 50%;
+}
+
+.btn_uploaded_files {
+    border: none;
+    border-radius: 10px;
+    width: 43px;
+    height: 40px;
+    background-color: #f6f6f6;
+    background-repeat: no-repeat;
+    background-position: center;
+    /* background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='24' width='24'%3E%3Cpath d='M5 21q-.825 0-1.413-.587Q3 19.825 3 19V5q0-.825.587-1.413Q4.175 3 5 3h14q.825 0 1.413.587Q21 4.175 21 5v14q0 .825-.587 1.413Q19.825 21 19 21Zm0-2h14V5H5v14Zm1-2h12l-3.75-5-3 4L9 13Zm-1 2V5v14Z'/%3E%3C/svg%3E"); */
+    display: inline-block;
+    overflow: hidden;
+    text-indent: -999px;
+}
+
+.btn_edit {
+    border: none;
+    width: 20px;
+    height: 60px;
+    background-repeat: no-repeat;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='48' viewBox='0 96 960 960' width='48'%3E%3Cpath d='M479.858 896Q460 896 446 881.858q-14-14.141-14-34Q432 828 446.142 814q14.141-14 34-14Q500 800 514 814.142q14 14.141 14 34Q528 868 513.858 882q-14.141 14-34 14Zm0-272Q460 624 446 609.858q-14-14.141-14-34Q432 556 446.142 542q14.141-14 34-14Q500 528 514 542.142q14 14.141 14 34Q528 596 513.858 610q-14.141 14-34 14Zm0-272Q460 352 446 337.858q-14-14.141-14-34Q432 284 446.142 270q14.141-14 34-14Q500 256 514 270.142q14 14.141 14 34Q528 324 513.858 338q-14.141 14-34 14Z'/%3E%3C/svg%3E");
+    /* background-image: url("data:image/svg+xml,%3Csvg width='6' height='32' viewBox='0 0 6 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2.993 32C2.33106 32 1.76676 31.7643 1.3001 31.2929C0.833431 30.8215 0.600098 30.2549 0.600098 29.5929C0.600098 28.931 0.835798 28.3667 1.3072 27.9C1.77856 27.4333 2.34523 27.2 3.0072 27.2C3.66913 27.2 4.23343 27.4357 4.7001 27.9071C5.16676 28.3785 5.4001 28.9451 5.4001 29.6071C5.4001 30.269 5.1644 30.8333 4.693 31.3C4.22163 31.7667 3.65496 32 2.993 32ZM2.993 18.4C2.33106 18.4 1.76676 18.1643 1.3001 17.6929C0.833431 17.2215 0.600098 16.6549 0.600098 15.9929C0.600098 15.331 0.835798 14.7667 1.3072 14.3C1.77856 13.8333 2.34523 13.6 3.0072 13.6C3.66913 13.6 4.23343 13.8357 4.7001 14.3071C5.16676 14.7785 5.4001 15.3451 5.4001 16.0071C5.4001 16.669 5.1644 17.2333 4.693 17.7C4.22163 18.1667 3.65496 18.4 2.993 18.4ZM2.993 4.8C2.33106 4.8 1.76676 4.5643 1.3001 4.0929C0.833431 3.62153 0.600098 3.05487 0.600098 2.3929C0.600098 1.73097 0.835798 1.16667 1.3072 0.7C1.77856 0.233333 2.34523 0 3.0072 0C3.66913 0 4.23343 0.2357 4.7001 0.7071C5.16676 1.17847 5.4001 1.74513 5.4001 2.4071C5.4001 3.06903 5.1644 3.63333 4.693 4.1C4.22163 4.56667 3.65496 4.8 2.993 4.8Z' fill='white'/%3E%3C/svg%3E%0A"); */
+    background-position: center;
+    display: inline-block;
+    color: white;
+}

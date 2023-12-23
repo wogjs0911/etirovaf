@@ -68,7 +68,7 @@ const Dream = () => {
                          {/* 수정/삭제 모달 버튼 */}
                         <i className={style.icon_edit}></i>
 
-                         {/* 모달 배경 */}
+                         {/* 모달 배경 : 컴포너트로 따로 빼기 */}
                         {/*<div>*/}
                         {/*    <div className={style.icon_edit2}>*/}
                         {/*        <div className={style.box}>*/}
@@ -131,7 +131,15 @@ const Dream = () => {
                                         <div className={style.detail_category} value={1}>기획자</div>
                                         <div className={`${style.detail_status} ${style.day_left}`}>3일전</div>
                                     </div>
-                                    <div className={style.filledHeart}></div>
+                                    {/* 조회수, 북마크 : 컴포너트로 따로 빼기 */}
+                                    <div className={style.detail_top_icons}>
+                                        <div className={style.detail_views}>
+                                            <div className={style.views}>조회수</div>
+                                        </div>
+                                        <div className={style.detail_heart}>
+                                            <div className={style.filled_heart}>북마크</div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <p className={style.detail_heading_title}>웹 기획자 직업 체험 모집</p>
                                 <p className={style.detail_heading_organ}>연세대학교</p>

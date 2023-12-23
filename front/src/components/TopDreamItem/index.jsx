@@ -1,5 +1,6 @@
 import React from "react";
 import style from "./styled.module.css";
+import {useNavigate} from "react-router-dom";
 
 const TopDreamItem = ({
       id,
@@ -10,8 +11,14 @@ const TopDreamItem = ({
       deadline,
       createDate,
 }) => {
+    const nav = useNavigate();
+
+    const onClickItem = () => {
+        nav(`/dream/${id}`, {state: {'id': id}});
+    }
+
     return (
-        <div className={style.list_wrap}>
+        <div onClick={ onClickItem } className={style.list_wrap}>
             <div className={style.dream_list}>
                 <div className={style.list_grid}>
                     <div className={style.top_list_pic}>

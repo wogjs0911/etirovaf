@@ -1,3 +1,19 @@
+/* user */
+.canvas {
+    margin: 0 20px;
+}
+
+.canvas_1 {
+    margin: 0 30px;
+    margin-top: 14px;
+}
+
+/* admin */
+.canvas_2 {
+    margin: 0 14px;
+    margin-top: 14px;
+}
+
 /* ---- font-style ---------------------- */
 
 .f_family {
@@ -157,6 +173,69 @@
 .admin_edit_icon {
     background-image: url("data:image/svg+xml,%3Csvg width='25' height='25' viewBox='0 0 25 25' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M14.1968 4.55237L20.4478 10.8033L6.87407 24.3771L1.30082 24.9923C0.554729 25.0748 -0.0756416 24.444 0.00736623 23.6979L0.627483 18.1207L14.1968 4.55237ZM24.314 3.6217L21.3789 0.686646C20.4634 -0.228882 18.9786 -0.228882 18.063 0.686646L15.3018 3.44788L21.5528 9.69885L24.314 6.93762C25.2295 6.02161 25.2295 4.53723 24.314 3.6217Z' fill='%23FF8F0E'/%3E%3C/svg%3E ");
     margin-right: 10px;
+}
+
+
+/* ---- input-field ---------------------- */
+
+.input_field_txt {
+    display: inline-block;
+    margin-left: 15px;
+    width: 70px;
+}
+
+.input_field_txt2 {
+    display: inline;
+    margin-left: 15px;
+    width: 200px;
+    /* background-color: #CA8D94; */
+}
+
+.input_field {
+    display: inline-block;
+    margin-left: 0px;
+    height: 70%;
+    width: 170px;
+    /* background-color: #7bb1ce; */
+}
+
+.input_field2 {
+    margin-left: 30px;
+    height: 70%;
+    width: 200px;
+}
+
+/* ---- select-box 박스 ---------------------- */
+
+.select_box {
+    border: 1px solid #e4dfdf;
+    /* 원래 F0F2F3 #E4DFDF */
+
+    width: 300px;
+    height: 40px;
+    border-radius: 10px;
+
+    background-color: #fff;
+    margin-top: 10px;
+    font-size: 12px;
+
+    line-height: 40px;
+
+    cursor: pointer;
+}
+.select_box2 {
+    border: 1px solid #e4dfdf;
+    /* 원래 F0F2F3  #E4DFDF*/
+
+    width: 300px;
+    height: 40px;
+    border-radius: 10px;
+
+    background-color: #fff;
+    margin-top: 10px;
+    font-size: 12px;
+
+    line-height: 40px;
 }
 
 /* ------------- error-message-modal  ------------- */
