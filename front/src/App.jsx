@@ -5,13 +5,19 @@ import Layout from "./components/Layout/index.jsx";
 import Dream from "./pages/Dream/index.jsx";
 import DreamSearch from "./pages/DreamSearch/index.jsx";
 import DreamCreate from "./pages/DreamCreate/index.jsx";
+import Index from "./pages/Index/index.jsx";
+import Signup from "./pages/Signup/index.jsx";
+import Login from "./pages/Login/index.jsx";
 
 function App() {
 
     return (
         <Layout>
          <Routes>
-             <Route path='/' element={<Home />}/>
+             <Route path='/' element={<Index />}/>
+             <Route path='/login' element={<Login />}/>
+             <Route path='/signup' element={<Signup />}/>
+             <Route path='/home' element={<Home />}/>
              <Route path='/search' element={<DreamSearch />}/>
              <Route path='/dream/:id' element={<Dream />}/>
              <Route path='/dream/create' element={<DreamCreate />}/>

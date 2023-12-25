@@ -67,7 +67,7 @@ const DreamCreate = () => {
                 </header>
 
                 {/* =================== create2 : main ===================== */}
-                <main className={`${utilStyle.d_fl_jf} ${utilStyle.m_b}`}>
+                <main className={`${utilStyle.d_fl_jf}`}>
 
                     <form method="post"
                           // enctype="multipart/form-data"
