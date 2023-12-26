@@ -1,7 +1,7 @@
 import style from "./styled.module.css";
 import globalStyle from "../../styles/style.module.css";
 import { useState, useEffect } from "react";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 const Notification = () => {
     const nav = useNavigate();
@@ -12,7 +12,9 @@ const Notification = () => {
 
     return (
         <div className={style.container}>
-            <h1 className={`${globalStyle.icon} ${style.icon_alarm}`}>알림</h1>
+            <Link to={"/dream/create"}>
+                <h1 className={`${globalStyle.icon} ${style.icon_alarm}`}>알림</h1>
+            </Link>
         </div>
     );
 }

@@ -1,77 +1,142 @@
 import style from "./styled.module.css";
 import { useState, useEffect } from "react";
-
-const mockData = [
-    {
-        id: 0,
-        title: "백엔드 개발자 직업 체험 모집",
-        organizer: "고려대학교",
-        place: "안암역 2번 출구",
-        content: "고려대학교 컴퓨터공학과에서 백엔드 개발자 체험에 참여하실 분들 모집합니다.",
-        hashTag: "개발자",
-        deadline: "5일전",
-        createDate: new Date().getTime(),
-    },
-    {
-        id: 1,
-        title: "웹 디자이너 직업 체험 모집",
-        organizer: "연세대학교",
-        place: "강남역 2번 출구",
-        content: "연세대학교에서 웹 디자인에 참여하실 분들 모집합니다.",
-        hashTag: "디자이너",
-        deadline: "3일전",
-        createDate: new Date().getTime(),
-    },
-    {
-        id: 2,
-        title: "웹 기획자 직업 체험 모집",
-        organizer: "KAIST",
-        place: "논현역 2번 출구",
-        content: "카이스트에서 웹 개발에 기획 체험에 참여하실 분들 모집합니다.",
-        hashTag: "기획자",
-        deadline: "1일전",
-        createDate: new Date().getTime(),
-    }
-]
+import globalStyle from "../../styles/style.module.css";
+import utilStyle from "../../styles/utils.module.css";
+import btnStyle from "../../styles/button.module.css";
+import { Link } from "react-router-dom";
 
 
 const Signup = () => {
 
-    const [dreams, setDreams] = useState(mockData);
-
-    // 추후 api 있으면 이곳 변경하기 : 이것땜에 props 데이터를 유지 못하는 에러 발생!(라이프 사이클 주의*)
-    const setInitData = async () => {
-        // const data = await fetchDreams();
-        setDreams(mockData);
-    }
-
-    useEffect(() => {
-        setInitData();
-    }, []);
-
-
     return (
-        <div className={style.container}>
-            <div className={style.top_list_form}>
-                <div className={style.top_list_explain}>
-                    <div>
-                        가장 인기있는 목록
-                    </div>
-                    <div className={style.f_blue}>
-                        자세히 보기
-                    </div>
+        <div className={style.wrap}>
+            <header className={`${utilStyle.d_fl_ac} ${style.al_cen} ${style.header}`}>
+                <Link to={"/login"} className={`${globalStyle.icon} ${globalStyle.icon_back}`}>Back</Link>
+                <div className={style.signup_title}>
+                    회원가입
                 </div>
-            </div>
-            <div className={style.top_list_form}>
-                <div className={style.top_list_explain}>
-                    <div>
-                        최근 업로드된 목록
-                    </div>
-                    <div className={style.f_blue}>
-                        자세히 보기
-                    </div>
+            </header>
+            {/*<!-- ----------------------------------------------------------- -->*/}
+            <main className={style.m_t_31}>
+                {/* flex 시작 */}
+                <div className={style.sign_up_container}>
+                    <form id="signup-vue" action="signup" method="post">
+                        <div className={style.input_field_2}>
+                            <div className={style.input_info_label}>
+                                <label htmlFor="uid">
+                                    <span className={style.input_info_title}>아이디</span>
+                                </label>
+                            </div>
+                            <div className={style.input_info_form}>
+                                <input type="text" id="uid" name="uid" className={style.input_text_2}
+                                   placeholder="아이디를 입력해주세요." />
+                                {/*<div className={btnStyle.btn_null}></div>*/}
+                                {/*<div className={btnStyle.btn_check}></div>*/}
+                                {/*<div className={btnStyle.btn_x}></div>*/}
+                            </div>
+                            {/*<div className={style.error_font}>{ uidError }</div>*/}
+                        </div>
+                        <div className={style.input_field_2}>
+                            <div className={style.input_info_label}>
+                                <label htmlFor="password">
+                                    <span className={style.input_info_title}>비밀번호</span>
+                                </label>
+                            </div>
+                            <div className={style.input_info_form}>
+                                <input type="password" id="pwd" name="pwd" className={style.input_text_2}
+                                       placeholder="비밀번호를 입력해주세요." />
+                                {/*<div className={btnStyle.btn_null}></div>*/}
+                                {/*<div className={btnStyle.btn_check}></div>*/}
+                                {/*<div className={btnStyle.btn_x}></div>*/}
+                            </div>
+                            {/*<div className={style.error_font}>{ this.pwdError }</div>*/}
+                        </div>
+                        <div className={style.input_field_2}>
+                            <div className={style.input_info_label}>
+                                <label htmlFor="password-confirm">
+                                    <span className={style.input_info_title}>비밀번호 확인</span>
+                                </label>
+                            </div>
+                            <div className={style.input_info_form}>
+                                <input type="password" id="password-confirm" name="repassword" className={style.input_text_2}
+                                   placeholder="비밀번호를 다시 입력해주세요." />
+                                {/*<div className={btnStyle.btn_null}></div>*/}
+                                {/*<div className={btnStyle.btn_check}></div>*/}
+                                {/*<div className={btnStyle.btn_x}></div>*/}
+                            </div>
+                            {/*<div className={style.error_font}>{ nameError }</div>*/}
+                        </div>
+
+                        <div className={style.input_field_2}>
+                            <div className={style.input_info_label}>
+                                <label htmlFor="nickname">
+                                    <span className={style.input_info_title}>닉네임</span>
+                                </label>
+                            </div>
+                            <div className={style.input_info_form}>
+                                <input type="text" id="nickname" name="nickname" className={style.input_text_2}
+                                       placeholder="닉네임을 입력해주세요." />
+                                {/*<div className={btnStyle.btn_null}></div>*/}
+                                {/*<div className={btnStyle.btn_check}></div>*/}
+                                {/*<div className={btnStyle.btn_x}></div>*/}
+                            </div>
+                            {/*<div className={style.error_font}>{ nicknameError }</div>*/}
+                        </div>
+
+                        <div className={style.input_field_2}>
+                            <div className={style.input_info_label}>
+                                <label htmlFor="phoneNumber">
+                                    <span className={style.input_info_title}>휴대전화번호</span>
+                                </label>
+                            </div>
+                            <div className={style.input_info_form}>
+                                <input type="text" id="phoneNumber" name="phoneNumber" className={style.input_text_2} placeholder="휴대전화번호를 입력해주세요."
+                               />
+                                <input className={style.btn_post} id="btn-post" type="button" value="인증요청" />
+                                {/*<div className={btnStyle.btn_null}></div>*/}
+                                {/*<div className={btnStyle.btn_check}></div>*/}
+                                {/*<div className={btnStyle.btn_x}></div>*/}
+                            </div>
+                            {/*<div className={style.error_font}>{ phoneNumberError }</div>*/}
+                            {/*<div className={style.error_font}>{ phoneNumberCheckError }</div>*/}
+                        </div>
+
+                        <div className={style.input_field_2}>
+                            <div className={style.input_info_label}>
+                                <label htmlFor="phoneNumberConfirm">
+                                    <span className={style.input_info_title}>인증번호</span>
+                                </label>
+                            </div>
+                            <div className={style.input_info_form}>
+                                <input type="text" id="phoneNumberConfirm" name="phoneNumberConfirm" className={style.input_text_2} placeholder="인증번호를 입력해주세요."
+                                       />
+                                <input className={style.btn_post} id="btn-post" type="button" value="인증" />
+                                {/*<div className={btnStyle.btn_check}></div>*/}
+                            </div>
+                            {/*<div className={style.error_font}>{ phoneCodeError } </div>*/}
+                        </div>
+
+                        <div className={`${utilStyle.d_fl_jf} ${utilStyle.m_t_28}`}>
+                            <input className={style.btn_signup} type="submit" value="가입하기" />
+                        </div>
+                    </form>
+
+                    {/* 에러메시지 모달창 */}
+                    {/*<div className={style.black_bg}>*/}
+                    {/*    <div className={style.error_box}>{ ErrorMsg }*/}
+                    {/*       <div className={style.error_close}></div>*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
+
+                    {/*<div className={style.black_bg}>*/}
+                    {/*    <div className={style.findpwd_modal_box}>*/}
+                    {/*        <div className={style.modal_txt}>가입 완료되었습니다!</div>*/}
+                    {/*        <button className={style.modal_btn}>확인</button>*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
                 </div>
-            </div>
+                {/* flex 끝 */}
+            </main>
         </div>
     );
 }

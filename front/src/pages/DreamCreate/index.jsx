@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import globalStyle from "../../styles/style.module.css";
 import utilStyle from "../../styles/utils.module.css";
-import buttonStyle from "../../styles/button.module.css";
+import btnStyle from "../../styles/button.module.css";
 import {useNavigate} from "react-router-dom"
 import style from "./styled.module.css";
 
@@ -81,8 +81,8 @@ const DreamCreate = () => {
                         {/* 파일 업로드  */}
                         <div className={style.file_box}>
                             <label htmlFor="file">
-                                <div className={buttonStyle.btn_file}>2/3</div>
-                                {/*<div className={buttonStyle.btn_uploaded_files}>*/}
+                                <div className={btnStyle.btn_file}>2/3</div>
+                                {/*<div className={btnStyle.btn_uploaded_files}>*/}
                                 {/*    <img className={style.uploaded_files}/>*/}
                                 {/*</div>*/}
                             </label>

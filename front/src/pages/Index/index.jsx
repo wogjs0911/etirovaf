@@ -39,7 +39,7 @@ const Index = () => {
                     {/*    <Link to={"/login"} className={style.start_text}>START </Link>*/}
                     {/*</div>*/}
                     <div className={style.btn_start_form}>
-                        <Link to={"/login"}>
+                        <Link to={"/home"}>
                             <button className={style.btn_start}>START</button>
                         </Link>
                     </div>

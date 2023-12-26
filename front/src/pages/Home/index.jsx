@@ -1,4 +1,6 @@
 import style from "./styled.module.css";
+import globalStyle from "../../styles/style.module.css";
+import utilStyle from "../../styles/utils.module.css";
 import { useState, useEffect } from "react";
 import { fetchDreams } from "../pagesApi.js";
 import Searchbar from "../../components/Searchbar/index.jsx";
@@ -8,6 +10,8 @@ import TopDreamList from "../../components/TopDreamList/index.jsx";
 import DreamList from "../../components/DreamList/index.jsx";
 import RecentDreamItem from "../../components/RecentDreamItem/index.jsx";
 import RecentDreamList from "../../components/RecentDreamList/index.jsx";
+import Layout from "../../components/Layout/index.jsx";
+import {Link} from "react-router-dom";
 
 
 
@@ -63,10 +67,15 @@ const Home = () => {
     return (
         <div className={style.container}>
             <div className={style.header}>
-                <div className={style.searchBox}>
-                    <Searchbar />
+                <Link to={"/login"} className={style.login_btn_form}>
+                    <input className={style.btn_login} type="submit" value="로그인" />
+                </Link>
+                <div className={utilStyle.d_fl_jf}>
+                    <div className={style.searchBox}>
+                        <Searchbar />
+                    </div>
+                    <Notification />
                 </div>
-                <Notification />
             </div>
             <div className={style.category}>
                 <Category />

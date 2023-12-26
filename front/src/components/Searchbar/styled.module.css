@@ -24,6 +24,10 @@
     margin-left: 6px;
 }
 
+.search_input::placeholder{
+    font-size: 0.825rem;
+}
+
 input::placeholder {
     font-size: 0.821rem;
     border: none;

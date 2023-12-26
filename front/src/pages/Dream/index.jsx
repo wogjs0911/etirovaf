@@ -2,7 +2,7 @@ import style from "./styled.module.css";
 import globalStyle from "../../styles/style.module.css";
 import utilStyle from "../../styles/utils.module.css";
 import React, { useState, useEffect} from "react";
-import {useLocation, useParams} from "react-router-dom";
+import {Link, useLocation, useParams} from "react-router-dom";
 
 const mockData = [
     {
@@ -63,7 +63,7 @@ const Dream = () => {
                 <main>
                      {/* detail_main : flex_container */}
                     <header className={style.detail_header}>
-                        <a className={`${globalStyle.icon} ${globalStyle.icon_back}`}>뒤로가기</a>
+                        <Link to={"/home"} className={`${globalStyle.icon} ${globalStyle.icon_back}`}>뒤로가기</Link>
 
                          {/* 수정/삭제 모달 버튼 */}
                         <i className={style.icon_edit}></i>

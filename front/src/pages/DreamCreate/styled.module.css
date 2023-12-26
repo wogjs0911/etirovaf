@@ -122,6 +122,10 @@
     /* background-color: #7bb1ce; */
 }
 
+.input_field::placeholder{
+    font-size: 0.825rem;
+}
+
 .input_field_textarea {
     display: inline-block;
     margin-left: 0px;

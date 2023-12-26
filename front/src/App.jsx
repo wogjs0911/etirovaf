@@ -15,9 +15,9 @@ function App() {
         <Layout>
          <Routes>
              <Route path='/' element={<Index />}/>
+             <Route path='/home' element={<Home />}/>
              <Route path='/login' element={<Login />}/>
              <Route path='/signup' element={<Signup />}/>
-             <Route path='/home' element={<Home />}/>
              <Route path='/search' element={<DreamSearch />}/>
              <Route path='/dream/:id' element={<Dream />}/>
              <Route path='/dream/create' element={<DreamCreate />}/>
