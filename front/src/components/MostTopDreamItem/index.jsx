@@ -1,6 +1,7 @@
 import React from "react";
 import style from "./styled.module.css";
 import { useNavigate } from "react-router-dom";
+import Bookmark from "../Bookmark/index.jsx";
 
 const MostTopDreamItem = ({
       id,
@@ -26,7 +27,9 @@ const MostTopDreamItem = ({
                         {/*<img className={style.listview_image} src={"../../"} alt="img"/>*/}
                         <div className={style.listview_image}></div>
                     </div>
-                    <div className={`${style.list_heart} ${style.icon_heart}`}></div>
+                    <div className={style.list_heart}>
+                        <Bookmark />
+                    </div>
                     <div className={style.list_title}>{title}</div>
                     <div className={style.list_organ_form}>
                         <span className={style.list_organ}>

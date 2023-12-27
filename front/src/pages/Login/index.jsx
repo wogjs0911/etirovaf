@@ -3,6 +3,8 @@ import globalStyle from "../../styles/style.module.css";
 import utilStyle from "../../styles/utils.module.css";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import GoogleLogin from "../../components/GoogleLogin/index.jsx";
+import KakaoLogin from "../../components/KakaoLogin/index.jsx";
 
 const Login = () => {
 
@@ -85,19 +87,8 @@ const Login = () => {
                         <span className={style.text}>&nbsp;또는&nbsp;</span>
                         <hr />
                     </div>
-
-                    {/*<GoogleLogin callback={customLoginHandler} popup-type="TOKEN">*/}
-                        <div className={style.google_login}>
-                            <div className={style.google_icon}></div>
-                            <div className={style.text}>Google 계정 로그인</div>
-                        </div>
-                    {/*</GoogleLogin>*/}
-
-                    <div className={style.kakao_login}>
-                        {/*<div className={`${globalStyle.icon} ${style.kakao_icon}`}></div>*/}
-                        <div className={`${style.kakao_icon}`}></div>
-                        <div className={style.kakao_text}>카카오 로그인</div>
-                    </div>
+                    <GoogleLogin />
+                    <KakaoLogin />
                 </div>
             </main>
         </div>

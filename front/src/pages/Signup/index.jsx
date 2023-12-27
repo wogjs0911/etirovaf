@@ -2,8 +2,8 @@ import style from "./styled.module.css";
 import { useState, useEffect } from "react";
 import globalStyle from "../../styles/style.module.css";
 import utilStyle from "../../styles/utils.module.css";
-import btnStyle from "../../styles/button.module.css";
 import { Link } from "react-router-dom";
+import ErrorModal from "../../components/ErrorModal/index.jsx";
 
 
 const Signup = () => {
@@ -121,6 +121,7 @@ const Signup = () => {
                         </div>
                     </form>
 
+                    {/*<ErrorModal />*/}
                     {/* 에러메시지 모달창 */}
                     {/*<div className={style.black_bg}>*/}
                     {/*    <div className={style.error_box}>{ ErrorMsg }*/}

@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import globalStyle from "../../styles/style.module.css";
 import utilStyle from "../../styles/utils.module.css";
 import btnStyle from "../../styles/button.module.css";
-import {useNavigate} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import style from "./styled.module.css";
+import ErrorModal from "../../components/ErrorModal/index.jsx";
 
 const mockData = [
     {
@@ -58,7 +59,7 @@ const DreamCreate = () => {
                 {/* =================== create2 : header ===================== */}
                 <header>
                     <div className={globalStyle.create2_back}>
-                        <a className={`${globalStyle.icon} ${globalStyle.icon_back}`}>뒤로가기</a>
+                        <Link to={"/home"} className={`${globalStyle.icon} ${globalStyle.icon_back}`}>뒤로가기</Link>
                     </div>
 
                     <div className={globalStyle.hd_title_box}>
@@ -90,6 +91,7 @@ const DreamCreate = () => {
                             <input type="file" className={utilStyle.d_none} id="file" name="imgs" multiple accept="image/*"/>
                         </div>
 
+                        {/*<ErrorModal />*/}
                         {/* 에러메시지 모달창 */}
                         {/*<div className={globalStyle.black_bg}>*/}
                         {/*    <div className={globalStyle.error_box}>{ valiError }*/}

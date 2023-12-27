@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import {useNavigate, useSearchParams} from "react-router-dom"
+import { useSearchParams } from "react-router-dom"
 import Searchbar from "../../components/Searchbar/index.jsx";
 import style from "./styled.module.css";
-import {fetchDream} from "../pagesApi.js";
 import Notification from "../../components/Notification/index.jsx";
 import Category from "../../components/Category/index.jsx";
 import MostTopDreamList from "../../components/MostTopDreamList/index.jsx";

@@ -1,16 +1,11 @@
 import style from "./styled.module.css";
-import globalStyle from "../../styles/style.module.css";
 import utilStyle from "../../styles/utils.module.css";
 import { useState, useEffect } from "react";
-import { fetchDreams } from "../pagesApi.js";
 import Searchbar from "../../components/Searchbar/index.jsx";
 import Notification from "../../components/Notification/index.jsx";
 import Category from "../../components/Category/index.jsx";
 import TopDreamList from "../../components/TopDreamList/index.jsx";
-import DreamList from "../../components/DreamList/index.jsx";
-import RecentDreamItem from "../../components/RecentDreamItem/index.jsx";
 import RecentDreamList from "../../components/RecentDreamList/index.jsx";
-import Layout from "../../components/Layout/index.jsx";
 import {Link} from "react-router-dom";
 
 
