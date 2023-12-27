@@ -1,6 +1,6 @@
 import './App.css'
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
-import Home from "./pages/Home/index.jsx";
+import Home from "./pages/Home/index.jsx"
 import Layout from "./components/Layout/index.jsx";
 import Dream from "./pages/Dream/index.jsx";
 import DreamSearch from "./pages/DreamSearch/index.jsx";
