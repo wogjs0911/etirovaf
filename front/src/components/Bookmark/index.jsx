@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./styled.module.css";
 
-const GoogleLogin = () => {
+const Bookmark = () => {
     return (
         <div>
             <div className={style.icon_heart}></div>
@@ -9,4 +9,4 @@ const GoogleLogin = () => {
     );
 };
 
-export default GoogleLogin;
+export default Bookmark;
