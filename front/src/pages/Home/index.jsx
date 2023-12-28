@@ -7,6 +7,7 @@ import Category from "../../components/Category/index.jsx";
 import TopDreamList from "../../components/TopDreamList/index.jsx";
 import RecentDreamList from "../../components/RecentDreamList/index.jsx";
 import {Link} from "react-router-dom";
+import Navigation from "../../components/Navigation/index.jsx";
 
 
 

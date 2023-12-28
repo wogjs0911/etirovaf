@@ -58,7 +58,7 @@ const DreamCreate = () => {
 
                 {/* =================== create2 : header ===================== */}
                 <header>
-                    <div className={globalStyle.create2_back}>
+                    <div className={style.create2_back}>
                         <Link to={"/home"} className={`${globalStyle.icon} ${globalStyle.icon_back}`}>뒤로가기</Link>
                     </div>
 

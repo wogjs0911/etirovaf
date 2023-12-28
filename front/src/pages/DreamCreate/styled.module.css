@@ -2,7 +2,7 @@
 
 /* ----------- create1 ----------- */
 
-.reg1_main_content {
+.create1_main_content {
     margin-top: 109px;
     text-align: center;
 }
@@ -40,6 +40,16 @@
 
 /* ---- category + select-style ---------------------- */
 
+.create2_back{
+    position: absolute;
+    top: -1px;
+    left: 390px;
+}
+
+.header_form{
+    width: 360px;
+}
+
 .category_form{
     display: flex;
     flex-direction: column;
@@ -71,11 +81,13 @@
 .create2_post {
     cursor: pointer;
     position: absolute;
+    /*top: 15px;*/
+    /*right: 18px;*/
     top: 15px;
-    right: 18px;
+    right: 410px;
 
     border: none;
-    background-color: #fff;
+    background-color: transparent;
     color: #008AD7;
 
     font-size: 12px;
