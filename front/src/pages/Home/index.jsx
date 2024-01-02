@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import style from "./styled.module.css";
 import utilStyle from "../../styles/utils.module.css";
 import { useState, useEffect } from "react";

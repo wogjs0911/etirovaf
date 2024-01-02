@@ -40,11 +40,11 @@
 
 /* ---- category + select-style ---------------------- */
 
-.create2_back{
-    position: absolute;
-    top: -1px;
-    left: 390px;
-}
+/*.create2_back{*/
+/*    position: absolute;*/
+/*    top: -1px;*/
+/*    left: 390px;*/
+/*}*/
 
 .header_form{
     width: 360px;
@@ -81,10 +81,8 @@
 .create2_post {
     cursor: pointer;
     position: absolute;
-    /*top: 15px;*/
-    /*right: 18px;*/
+    right: 18px;
     top: 15px;
-    right: 410px;
 
     border: none;
     background-color: transparent;

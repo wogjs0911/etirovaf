@@ -1,7 +1,7 @@
 import style from "./styled.module.css";
 import globalStyle from "../../styles/style.module.css";
 import { useState, useEffect } from "react";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 const Searchbar = ({ q }) => {
     const [search, setSearch] = useState("");
@@ -40,7 +40,7 @@ const Searchbar = ({ q }) => {
                 />
             </div>
             <div className={style.category_setting}>
-                <h1 className={`${globalStyle.icon} ${style.icon_category_setting}`}>알림</h1>
+                <Link to={"/dream/filter"} className={`${globalStyle.icon} ${style.icon_category_setting}`}>알림</Link>
             </div>
         </div>
     );

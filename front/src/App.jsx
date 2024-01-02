@@ -8,6 +8,7 @@ import DreamCreate from "./pages/DreamCreate/index.jsx";
 import Index from "./pages/Index/index.jsx";
 import Signup from "./pages/Signup/index.jsx";
 import Login from "./pages/Login/index.jsx";
+import DreamFilter from "./pages/DreamFilter/index.jsx";
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
              <Route path='/search' element={<DreamSearch />}/>
              <Route path='/dream/:id' element={<Dream />}/>
              <Route path='/dream/create' element={<DreamCreate />}/>
+             <Route path='/dream/filter' element={<DreamFilter />}/>
          </Routes>
         </Layout>
     )
