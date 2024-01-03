@@ -40,7 +40,7 @@ const Searchbar = ({ q }) => {
                 />
             </div>
             <div className={style.category_setting}>
-                <Link to={"/dream/filter"} className={`${globalStyle.icon} ${style.icon_category_setting}`}>알림</Link>
+                <Link to={"/dreams/filter"} className={`${globalStyle.icon} ${style.icon_category_setting}`}>알림</Link>
             </div>
         </div>
     );

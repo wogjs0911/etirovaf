@@ -2,7 +2,6 @@ import style from "./styled.module.css";
 import React, { useState, useEffect } from "react";
 import globalStyle from "../../styles/style.module.css";
 import utilStyle from "../../styles/utils.module.css";
-import btnStyle from "../../styles/button.module.css";
 import { Link } from "react-router-dom";
 
 
