@@ -2,9 +2,10 @@ import style from "./styled.module.css";
 import React, { useState, useEffect } from "react";
 import globalStyle from "../../styles/style.module.css";
 import utilStyle from "../../styles/utils.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import NoticeList from "../../components/NoticeList/index.jsx";
 import dream from "../Dream/index.jsx";
+import NoticeSettingModal from "../../components/NoticeSettingModal/index.jsx";
 
 const mockData = [
     {
@@ -41,11 +42,14 @@ const mockData = [
 
 const DreamNotice = () => {
     const [dreams, setDreams] = useState(mockData);
+    const [modal, setModal] = useState(false);
 
     const setInitData = async () => {
         // const data = await fetchDream(params.q);
         setDreams(mockData);
     }
+
+
     return (
         <div className={style.wrap}>
             <header className={`${utilStyle.d_fl_ac} ${style.header}`}>
@@ -69,9 +73,16 @@ const DreamNotice = () => {
                         </div>
                     </div>
                     <div className={style.notice_setting_form}>
-                        <button className={style.notice_setting}>설정</button>
+                        <button className={style.notice_setting} onClick={() => {
+                            setModal(
+                                modal === false ? true : false
+                            )
+                        }}>
+                            설정
+                        </button>
                     </div>
                 </div>
+                <div>{modal === true ? <NoticeSettingModal/> : null}</div>
                 <NoticeList dreams={dreams} />
             </main>
         </div>
