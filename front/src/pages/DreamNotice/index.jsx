@@ -42,7 +42,7 @@ const mockData = [
 
 const DreamNotice = () => {
     const [dreams, setDreams] = useState(mockData);
-    const [modal, setModal] = useState(false);
+    const [modalOpen, setModalOpen] = useState(false);
 
     const setInitData = async () => {
         // const data = await fetchDream(params.q);
@@ -74,16 +74,16 @@ const DreamNotice = () => {
                     </div>
                     <div className={style.notice_setting_form}>
                         <button className={style.notice_setting} onClick={() => {
-                            setModal(
-                                modal === false ? true : false
+                            setModalOpen(
+                                modalOpen === false ? true : false
                             )
                         }}>
                             설정
                         </button>
                     </div>
                 </div>
-                <div>{modal === true ? <NoticeSettingModal/> : null}</div>
-                <NoticeList dreams={dreams} />
+                <div>{ modalOpen === true ? <NoticeSettingModal setModalOpen={ setModalOpen } /> : null }</div>
+                <NoticeList dreams={ dreams } />
             </main>
         </div>
     );
