@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 const NoticeSettingModal = ( { setModalOpen } ) => {
     const nav = useNavigate();
 
+
     const onClickCloseNotice = () =>{
         setModalOpen(false);
     }
@@ -15,14 +16,18 @@ const NoticeSettingModal = ( { setModalOpen } ) => {
             <div className={style.black_bg}>
                 <div className={style.notice_modal_box}>
                     <div className={style.modal_txt_form}>
-                        <div className={style.modal_txt}>
-                            키워드 입력
-                        </div>
+                        <input className={style.modal_txt} placeholder="키워드 입력">
+
+                        </input>
                         <button className={style.modal_reg_btn}>등록</button>
                     </div>
                     <div className= { style.notice_list }>
                         <div>
-                            <button className={ style.notice_item }>디자이너</button>
+                            <button className={ style.notice_item }>
+                                <div className={ style.delete_keyword_notice }>
+                                    디자이너
+                                </div>
+                            </button>
                         </div>
                         <div>
                             <button className={ style.notice_item }>개발자</button>

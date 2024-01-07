@@ -20,8 +20,8 @@
 
 /* modal */
 .notice_modal_box {
-    width: 253px;
-    height: 303px;
+    width: 316px;
+    height: 239px;
     background: #FFFFFF;
     border-radius: 10px;
     color: #000000;
@@ -32,7 +32,7 @@
     justify-content: center;
     flex-direction: column;
     position: relative;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -47,10 +47,15 @@
 }
 
 .modal_txt{
-    color: #9D9595;
+
     align-self: end;
     margin-left: 10px;
     margin-bottom: 5px;
+}
+
+.modal_txt::placeholder{
+    color: #9D9595;
+    font-size: 0.75rem;
 }
 
 .notice_list {
@@ -64,7 +69,7 @@
     flex: 0 0 20%;
     margin-top: 12px;
     flex-wrap: wrap;
-    margin-left: 25px;
+    margin-left: 28px;
 
 }
 
@@ -88,14 +93,17 @@
     background-color: rgba(0, 138, 215, 0.5);
     overflow: hidden;
     padding: 3px 8px;
-    font-size: 13px;
+    font-size: 0.8125rem;
     cursor: pointer;
     display:inline-block;
     color: #ffffff;
 }
 
-.notice_item::after {
-
+.delete_keyword_notice::after {
+    width: 10px;
+    height: 10px;
+    position: relative;
+    background-image: url("data:image/svg+xml,%3Csvg width='10' height='10' viewBox='0 0 10 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M10 8.59L8.59 10L5 6.41L1.41 10L0 8.59L3.59 5L0 1.41L1.41 0L5 3.59L8.59 0L10 1.41L6.41 5L10 8.59Z' fill='white'/%3E%3C/svg%3E%0A");
 }
 
 .modal_btn_form{
@@ -103,7 +111,6 @@
     display: flex;
     justify-content: flex-end;
 }
-
 
 .modal_reg_btn {
     width: 34px;
