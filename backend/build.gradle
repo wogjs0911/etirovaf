@@ -36,6 +36,9 @@ dependencies {
 	testImplementation "org.testcontainers:junit-jupiter:1.19.3"
 	testImplementation "org.testcontainers:mysql:1.19.3"
 
+	// slack log
+	implementation 'com.github.maricn:logback-slack-appender:1.6.1'
+
 	// Querydsl 추가
 	implementation 'com.querydsl:querydsl-jpa:5.0.0:jakarta'
 	annotationProcessor "com.querydsl:querydsl-apt:5.0.0:jakarta"

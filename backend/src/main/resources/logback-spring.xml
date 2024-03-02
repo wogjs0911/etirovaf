@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
+
+    <springProperty name="SLACK_WEBHOOK_URL" source="slack.webhook.url"/>
+
     <!-- log 기록 절대 위치 설정 -->
     <property name="LOGS_ABSOLUTE_PATH" value="./logs" />
 
@@ -14,6 +18,7 @@
         <layout class="ch.qos.logback.classic.PatternLayout">
             <Pattern>${CONSOLE_LOG_PATTERN}</Pattern>
         </layout>
+        <colorCoding>true</colorCoding>
     </appender>
 
     <!-- 파일(FILE) -->
@@ -33,9 +38,31 @@
         </rollingPolicy>
     </appender>
 
+    <appender name="SLACK" class="com.github.maricn.logback.SlackAppender">
+        <webhookUri>${SLACK_WEBHOOK_URL}</webhookUri>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>
+                ${service} %level!
+                ${CONSOLE_LOG_PATTERN}
+            </pattern>
+        </layout>
+        <username>Dev-Logger</username>
+        <iconEmoji>:large_blue_circle:</iconEmoji>
+        <colorCoding>true</colorCoding>
+    </appender>
+
+    <appender name="ASYNC_SLACK" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="SLACK"/>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+    </appender>
+
     <!-- log 레벨 설정 (logging.level.root=info)-->
-    <root level="info">
+    <root>
+        <level value="INFO" />
         <!--     참조할 appender 설정 - STDOUT -->
+        <appender-ref ref="ASYNC_SLACK" />
         <appender-ref ref="STDOUT" />
     </root>
 
