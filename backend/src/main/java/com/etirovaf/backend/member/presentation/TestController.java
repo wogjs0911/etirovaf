@@ -2,6 +2,8 @@ package com.etirovaf.backend.member.presentation;
 
 import com.etirovaf.backend.member.model.entity.Member;
 import com.etirovaf.backend.member.repository.MemberRepository;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -20,12 +22,14 @@ import java.util.Optional;
 @Transactional
 @CrossOrigin("*")
 @Slf4j
+@Tag(name = "02.testList2")
 public class TestController {
     private final MemberRepository memberRepository;
 
     @GetMapping("/list")
+    @Operation(summary="테스트 리스트1", description = "테스트인데 리스트 목록을 받아온다.", tags={"02.testList2",})
     public ResponseEntity<List<Member>> getMember(){
-        List<Member> member = memberRepository.findByUsername("34534");
+        List<Member> member = memberRepository.findByUsername("member1");
 
         if(member.isEmpty())
                 log.error("log Error level test");
@@ -35,6 +39,7 @@ public class TestController {
     }
 
     @GetMapping ("/save")
+    @Operation(summary="테스트 세이브2", description = "테스트인데 리스트 목록을 저장한다.", tags={"02.testList2",})
     public ResponseEntity<?> addMember(){
         Member member = new Member();
         member.setUsername("member1");
