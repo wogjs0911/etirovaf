@@ -1,10 +1,9 @@
 .list_wrap {
-    margin: 0 auto;
-    width: 360px;
-    height: 132px;
+    margin: 0 20px;
+    width: 320px;
+    height: 60px;
     background-color: #ffffff;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
-    inset 1px 4px 4px rgba(0, 0, 0, 0.03);
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 8%);
     border-radius: 15px;
     border: none;
 }
@@ -12,25 +11,20 @@
 .dream_list {
     padding: 12px 0;
     box-sizing: border-box;
+    display: flex;
+    justify-content: center;
 }
 
-/* 320 * aa  */
 .list_grid {
     display: grid;
-    grid-template-columns: 68px 10px minmax(174px, auto) 10px 70px;
-    grid-template-rows: 20px 10px 10px 17px 12px 15px 10px;
+    grid-template-columns: 48px minmax(84px, auto) 60px 70px 50px;
+    grid-template-rows: 18px 18px;
     grid-template-areas:
-    "pic titl titl . ht"
-    "pic subj subj . ."
-    ". . . . ."
-    "hash hash hash hash ."
-    ". . . . ."
-    "plc plc plc plc ."
-    "dday . . btn btn";
+    "pic titl titl dday ."
+    "pic hash subj plc .";
     align-items: center;
     cursor: pointer;
-    margin-left: 11px;
-    margin-right: 11px;
+    margin-left: 40px;
 }
 
 .top_list_pic {
@@ -53,17 +47,6 @@
     object-fit: cover;
 }
 
-.list_heart {
-    justify-self: right;
-    align-self: center;
-    grid-area: ht;
-    width: 14px;
-    height: 14px;
-    background-size: auto;
-    margin-right: 8px;
-    margin-bottom: 6px;
-}
-
 .list_title {
     grid-area: titl;
     font-size: 0.75rem;
@@ -74,7 +57,9 @@
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
-    margin-top: 30px;
+    align-self: center;
+    justify-self: center;
+    margin-top: 14px;
 }
 
 .list_organ_form {
@@ -83,29 +68,6 @@
     color: #828690;
     display: grid;
     margin-top: 10px;
-}
-
-.list_hashtag_form {
-    grid-area: hash;
-    background-color: rgba(213, 210, 210, 0.51);
-    width: 50px;
-    height: 20px;
-    line-height: 20px;
-    border-radius: 5px;
-    text-align: center;
-    font-size: 0.525rem;
-    color: #828690;
-    display: grid;
-    margin-top: 15px;
-    margin-left: 6px;
-}
-
-.list_hashtag::before {
-    font-family: "Material Icons";
-    content: "\e9ef";
-    margin-right: 2px;
-    position: relative;
-    top: 1px;
 }
 
 .list_place_form {
@@ -125,19 +87,28 @@
 
     position: relative;
     top: 1px;
+    z-index: 1;
+}
+
+.list_dday_form{
+    display: inline-block;
+    justify-content: center;
+    margin-left: 20px;
 }
 
 .list_dday {
     grid-area: dday;
     border-radius: 5px;
     font-size: 0.438rem;
-    /* width: 64px; */
     height: 15px;
     line-height: 15px;
-    margin-top: -20px;
     font-weight: 600;
-    margin-left: 7px;
-    margin-top: 20px
+    background-color: #b8ccff82;
+    width: 25px;
+    margin-left: 40px;
+    padding-left: 9px;
+    margin-bottom: 10px;
+    color: #56a4ff;
 }
 
 .list_dday .expired {
@@ -168,8 +139,8 @@
     color: #ff687b;
 }
 
-.list_btn_form {
-    grid-area: btn;
+.list_hashtag_form {
+    grid-area: hash;
     background-color: rgba(213, 210, 210, 0.51);
     width: 50px;
     height: 20px;
@@ -179,20 +150,16 @@
     font-size: 0.525rem;
     color: #828690;
     display: grid;
-    margin-top: 15px;
-    margin-left: 2px;
+    margin-top: 10px;
 }
 
-.list_btn{
-    width: 72px;
-    height: 24px;
-    background: #008AD7;
-    box-shadow: none;
-    border-radius: 5px;
-    border: none;
-    text-align: center;
-    cursor: pointer;
-    color: #ffffff;
+.list_hashtag::before {
+    font-family: "Material Icons";
+    content: "\e9ef";
+    margin-right: 2px;
+    position: relative;
+    top: 1px;
+    z-index: 1;
 }
 
 .dream_list img {

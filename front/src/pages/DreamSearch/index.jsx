@@ -5,6 +5,7 @@ import style from "./styled.module.css";
 import Notification from "../../components/Notification/index.jsx";
 import Category from "../../components/Category/index.jsx";
 import MostTopDreamList from "../../components/MostTopDreamList/index.jsx";
+import Navigation from "../../components/Navigation/index.jsx";
 
 const mockData = [
     {
