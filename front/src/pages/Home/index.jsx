@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import style from "./styled.module.css";
 import utilStyle from "../../styles/utils.module.css";
 import { useState, useEffect } from "react";
@@ -7,6 +9,7 @@ import Category from "../../components/Category/index.jsx";
 import TopDreamList from "../../components/TopDreamList/index.jsx";
 import RecentDreamList from "../../components/RecentDreamList/index.jsx";
 import {Link} from "react-router-dom";
+import Navigation from "../../components/Navigation/index.jsx";
 
 
 

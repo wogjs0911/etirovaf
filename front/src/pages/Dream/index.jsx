@@ -3,6 +3,7 @@ import globalStyle from "../../styles/style.module.css";
 import utilStyle from "../../styles/utils.module.css";
 import React, { useState, useEffect} from "react";
 import {Link, useLocation, useParams} from "react-router-dom";
+import Navigation from "../../components/Navigation/index.jsx";
 
 const mockData = [
     {
