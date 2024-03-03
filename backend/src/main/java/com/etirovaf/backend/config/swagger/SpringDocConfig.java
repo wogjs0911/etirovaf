@@ -1,4 +1,4 @@
-package com.etirovaf.backend.common.swagger;
+package com.etirovaf.backend.config.swagger;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;
@@ -12,10 +12,9 @@ import org.springframework.context.annotation.Configuration;
                 version = "v1"
         ),
         tags = {
-                @Tag(name="01.testList1", description = "테스트 1 : 리스트"),
-                @Tag(name="02.testList2", description = "테스트 2 : 세이브"),
-                @Tag(name="03.testList3", description = "테스트 3 : 파이널"),
-
+                @Tag(name="01.로그인", description = "로그인 기능"),
+                @Tag(name="02.회원", description = "회원 기능"),
+                @Tag(name="03.드림목록", description = "드림글 기능"),
         }
 )
 @Configuration
