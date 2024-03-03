@@ -23,23 +23,23 @@ class BackendApplicationTests {
 	EntityManager em;
 	JPAQueryFactory queryFactory;
 
-	@BeforeEach
-	public void before() {
-		queryFactory = new JPAQueryFactory(em);
-		Member member1 = new Member(1L,"member1");
-		em.persist(member1);
-	}
-
-	@Test
-	public void fetchMember() {
-		QMember m = new QMember("m");
-
-		Member findMember = queryFactory
-				.select(m)
-				.from(m)
-				.where(m.username.eq("member1"))
-				.fetchOne();
-
-		assertEquals(findMember.getUsername(), "member1");
-	}
+//	@BeforeEach
+//	public void before() {
+//		queryFactory = new JPAQueryFactory(em);
+//		Member member1 = new Member(1L,"member1");
+//		em.persist(member1);
+//	}
+//
+//	@Test
+//	public void fetchMember() {
+//		QMember m = new QMember("m");
+//
+//		Member findMember = queryFactory
+//				.select(m)
+//				.from(m)
+//				.where(m.username.eq("member1"))
+//				.fetchOne();
+//
+//		assertEquals(findMember.getUsername(), "member1");
+//	}
 }

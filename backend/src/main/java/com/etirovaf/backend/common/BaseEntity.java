@@ -1,5 +1,6 @@
 package com.etirovaf.backend.common;
 
+import com.etirovaf.backend.common.exception.ResultCode;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -33,4 +34,7 @@ public class BaseEntity {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
     @JsonProperty("update_at")
     private LocalDateTime updatedAt;
+
+    private int resultCode = ResultCode.SUCCESS.getResultCode();
+    private String resultMessage = ResultCode.SUCCESS.getResultMessage();
 }
