@@ -1,4 +1,4 @@
-package com.etirovaf.backend.member.repository;
+package com.etirovaf.backend.member.infrastructure.repository;
 
 import com.etirovaf.backend.member.model.entity.Member;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -2,7 +2,7 @@ package com.etirovaf.backend.member.application;
 
 import com.etirovaf.backend.member.model.dto.MemberInfo;
 import com.etirovaf.backend.member.model.entity.Member;
-import com.etirovaf.backend.member.repository.MemberRepository;
+import com.etirovaf.backend.member.infrastructure.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

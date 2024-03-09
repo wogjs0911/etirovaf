@@ -1,6 +1,6 @@
 package com.etirovaf.backend.member.model.entity;
 
-import com.etirovaf.backend.common.BaseEntity;
+import com.etirovaf.backend.common.exception.BaseResDto;
 import com.etirovaf.backend.member.model.dto.MemberInfo;
 import jakarta.persistence.*;
 import lombok.*;
@@ -11,7 +11,7 @@ import lombok.*;
 @NoArgsConstructor(access= AccessLevel.PROTECTED)
 @AllArgsConstructor
 @ToString
-public class Member extends BaseEntity {
+public class Member extends BaseResDto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

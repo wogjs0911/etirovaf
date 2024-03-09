@@ -37,7 +37,7 @@ public enum ResultCode {
     public interface ResultMessage{
         String SUCCESS = "완료 되었습니다.";
         String UNAUTHORIZED = "인증에 실패하였습니다.";
-        String NO_AUTH = "접근 권한이 없습니다.";
+        String NO_AUTH = "전급 권한이 없습니다.";
         String INTERNAL_ERROR = "시스템 오류가 발생하였습니다. 다시 시도해주세요.";
         String ACCESS_NO_AUTH = "접근 권한이 없습니다.";
         String ACCESS_TOKEN_EXPIRED = "Access Token이 만료되었습니다.";
