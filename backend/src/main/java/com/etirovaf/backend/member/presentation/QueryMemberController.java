@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/api/member")
 @RequiredArgsConstructor
@@ -24,11 +26,11 @@ public class QueryMemberController {
 
     @GetMapping("/list")
     @Operation(summary="회원목록", description = "테스트인데 리스트 목록을 받아온다.", tags={"02.회원",})
-    public ResponseEntity<ResponseHandler<Member>> getMember(@RequestParam String username){
+    public ResponseEntity<ResponseHandler<Optional<Member>>> getMember(@RequestParam String username){
         log.info("getMemberByUsername");
         return ResponseEntity
                 .ok()
-                .body(ResponseHandler.<Member>builder()
+                .body(ResponseHandler.<Optional<Member>>builder()
                         .message("SUCCESS")
                         .data(service.getMemberByUsername(username))
                         .build()

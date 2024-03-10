@@ -1,7 +1,7 @@
 package com.etirovaf.backend.member.model.entity;
 
 import com.etirovaf.backend.common.exception.BaseResDto;
-import com.etirovaf.backend.member.model.dto.MemberInfo;
+import com.etirovaf.backend.member.model.dto.request.MemberInfo;
 import jakarta.persistence.*;
 import lombok.*;
 

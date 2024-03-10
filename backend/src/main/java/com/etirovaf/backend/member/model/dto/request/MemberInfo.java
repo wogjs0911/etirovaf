@@ -1,4 +1,4 @@
-package com.etirovaf.backend.member.model.dto;
+package com.etirovaf.backend.member.model.dto.request;
 
 import com.etirovaf.backend.member.model.entity.Role;
 import lombok.Builder;
