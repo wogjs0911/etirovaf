@@ -27,7 +27,7 @@ public class MemberController {
         log.info("addMember");
 //        return service.addMember(memberInfo);
         return service.addMember(MemberInfo.builder()
-                .username("wogjs0911")
+                .userId("wogjs0911")
                 .nickname("회원1")
                 .password("23423asdad")
                 .role(Role.MEMBER)

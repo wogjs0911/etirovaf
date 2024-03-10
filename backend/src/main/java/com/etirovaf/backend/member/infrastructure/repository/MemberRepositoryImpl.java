@@ -13,11 +13,11 @@ public class MemberRepositoryImpl implements MemberRepositoryCustom{
     private final JPAQueryFactory queryFactory;
 
     @Override
-    public Optional<Member> findByUsername(String username) {
+    public Optional<Member> findByUserId(String userId) {
         return Optional.ofNullable(queryFactory
                 .select(member)
                 .from(member)
-                .where(member.username.eq(username))
+                .where(member.userId.eq(userId))
                 .fetchOne());
     }
 }

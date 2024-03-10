@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
@@ -31,17 +32,18 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-        //CSRF(Cross-Site Request Forgery) 보호 비활성화
+
+        // CSRF(Cross-Site Request Forgery) 보호 비활성화
         httpSecurity.csrf(AbstractHttpConfigurer::disable);
         httpSecurity.cors(Customizer.withDefaults());
 
-        //HTTP 기본 인증 비활성화
+        // HTTP 기본 인증 비활성화
         httpSecurity.formLogin(AbstractHttpConfigurer::disable);
         httpSecurity.httpBasic(AbstractHttpConfigurer::disable);
 
         httpSecurity.headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin));
 
-        //세션 관리 상태 없음으로 구성, Spring Security가 세션 생성 or 사용 X
+        // 세션 관리 상태 없음으로 구성, Spring Security가 세션 생성 or 사용 X
         httpSecurity.sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(
                 SessionCreationPolicy.STATELESS));
 
@@ -51,13 +53,14 @@ public class SecurityConfig {
         );
 
         //JwtTokenFilter를 UsernamePasswordAuthenticationFilter 앞에 추가
-        httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+        httpSecurity.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
 
-        //권한 규칙 구성 시작
+        // 권한 규칙 구성 시작
         httpSecurity.authorizeHttpRequests(
                 authorize -> authorize
                         .requestMatchers("/home").permitAll()
                         .requestMatchers("/login").permitAll()
+                        .requestMatchers("/signup").permitAll()
                         .anyRequest().authenticated()
         );
         return httpSecurity.build();

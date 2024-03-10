@@ -18,7 +18,10 @@ public class Member extends BaseResDto {
     private Long id;
 
     @Column(nullable = false, length = 20)
-    private String username;
+    private String userId;
+
+    @Column(nullable = false, length = 20)
+    private String name;
 
     @Column(nullable = false, length = 20)
     private String nickname;
@@ -31,7 +34,7 @@ public class Member extends BaseResDto {
 
     public static Member of(MemberInfo info){
         return Member.builder()
-                .username(info.getUsername())
+                .userId(info.getUserId())
                 .nickname(info.getNickname())
                 .password(info.getPassword())
                 .role(info.getRole())
