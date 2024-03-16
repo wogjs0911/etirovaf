@@ -19,7 +19,7 @@ public class MemberService {
         return true;
     }
 
-    public Optional<Member> getMemberByUsername(String username) {
+    public Optional<Member> getMemberByUserId(String username) {
         return repository.findByUserId(username);
     }
 }

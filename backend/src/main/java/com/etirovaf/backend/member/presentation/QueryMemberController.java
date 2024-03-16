@@ -25,14 +25,14 @@ public class QueryMemberController {
     private final MemberService service;
 
     @GetMapping("/list")
-    @Operation(summary="회원목록", description = "테스트인데 리스트 목록을 받아온다.", tags={"02.회원",})
-    public ResponseEntity<ResponseHandler<Optional<Member>>> getMember(@RequestParam String username){
+    @Operation(summary="회원목록", description = "회원 목록을 받아온다.", tags={"02.회원",})
+    public ResponseEntity<ResponseHandler<Optional<Member>>> getMember(@RequestParam String userId){
         log.info("getMemberByUsername");
         return ResponseEntity
                 .ok()
                 .body(ResponseHandler.<Optional<Member>>builder()
                         .message("SUCCESS")
-                        .data(service.getMemberByUsername(username))
+                        .data(service.getMemberByUserId(userId))
                         .build()
                 );
     }

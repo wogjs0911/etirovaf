@@ -2,9 +2,12 @@ package com.etirovaf.backend.security;
 
 import com.etirovaf.backend.auth.model.dto.request.MemberRequest;
 import com.etirovaf.backend.auth.presentation.AuthController;
+import com.etirovaf.backend.auth.service.AuthService;
 import com.etirovaf.backend.member.infrastructure.repository.MemberRepository;
 import com.etirovaf.backend.member.model.entity.Role;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.ClassRule;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,6 +24,7 @@ import java.time.Duration;
 
 @SpringBootTest
 @Testcontainers
+@Slf4j
 public class RedisTest {
 
     @Autowired
@@ -28,6 +32,9 @@ public class RedisTest {
 
     @Autowired
     private AuthController authController;
+
+    @Autowired
+    private AuthService authService;
 
     @Autowired
     private PasswordEncoder encoder;
@@ -57,23 +64,26 @@ public class RedisTest {
         dynamicPropertyRegistry.add("spring.jpa.hibernate.ddl-auto", () -> "create");
 
     }
-    @Test
-    void test() {
+    @BeforeEach
+    void test1() {
         MemberRequest.SignUpRequest signUpRequest = new MemberRequest.SignUpRequest();
         signUpRequest.setUserId("wogjs0911@example.com");
         signUpRequest.setNickname("재헌느");
-        signUpRequest.setPassword(encoder.encode("1234asd"));
+        signUpRequest.setPassword("asd1234");
         signUpRequest.setName("김재헌");
         signUpRequest.setRole(Role.MEMBER);
 
-//        MemberRequest.SignUpRequest signUpRequest = MemberRequest.SignUpRequest.builder()
-//                .userId("wogjs0911@example.com")
-//                .nickname("재헌느")
-//                .password(encoder.encode("1234asd"))
-//                .name("김재헌")
-//                .role(Role.MEMBER)
-//                .build();
+        authService.signup(signUpRequest);
+        System.out.println("회원가입 테스트 성공");
+    }
 
-        authController.signup(signUpRequest);
+    @Test
+    void test2(){
+        MemberRequest.LoginRequest loginRequest = new MemberRequest.LoginRequest();
+        loginRequest.setUserId("wogjs0911@example.com");
+        loginRequest.setPassword("asd1234");
+
+        authService.login(loginRequest);
+        System.out.println("로그인 테스트 성공");
     }
 }

@@ -28,7 +28,7 @@ public class AuthService {
     // 회원가입
     public MemberResponse.MemberInfoResponse signup(MemberRequest.SignUpRequest request) {
         Member member = MemberConverter.toMember(request, encoder.encode(request.getPassword()));
-
+        memberRepository.save(member);
         String accessToken = jwtTokenUtil.createAccessToken(member.getId());
         redisTemplate.opsForValue().set("JWT_TOKEN:" + member.getId(), accessToken);
 
