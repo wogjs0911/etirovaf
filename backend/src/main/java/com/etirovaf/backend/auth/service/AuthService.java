@@ -1,8 +1,7 @@
 package com.etirovaf.backend.auth.service;
 
-import com.etirovaf.backend.auth.model.converter.MemberConverter;
-import com.etirovaf.backend.auth.model.dto.request.MemberRequest;
-import com.etirovaf.backend.auth.model.dto.response.MemberResponse;
+import com.etirovaf.backend.auth.model.dto.request.LoginRequest;
+import com.etirovaf.backend.auth.model.dto.request.SignUpRequest;
 import com.etirovaf.backend.common.security.jwt.JwtTokenUtil;
 import com.etirovaf.backend.member.infrastructure.repository.MemberRepository;
 import com.etirovaf.backend.member.model.entity.Member;
@@ -26,17 +25,23 @@ public class AuthService {
     private final RedisTemplate<String, Object> redisTemplate;
 
     // 회원가입
-    public MemberResponse.MemberInfoResponse signup(MemberRequest.SignUpRequest request) {
-        Member member = MemberConverter.toMember(request, encoder.encode(request.getPassword()));
-        memberRepository.save(member);
-        String accessToken = jwtTokenUtil.createAccessToken(member.getId());
-        redisTemplate.opsForValue().set("JWT_TOKEN:" + member.getId(), accessToken);
+    /**
+     * TODO : 유효성 검증 추가 후 반환 타입 boolean으로 변경하기!
+     */
+    public SignUpRequest signup(SignUpRequest request) {
+        SignUpRequest signUpRequest = SignUpRequest.toMember(request, encoder.encode(request.getPassword()));
+        memberRepository.save(Member.saveMember(signUpRequest));
+        String accessToken = jwtTokenUtil.createAccessToken(signUpRequest.getId());
+        redisTemplate.opsForValue().set("JWT_TOKEN:" + signUpRequest.getId(), accessToken);
 
-        return MemberConverter.memberInfoResponse(member);
+        return signUpRequest;
     }
 
     // 로그인
-    public MemberResponse.MemberInfoResponse login(MemberRequest.LoginRequest request) {
+    /**
+     * TODO : 유효성 검증 추가 후 반환 타입 boolean으로 변경하기!
+     */
+    public Member login(LoginRequest request) {
         Member member = memberRepository.findByUserId(request.getUserId())
                 .orElseThrow(() -> new EntityNotFoundException("해당하는 회원은 없습니다."));
 
@@ -46,10 +51,13 @@ public class AuthService {
         String accessToken = jwtTokenUtil.createAccessToken(member.getId());
         redisTemplate.opsForValue().set("JWT_TOKEN:" + member.getId(), accessToken);
 
-        return MemberConverter.memberInfoResponse(member);
+        return member;
     }
 
     // 로그아웃
+    /**
+     * TODO : 유효성 검증 추가 후 반환 타입 boolean으로 변경하기!
+     */
     public String logout() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 

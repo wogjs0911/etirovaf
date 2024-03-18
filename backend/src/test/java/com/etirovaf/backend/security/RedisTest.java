@@ -1,9 +1,9 @@
 package com.etirovaf.backend.security;
 
-import com.etirovaf.backend.auth.model.dto.request.MemberRequest;
-import com.etirovaf.backend.auth.presentation.AuthController;
+import com.etirovaf.backend.auth.model.dto.request.LoginRequest;
+import com.etirovaf.backend.auth.model.dto.request.SignUpRequest;
 import com.etirovaf.backend.auth.service.AuthService;
-import com.etirovaf.backend.member.infrastructure.repository.MemberRepository;
+import com.etirovaf.backend.member.model.entity.Member;
 import com.etirovaf.backend.member.model.entity.Role;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.ClassRule;
@@ -11,7 +11,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.DockerComposeContainer;
@@ -27,24 +26,17 @@ import java.time.Duration;
 @Slf4j
 public class RedisTest {
 
-    @Autowired
-    private MemberRepository memberRepository;
-
-    @Autowired
-    private AuthController authController;
 
     @Autowired
     private AuthService authService;
 
-    @Autowired
-    private PasswordEncoder encoder;
 
     public static final String MYSQL_DB = "mysqldb";
     public static final int MY_SQL_PORT = 3306;
 
     @ClassRule
     @Container
-    static final DockerComposeContainer<?> dockerComposeContainer =
+    public static final DockerComposeContainer<?> dockerComposeContainer =
             new DockerComposeContainer<>(new File("src/test/java/resources/docker-compose.yml"))
                     .withExposedService(
                             MYSQL_DB,
@@ -66,24 +58,24 @@ public class RedisTest {
     }
     @BeforeEach
     void test1() {
-        MemberRequest.SignUpRequest signUpRequest = new MemberRequest.SignUpRequest();
-        signUpRequest.setUserId("wogjs0911@example.com");
-        signUpRequest.setNickname("재헌느");
-        signUpRequest.setPassword("asd1234");
-        signUpRequest.setName("김재헌");
-        signUpRequest.setRole(Role.MEMBER);
+        Member member = new Member();
+        member.setUserId("wogjs0911@example.com");
+        member.setNickname("재헌느");
+        member.setPassword("asd1234");
+        member.setName("김재헌");
+        member.setRole(Role.MEMBER);
 
-        authService.signup(signUpRequest);
+        authService.signup(SignUpRequest.of(member));
         System.out.println("회원가입 테스트 성공");
     }
 
     @Test
     void test2(){
-        MemberRequest.LoginRequest loginRequest = new MemberRequest.LoginRequest();
-        loginRequest.setUserId("wogjs0911@example.com");
-        loginRequest.setPassword("asd1234");
+        Member member = new Member();
+        member.setUserId("wogjs0911@example.com");
+        member.setPassword("asd1234");
 
-        authService.login(loginRequest);
+        authService.login(LoginRequest.of(member));
         System.out.println("로그인 테스트 성공");
     }
 }
