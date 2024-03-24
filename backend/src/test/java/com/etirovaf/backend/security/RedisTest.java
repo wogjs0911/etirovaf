@@ -2,7 +2,7 @@ package com.etirovaf.backend.security;
 
 import com.etirovaf.backend.auth.model.dto.request.LoginRequest;
 import com.etirovaf.backend.auth.model.dto.request.SignupRequest;
-import com.etirovaf.backend.auth.service.AuthService;
+import com.etirovaf.backend.auth.application.AuthService;
 import com.etirovaf.backend.member.model.entity.Member;
 import com.etirovaf.backend.member.model.entity.Role;
 import lombok.extern.slf4j.Slf4j;
