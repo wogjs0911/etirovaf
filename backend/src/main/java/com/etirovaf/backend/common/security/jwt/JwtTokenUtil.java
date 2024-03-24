@@ -2,7 +2,6 @@ package com.etirovaf.backend.common.security.jwt;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Component;
@@ -17,25 +16,36 @@ public class JwtTokenUtil {
 
     private final SecretKey secretKey;
     private final long accessTokenValiditySeconds;
+    private final long refreshTokenValiditySeconds;
 
     // JWT Token 발급
     public JwtTokenUtil(
-            @Value("${jwt.secretKey}") final String secretKey,
-            @Value("${jwt.token-validity-in-seconds}") final long accessTokenValiditySeconds
+            @Value("${jwt.secret-key}") final String secretKey,
+            @Value("${jwt.access-token-validity-in-seconds}") final long accessTokenValiditySeconds,
+            @Value("${jwt.refresh-token-validity-in-seconds}") final long refreshTokenValiditySeconds
     ){
         this.secretKey = Keys.hmacShaKeyFor(secretKey.getBytes(StandardCharsets.UTF_8));
         this.accessTokenValiditySeconds = accessTokenValiditySeconds;
+        this.refreshTokenValiditySeconds = refreshTokenValiditySeconds;
     }
 
-    public String createAccessToken(Long usereId){
-        return createToken(usereId, accessTokenValiditySeconds);
-    }
-
-    private String createToken(Long usereId, long validitySeconds){
+    public String createAccessToken(String usereId){
         // Claim -> Jwt Token에 들어갈 정보 -> Claim에 loginId를 넣어줌
         Claims claims = Jwts.claims();
+        claims.put("TYPE_CLAIM_KEY", "Access");
         claims.put("memberId", usereId);
+        return createToken(usereId, accessTokenValiditySeconds, claims);
+    }
 
+    public String createRefreshToken(String usereId){
+        // Claim -> Jwt Token에 들어갈 정보 -> Claim에 loginId를 넣어줌
+        Claims claims = Jwts.claims();
+        claims.put("TYPE_CLAIM_KEY", "Refresh");
+        claims.put("memberId", usereId);
+        return createToken(usereId, refreshTokenValiditySeconds, claims);
+    }
+
+    private String createToken(String usereId, long validitySeconds, Claims claims){
         ZonedDateTime now = ZonedDateTime.now();
         ZonedDateTime tokenValidity = now.plusSeconds(validitySeconds);
 
@@ -48,9 +58,9 @@ public class JwtTokenUtil {
     }
 
     // Claims에서 userId 추출
-    public Long getUserId(String token){
+    public String getUserId(String token){
         return getClaims(token).getBody()
-                .get("userId", Long.class);
+                .get("userId", String.class);
     }
 
     // 발급된 Token의 만료시간 초과 여부

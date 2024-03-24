@@ -12,4 +12,10 @@ public class MemberInfo {
     private String password;
     private String name;
     private Role role;
+
+    public static MemberInfo of(Member entity){
+        return MemberInfo.builder()
+                .userId(entity.getUserId())
+                .build();
+    }
 }

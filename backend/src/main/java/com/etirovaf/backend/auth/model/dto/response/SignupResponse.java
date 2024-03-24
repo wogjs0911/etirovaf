@@ -4,12 +4,12 @@ import lombok.*;
 
 @Data
 @Builder
-public class LoginResponse {
+public class SignupResponse {
     private String accessToken;
     private String refreshToken;
 
-    public static LoginResponse of(String accessToken, String refreshToken) {
-        return LoginResponse.builder()
+    public static SignupResponse of(String accessToken, String refreshToken) {
+        return SignupResponse.builder()
                 .accessToken(accessToken)
                 .refreshToken(refreshToken)
                 .build();

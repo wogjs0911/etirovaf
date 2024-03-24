@@ -31,8 +31,8 @@ public class JwtTokenFilter extends OncePerRequestFilter {   // OncePerRequestFi
             String token = authorizationHeader.substring(7);
 
             if(jwtTokenUtil.isExpired(token)){
-                Long userId = jwtTokenUtil.getUserId(token);
-                UserDetails userDetails = customUserDetailService.loadUserByUsername(userId.toString());
+                String userId = jwtTokenUtil.getUserId(token);
+                UserDetails userDetails = customUserDetailService.loadUserByUsername(userId);
 
                 // 첫번쩨 매개변수 : userDetails
                 // 두번째 매개변수 : 패스워드, 사용 안해서 null로

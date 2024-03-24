@@ -1,10 +1,11 @@
 package com.etirovaf.backend.auth.presentation;
 
 import com.etirovaf.backend.auth.model.dto.request.LoginRequest;
-import com.etirovaf.backend.auth.model.dto.request.SignUpRequest;
+import com.etirovaf.backend.auth.model.dto.request.SignupRequest;
+import com.etirovaf.backend.auth.model.dto.response.LoginResponse;
+import com.etirovaf.backend.auth.model.dto.response.SignupResponse;
 import com.etirovaf.backend.auth.service.AuthService;
 import com.etirovaf.backend.common.domain.ResponseHandler;
-import com.etirovaf.backend.member.model.entity.Member;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -22,10 +23,10 @@ public class AuthController {
 
     @Operation(summary = "회원가입")
     @PostMapping("/signup")
-    public ResponseEntity<ResponseHandler<SignUpRequest>> signup(@RequestBody SignUpRequest request){
+    public ResponseEntity<ResponseHandler<SignupResponse>> signup(@RequestBody SignupRequest request){
         return ResponseEntity
                 .ok()
-                .body(ResponseHandler.<SignUpRequest>builder()
+                .body(ResponseHandler.<SignupResponse>builder()
                         .message("회원가입 성공")
                         .data(service.signup(request))
                         .build()
@@ -34,10 +35,10 @@ public class AuthController {
 
     @Operation(summary = "로그인")
     @PostMapping("/login")
-    public ResponseEntity<ResponseHandler<Member>> login(@RequestBody LoginRequest loginRequest){
+    public ResponseEntity<ResponseHandler<LoginResponse>> login(@RequestBody LoginRequest loginRequest){
         return ResponseEntity
                 .ok()
-                .body(ResponseHandler.<Member>builder()
+                .body(ResponseHandler.<LoginResponse>builder()
                         .message("로그인 성공")
                         .data(service.login(loginRequest))
                         .build()

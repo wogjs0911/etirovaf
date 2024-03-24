@@ -1,6 +1,6 @@
 package com.etirovaf.backend.member.model.entity;
 
-import com.etirovaf.backend.auth.model.dto.request.SignUpRequest;
+import com.etirovaf.backend.auth.model.dto.request.SignupRequest;
 import com.etirovaf.backend.common.exception.BaseResDto;
 import com.etirovaf.backend.member.model.dto.request.MemberInfo;
 import jakarta.persistence.*;
@@ -44,7 +44,7 @@ public class Member extends BaseResDto {
 
     // 저장 시, Entity에 저장하므로 Entity 내부 구현을 숨기고자 DTO로 저장할 수 있다.
     // 조회 시, Entity를 사용하지 않아도 되어서 DTO 자체에 정적 팩토리 메서드를 만든다.
-    public static Member saveMember(SignUpRequest entity){
+    public static Member saveMember(SignupRequest entity){
         return Member.builder()
                 .id(entity.getId())
                 .userId(entity.getUserId())

@@ -1,7 +1,7 @@
 package com.etirovaf.backend.security;
 
 import com.etirovaf.backend.auth.model.dto.request.LoginRequest;
-import com.etirovaf.backend.auth.model.dto.request.SignUpRequest;
+import com.etirovaf.backend.auth.model.dto.request.SignupRequest;
 import com.etirovaf.backend.auth.service.AuthService;
 import com.etirovaf.backend.member.model.entity.Member;
 import com.etirovaf.backend.member.model.entity.Role;
@@ -65,7 +65,7 @@ public class RedisTest {
         member.setName("김재헌");
         member.setRole(Role.MEMBER);
 
-        authService.signup(SignUpRequest.of(member));
+        authService.signup(SignupRequest.of(member));
         System.out.println("회원가입 테스트 성공");
     }
 

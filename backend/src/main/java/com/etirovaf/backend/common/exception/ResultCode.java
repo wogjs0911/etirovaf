@@ -47,7 +47,7 @@ public enum ResultCode {
         String VALID_NOT_PASSWORD = "잘못된 비밀번호 입니다.";
         String VALID_NOT_REGEXP = "형식이 올바르지 않습니다.";
         String DUPLICATE_INFO = "중복된 정보가 있습니다.";
-        String MEMBER_NOT_EXIST = "존재하지 않는 사용자 입니다.";
+        String MEMBER_NOT_EXIST = "존재하지 않는 회원입니다.";
         String LOGIN_REQUIRED = "로그인이 필요합니다.";
         String PARAM_NOT_VALID = "파라미터 오류입니다.";
     }
