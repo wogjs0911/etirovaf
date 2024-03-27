@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @Tag(name="01.로그인", description = "로그인 기능: 인증 관련")
-@RestController
+@RestController("/api/auth")
 @RequiredArgsConstructor
 public class AuthController {
 

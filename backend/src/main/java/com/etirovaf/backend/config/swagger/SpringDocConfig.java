@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
         tags = {
                 @Tag(name="01.로그인", description = "로그인 기능"),
                 @Tag(name="02.회원", description = "회원 기능"),
-                @Tag(name="03.드림목록", description = "드림글 기능"),
+                @Tag(name="03.꿈", description = "꿈 관련 글 기능"),
         }
 )
 @Configuration

@@ -1,0 +1,78 @@
+package com.etirovaf.backend.dream.model.entity;
+
+import com.etirovaf.backend.common.exception.BaseResDto;
+import com.etirovaf.backend.dream.model.dto.request.DreamInfoRequest;
+import com.etirovaf.backend.member.model.entity.Member;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+@Table
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+public class Dream extends BaseResDto {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "dream_id")
+    private Long id;
+
+    @Column(nullable = false, length = 50)
+    private String title;
+
+    @Column(nullable = false, length = 50)
+    private String place;
+
+    @Column(nullable = false, length = 50)
+    private String deadline;
+
+    @Column(nullable = false, length = 50)
+    private String organizer;
+
+    @Column(nullable = false, length = 200)
+    private String content;
+
+    private String image;
+
+    @ElementCollection
+    @CollectionTable(name="hashtag", joinColumns =
+        @JoinColumn(name = "dream_id")
+    )
+    @Column(name="hashtag_content")
+    private List<String> hashtag = new ArrayList<>(); // 테이블 따로 빼기(다대일 vs 일대다)
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name= "member_id")  // xtoOne은 Fk쪽에 LAZY 설정
+    private Member member;
+
+    public static Dream of(DreamInfoRequest entity){
+        return Dream.builder()
+                .title(entity.getTitle())
+                .place(entity.getPlace())
+                .deadline(entity.getDeadline())
+                .organizer(entity.getOrganizer())
+                .content(entity.getContent())
+                .image(entity.getImage())
+                .hashtag(entity.getHashtag())
+                .build();
+    }
+
+    public static Dream saveDream(DreamInfoRequest entity){
+        return Dream.builder()
+                .id(entity.getId())
+                .title(entity.getTitle())
+                .place(entity.getPlace())
+                .deadline(entity.getDeadline())
+                .organizer(entity.getOrganizer())
+                .content(entity.getContent())
+                .image(entity.getImage())
+                .hashtag(entity.getHashtag())
+                .build();
+    }
+}
