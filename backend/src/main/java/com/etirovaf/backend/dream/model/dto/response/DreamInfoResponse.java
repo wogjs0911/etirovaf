@@ -1,6 +1,7 @@
 package com.etirovaf.backend.dream.model.dto.response;
 
 import com.etirovaf.backend.dream.model.entity.Dream;
+import com.etirovaf.backend.dream.model.entity.HashtagEntity;
 import lombok.Builder;
 import lombok.Data;
 
@@ -16,7 +17,7 @@ public class DreamInfoResponse {
     private String organizer;
     private String content;
     private String image;
-    private List<String> hashtag;
+    private List<HashtagEntity> hashtag;
 
     public static DreamInfoResponse of(Dream entity){
         return DreamInfoResponse.builder()

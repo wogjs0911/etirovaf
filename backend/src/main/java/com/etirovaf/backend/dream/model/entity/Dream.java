@@ -20,7 +20,6 @@ import java.util.List;
 public class Dream extends BaseResDto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "dream_id")
     private Long id;
 
     @Column(nullable = false, length = 50)
@@ -40,12 +39,9 @@ public class Dream extends BaseResDto {
 
     private String image;
 
-    @ElementCollection
-    @CollectionTable(name="hashtag", joinColumns =
-        @JoinColumn(name = "dream_id")
-    )
-    @Column(name="hashtag_content")
-    private List<String> hashtag = new ArrayList<>(); // 테이블 따로 빼기(다대일 vs 일대다)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "dream_id")
+    private List<HashtagEntity> hashtag = new ArrayList<>(); // 테이블 따로 빼기(다대일 vs 일대다)
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name= "member_id")  // xtoOne은 Fk쪽에 LAZY 설정

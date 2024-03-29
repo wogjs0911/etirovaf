@@ -1,6 +1,7 @@
 package com.etirovaf.backend.dream.model.dto.request;
 
 import com.etirovaf.backend.dream.model.entity.Dream;
+import com.etirovaf.backend.dream.model.entity.HashtagEntity;
 import lombok.Builder;
 import lombok.Data;
 
@@ -16,7 +17,7 @@ public class DreamInfoRequest {
     private String organizer;
     private String content;
     private String image;
-    private List<String> hashtag;
+    private List<HashtagEntity> hashtag;
 
     public static DreamInfoRequest of(Dream entity){
         return DreamInfoRequest.builder()
