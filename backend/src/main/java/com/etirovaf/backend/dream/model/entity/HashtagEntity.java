@@ -19,7 +19,7 @@ public class HashtagEntity {
     @Embedded
     private Hashtag hashtag;    // Hashtag 엔티티를 매핑
 
-    public HashtagEntity(Hashtag hashtag) {
-        this.hashtag = hashtag;
+    public HashtagEntity(String content) {
+        this.hashtag = new Hashtag(content);
     }
 }

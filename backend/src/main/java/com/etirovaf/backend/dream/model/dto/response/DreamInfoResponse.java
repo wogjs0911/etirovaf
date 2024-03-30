@@ -2,6 +2,7 @@ package com.etirovaf.backend.dream.model.dto.response;
 
 import com.etirovaf.backend.dream.model.entity.Dream;
 import com.etirovaf.backend.dream.model.entity.HashtagEntity;
+import com.etirovaf.backend.member.model.entity.Member;
 import lombok.Builder;
 import lombok.Data;
 
@@ -18,6 +19,7 @@ public class DreamInfoResponse {
     private String content;
     private String image;
     private List<HashtagEntity> hashtag;
+    private Member member;
 
     public static DreamInfoResponse of(Dream entity){
         return DreamInfoResponse.builder()
@@ -29,6 +31,7 @@ public class DreamInfoResponse {
                 .content(entity.getContent())
                 .image(entity.getImage())
                 .hashtag(entity.getHashtag())
+                .member(entity.getMember())
                 .build();
     }
 }

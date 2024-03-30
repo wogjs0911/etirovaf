@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @Tag(name = "02.회원")
 public class MemberController {
-
     private final MemberService service;
 
     @GetMapping("/add")

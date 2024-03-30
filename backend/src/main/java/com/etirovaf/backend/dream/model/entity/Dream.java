@@ -56,6 +56,7 @@ public class Dream extends BaseResDto {
                 .content(entity.getContent())
                 .image(entity.getImage())
                 .hashtag(entity.getHashtag())
+                .member(entity.getMember())
                 .build();
     }
 
@@ -69,6 +70,7 @@ public class Dream extends BaseResDto {
                 .content(entity.getContent())
                 .image(entity.getImage())
                 .hashtag(entity.getHashtag())
+                .member(entity.getMember())
                 .build();
     }
 }
