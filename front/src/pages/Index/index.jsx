@@ -18,7 +18,7 @@ const Index = () => {
                 {/* flex start */}
                 <div className={style.main_container}>
                     <h1 className={utilStyle.d_none}>바디</h1>
-                    <p className={style.index_txt_wrap}>
+                    <div className={style.index_txt_wrap}>
                         <h2 className={style.index_title}>내가 가장 좋아하는 것 찾기</h2>
                         <div className={style.index_text_form}>
                             <span className={style.index_text}>
@@ -28,7 +28,7 @@ const Index = () => {
                                 찾으러 가보겠습니다.<br />
                             </span>
                         </div>
-                    </p>
+                    </div>
                 </div>
                 {/* flex end */}
 

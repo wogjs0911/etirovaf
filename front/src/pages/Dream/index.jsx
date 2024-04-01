@@ -142,8 +142,8 @@ const Dream = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <p className={style.detail_heading_title}>웹 기획자 직업 체험 모집</p>
-                                <p className={style.detail_heading_organ}>연세대학교</p>
+                                <div className={style.detail_heading_title}>웹 기획자 직업 체험 모집</div>
+                                <div className={style.detail_heading_organ}>연세대학교</div>
                             </section>
                              {/* detail_info : detail_main _ item3 */}
                             <section className={`${style.canvas} ${style.detail_info}`}>
@@ -164,7 +164,7 @@ const Dream = () => {
                             {/*detail_writing : detail_main _ item4*/}
                             <section className={`${style.canvas} ${style.detail_writing} ${style.detail_info}`}>
                                 <h1 className={utilStyle.d_none}>writing</h1>
-                                <p className={style.detail_paragraph}>연세대학교에서 웹 개발에 기획 체험에 참여하실 분들 모집합니다..</p>
+                                <div className={style.detail_paragraph}>연세대학교에서 웹 개발에 기획 체험에 참여하실 분들 모집합니다..</div>
                                 <div className={style.list_hashtag_testwrap}>
                                     <div className={style.list_hashtag_form}>
                                         <span className={style.list_hashtag}>
