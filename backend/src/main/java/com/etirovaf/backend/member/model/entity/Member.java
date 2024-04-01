@@ -2,9 +2,13 @@ package com.etirovaf.backend.member.model.entity;
 
 import com.etirovaf.backend.auth.model.dto.request.SignupRequest;
 import com.etirovaf.backend.common.exception.BaseResDto;
+import com.etirovaf.backend.dream.model.entity.Dream;
 import com.etirovaf.backend.member.model.dto.request.MemberInfo;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table
@@ -32,6 +36,9 @@ public class Member extends BaseResDto {
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @OneToMany(mappedBy = "member")
+    private List<Dream> dream = new ArrayList<>();
 
     public static Member of(MemberInfo info){
         return Member.builder()

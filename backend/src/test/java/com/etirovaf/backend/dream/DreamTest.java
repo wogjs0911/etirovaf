@@ -1,10 +1,15 @@
-package com.etirovaf.backend.security;
+package com.etirovaf.backend.dream;
 
-import com.etirovaf.backend.auth.model.dto.request.LoginRequest;
-import com.etirovaf.backend.auth.model.dto.request.SignupRequest;
 import com.etirovaf.backend.auth.application.AuthService;
+import com.etirovaf.backend.auth.model.dto.request.SignupRequest;
+import com.etirovaf.backend.common.exception.ServiceException;
+import com.etirovaf.backend.dream.application.DreamService;
+import com.etirovaf.backend.dream.model.dto.request.DreamInfoRequest;
+import com.etirovaf.backend.dream.model.entity.HashtagEntity;
+import com.etirovaf.backend.member.application.MemberService;
 import com.etirovaf.backend.member.model.entity.Member;
 import com.etirovaf.backend.member.model.entity.Role;
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.ClassRule;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,16 +25,23 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.io.File;
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @SpringBootTest
 @Testcontainers
 @Slf4j
-public class RedisTest {
+public class DreamTest {
 
+    @Autowired
+    private DreamService dreamService;
 
     @Autowired
     private AuthService authService;
 
+    @Autowired
+    private MemberService memberService;
 
     public static final String MYSQL_DB = "mysqldb";
     public static final int MY_SQL_PORT = 3306;
@@ -54,10 +66,10 @@ public class RedisTest {
         dynamicPropertyRegistry.add("spring.datasource.username", () -> "root");
         dynamicPropertyRegistry.add("spring.datasource.password", () -> "password");
         dynamicPropertyRegistry.add("spring.jpa.hibernate.ddl-auto", () -> "create");
-
     }
+
     @BeforeEach
-    void test1() {
+    void 회원가입() {
         Member member = new Member();
         member.setUserId("wogjs0911@example.com");
         member.setNickname("재헌느");
@@ -66,16 +78,30 @@ public class RedisTest {
         member.setRole(Role.MEMBER);
 
         authService.signup(SignupRequest.of(member));
-        System.out.println("회원가입 테스트 성공");
+        System.out.println("회원가입 성공");
     }
 
     @Test
-    void test2(){
-        Member member = new Member();
-        member.setUserId("wogjs0911@example.com");
-        member.setPassword("asd1234");
+    @Transactional
+    void 꿈글작성테스트() throws ServiceException {
+        Optional<Member> member = memberService.getMemberByUserId("wogjs0911@example.com");
 
-        authService.login(LoginRequest.of(member));
-        System.out.println("로그인 테스트 성공");
+        List<HashtagEntity> hashtag = new ArrayList<>();
+        hashtag.add(new HashtagEntity("서강대"));
+        hashtag.add(new HashtagEntity("정문"));
+        hashtag.add(new HashtagEntity("법"));
+
+        dreamService.addDream(DreamInfoRequest.builder()
+                .title("서강대에서 법 관련 공부할 사람?")
+                .place("서강대 정문")
+                .deadline("20240405")
+                .organizer("서강대학교")
+                .image("imag64_720p")
+                .content("dreamContent")
+                .hashtag(hashtag)
+                .member(member.get())
+                .build());
+
+        System.out.println("꿈 글 작성 성공");
     }
 }

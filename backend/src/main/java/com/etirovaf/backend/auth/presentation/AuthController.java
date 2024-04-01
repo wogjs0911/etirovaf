@@ -1,13 +1,16 @@
 package com.etirovaf.backend.auth.presentation;
 
 import com.etirovaf.backend.auth.model.dto.request.LoginRequest;
+import com.etirovaf.backend.auth.model.dto.request.ReissueTokenRequest;
 import com.etirovaf.backend.auth.model.dto.request.SignupRequest;
 import com.etirovaf.backend.auth.model.dto.response.LoginResponse;
 import com.etirovaf.backend.auth.model.dto.response.SignupResponse;
-import com.etirovaf.backend.auth.service.AuthService;
+import com.etirovaf.backend.auth.application.AuthService;
 import com.etirovaf.backend.common.domain.ResponseHandler;
+import com.etirovaf.backend.common.exception.ServiceException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @Tag(name="01.로그인", description = "로그인 기능: 인증 관련")
-@RestController
+@RestController("/api/auth")
 @RequiredArgsConstructor
 public class AuthController {
 
@@ -41,6 +44,19 @@ public class AuthController {
                 .body(ResponseHandler.<LoginResponse>builder()
                         .message("로그인 성공")
                         .data(service.login(loginRequest))
+                        .build()
+                );
+    }
+
+    @Operation(summary = "Refresh 토큰 재발급")
+    @PostMapping("/reissue")
+    public ResponseEntity<ResponseHandler<SignupResponse>> reissue(@RequestBody ReissueTokenRequest reissueTokenRequest) throws ServiceException {
+        SignupResponse signupResponse = service.reissueToken(reissueTokenRequest);
+        return ResponseEntity
+                .ok()
+                .body(ResponseHandler.<SignupResponse>builder()
+                        .message("Refresh 토큰 재발급")
+                        .data(signupResponse)
                         .build()
                 );
     }

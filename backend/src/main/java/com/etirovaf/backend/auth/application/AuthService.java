@@ -1,4 +1,4 @@
-package com.etirovaf.backend.auth.service;
+package com.etirovaf.backend.auth.application;
 
 import com.etirovaf.backend.auth.infrastructure.repository.RefreshTokenRepository;
 import com.etirovaf.backend.auth.model.dto.request.LoginRequest;
