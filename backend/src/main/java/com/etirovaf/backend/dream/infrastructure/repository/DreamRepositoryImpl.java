@@ -9,7 +9,7 @@ import java.util.Optional;
 import static com.etirovaf.backend.dream.model.entity.QDream.dream;
 
 @RequiredArgsConstructor
-public class DreamRepositoryIml implements DreamRepositoryCustom {
+public class DreamRepositoryImpl implements DreamRepositoryCustom {
     private final JPAQueryFactory queryFactory;
     @Override
     public Optional<Dream> findDreamByTitle(String title) {
