@@ -142,7 +142,7 @@ const Dream = () => {
                                 <h1 className={utilStyle.d_none}>heading</h1>
                                 <div className={style.detail_edit}>
                                     <div className={style.detail_top}>
-                                        <div className={style.detail_category} defaultValue={1}>기획자</div>
+                                        <div className={style.detail_category} data-value={1}>기획자</div>
                                         <div className={`${style.detail_status} ${style.day_left}`}>3일전</div>
                                     </div>
                                     {/* 조회수, 북마크 : 컴포너트로 따로 빼기 */}
