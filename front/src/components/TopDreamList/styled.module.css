@@ -1,0 +1,14 @@
+.dream_list_form {
+    height: 192px;
+    width: 360px;
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;		/* 끝에서 바운스 되도록*/
+    scroll-snap-type: x mandatory;
+    -ms-overflow-style: none;
+    gap: 20px;
+}
+
+.dream_list_form::-webkit-scrollbar{
+    display:none;
+}

@@ -1,0 +1,162 @@
+@charset "UTF-8";
+
+.m_t_18{
+    margin-top: 18px;
+}
+
+.m_t_31{
+    margin-top: 31px;
+}
+
+.m_t_38{
+    margin-top: 38px;
+}
+
+.m_t_42{
+    margin-top: 42px;
+}
+
+.m_t_44{
+    margin-top: 44px;
+}
+
+.m_t_69{
+    margin-top: 69px;
+}
+.header{
+    width: 312px;
+    margin-top: 25px;
+}
+.wrap{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+
+    position: relative;
+    width: 360px;
+
+    margin:0 auto;
+}
+.icon-back{
+    position: unset !important;
+}
+.signup_title{
+    margin-left: 110px;
+}
+.sign_up_container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input_field_2{
+    border-radius: 5px;
+    margin: 10px 0;
+    height: 43px;
+    width: 320px;
+    border: 1px solid #aeaeae;
+    display: flex;
+}
+
+.input_info_label{
+    margin-top: 8px;
+    height: 20px;
+}
+
+.input_info_title{
+    color: #000000;
+    font-weight: 500;
+    white-space: nowrap;
+    font-size: 12px;
+
+    display: inline-block; /* label 태그는 inline 태그이므로 width, height, margin 상하가 적용되지 않으므로 inline-block 속성으로 변경해주는 것이 우선이다!*/
+    width: 80px;
+    text-align: right;
+}
+
+
+.input_info_form{
+    margin-top: 7px;
+    height: 20px;
+}
+
+.input_text_2{
+    width: 165px;
+    border: none;
+    background: none;
+    font-size: 14px;
+    margin-left: 15px;
+    margin-top: 3px;
+}
+
+.input_text_2::placeholder{
+    font-size: 0.725rem;
+}
+
+.input_text_3{
+    width: 200px;
+    border: none;
+    background: none;
+    font-size: 14px;
+    line-height: 27px;
+    color: rgb(103, 103, 103);
+}
+
+/* 에러메시지 */
+.error_font{
+    font-size: 12px;
+    color: brown;
+}
+
+.btn_post {
+    width: 45px;
+    height: 25px;
+    border: solid 1px #aeaeae;
+    border-radius: 5px;
+    background-color: #ffffff;
+
+    font-size: 10px;
+    line-height: 13px;
+    color: rgba(0, 0, 0, 0.7);
+    cursor: pointer;
+    transition: 0.2s;
+    margin-left: 10px;
+}
+
+.btn-post:hover {
+    background-color: #dededea0;
+}
+
+.btn_check {
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='9' viewBox='0 0 12 9' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M11.6475 0.350826C12.1177 0.816093 12.1177 1.57653 11.6475 2.0468L5.24881 8.45046C4.78354 8.92073 4.0231 8.92073 3.55283 8.45046L0.351001 5.24863C-0.119268 4.78336 -0.114265 4.02293 0.351001 3.55266C0.816267 3.08239 1.5767 3.08239 2.04697 3.55266L4.39832 5.90401L9.9515 0.350826C10.4168 -0.119443 11.1772 -0.11444 11.6475 0.350826Z' fill='%233BA739'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M11.6475 0.350826C12.1177 0.816093 12.1177 1.57653 11.6475 2.0468L5.24881 8.45046C4.78354 8.92073 4.0231 8.92073 3.55283 8.45046L0.351001 5.24863C-0.119268 4.78336 -0.114265 4.02293 0.351001 3.55266C0.816267 3.08239 1.5767 3.08239 2.04697 3.55266L4.39832 5.90401L9.9515 0.350826C10.4168 -0.119443 11.1772 -0.11444 11.6475 0.350826Z' fill='%233BA739'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M11.6475 0.350826C12.1177 0.816093 12.1177 1.57653 11.6475 2.0468L5.24881 8.45046C4.78354 8.92073 4.0231 8.92073 3.55283 8.45046L0.351001 5.24863C-0.119268 4.78336 -0.114265 4.02293 0.351001 3.55266C0.816267 3.08239 1.5767 3.08239 2.04697 3.55266L4.39832 5.90401L9.9515 0.350826C10.4168 -0.119443 11.1772 -0.11444 11.6475 0.350826Z' fill='%233BA739'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M11.6475 0.350826C12.1177 0.816093 12.1177 1.57653 11.6475 2.0468L5.24881 8.45046C4.78354 8.92073 4.0231 8.92073 3.55283 8.45046L0.351001 5.24863C-0.119268 4.78336 -0.114265 4.02293 0.351001 3.55266C0.816267 3.08239 1.5767 3.08239 2.04697 3.55266L4.39832 5.90401L9.9515 0.350826C10.4168 -0.119443 11.1772 -0.11444 11.6475 0.350826Z' fill='%2380C954'/%3E%3C/svg%3E%0A");
+    width: 12px;
+    height: 8.8px;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: cover;
+    cursor: pointer;
+}
+
+.btn_signup {
+    width: 270px;
+    height: 40px;
+    display: inline-block;
+    /* margin-left: 100px; */
+    background: #222;
+    /* box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), inset 1px 4px 4px rgba(0, 0, 0, 0.03); */
+    border-radius: 10px;
+    border: none;
+    color: #fff;
+    /* border: solid 1px #253232; */
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn_signup:hover {
+    background: #008AD7;
+}
