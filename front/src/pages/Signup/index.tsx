@@ -1,12 +1,33 @@
+import { FormEvent } from "react";
+import { MemberJoinRequest } from "@myTypes/member/remote";
 import style from "./styled.module.css";
 // import { useState, useEffect } from "react";
 import globalStyle from "@styles/style.module.css";
 import utilStyle from "@styles/utils.module.css";
 import { Link } from "react-router-dom";
+import useFormInput from "@hooks/_common/useFormInput";
+import { useSignUp } from "@hooks/queries/member";
 // import ErrorModal from "@components/ErrorModal";
 
 
 const Signup = () => {
+
+    const { formState: signUpFormData, handleInputChange } =
+        useFormInput<MemberJoinRequest>({
+            identifier: '',
+            password: '',
+            nickname: '',
+            phoneNumber: '',
+        });
+
+    const { signUp } = useSignUp();
+
+    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        signUp({
+            ...signUpFormData
+        });
+    };
 
     return (
         <div className={style.wrap}>
@@ -20,7 +41,7 @@ const Signup = () => {
             <main className={style.m_t_31}>
                 {/* flex 시작 */}
                 <div className={style.sign_up_container}>
-                    <form id="signup-vue" action="signup" method="post">
+                    <form id="signup-vue" action="signup" method="post" onSubmit={handleSubmit}>
                         <div className={style.input_field_2}>
                             <div className={style.input_info_label}>
                                 <label htmlFor="uid">
@@ -28,7 +49,9 @@ const Signup = () => {
                                 </label>
                             </div>
                             <div className={style.input_info_form}>
-                                <input type="text" id="uid" name="uid" className={style.input_text_2}
+                                <input type="text" id="uid" name="uid"
+                                   onChange={handleInputChange}
+                                   className={style.input_text_2}
                                    placeholder="아이디를 입력해주세요." />
                                 {/*<div className={btnStyle.btn_null}></div>*/}
                                 {/*<div className={btnStyle.btn_check}></div>*/}
@@ -43,7 +66,9 @@ const Signup = () => {
                                 </label>
                             </div>
                             <div className={style.input_info_form}>
-                                <input type="password" id="pwd" name="pwd" className={style.input_text_2}
+                                <input type="password" id="pwd" name="pwd"
+                                       onChange={handleInputChange}
+                                       className={style.input_text_2}
                                        placeholder="비밀번호를 입력해주세요." />
                                 {/*<div className={btnStyle.btn_null}></div>*/}
                                 {/*<div className={btnStyle.btn_check}></div>*/}
@@ -58,7 +83,9 @@ const Signup = () => {
                                 </label>
                             </div>
                             <div className={style.input_info_form}>
-                                <input type="password" id="password-confirm" name="repassword" className={style.input_text_2}
+                                <input type="password" id="password-confirm" name="repassword"
+                                   onChange={handleInputChange}
+                                   className={style.input_text_2}
                                    placeholder="비밀번호를 다시 입력해주세요." />
                                 {/*<div className={btnStyle.btn_null}></div>*/}
                                 {/*<div className={btnStyle.btn_check}></div>*/}
@@ -74,7 +101,9 @@ const Signup = () => {
                                 </label>
                             </div>
                             <div className={style.input_info_form}>
-                                <input type="text" id="nickname" name="nickname" className={style.input_text_2}
+                                <input type="text" id="nickname" name="nickname"
+                                       onChange={handleInputChange}
+                                       className={style.input_text_2}
                                        placeholder="닉네임을 입력해주세요." />
                                 {/*<div className={btnStyle.btn_null}></div>*/}
                                 {/*<div className={btnStyle.btn_check}></div>*/}
@@ -90,7 +119,10 @@ const Signup = () => {
                                 </label>
                             </div>
                             <div className={style.input_info_form}>
-                                <input type="text" id="phoneNumber" name="phoneNumber" className={style.input_text_2} placeholder="휴대전화번호를 입력해주세요."
+                                <input type="text" id="phoneNumber" name="phoneNumber"
+                                       // onChange={handleInputChange}
+                                       className={style.input_text_2}
+                                       placeholder="휴대전화번호를 입력해주세요."
                                />
                                 <input className={style.btn_post} id="btn-auth-post" type="button" value="인증요청" />
                                 {/*<div className={btnStyle.btn_null}></div>*/}
@@ -108,7 +140,9 @@ const Signup = () => {
                                 </label>
                             </div>
                             <div className={style.input_info_form}>
-                                <input type="text" id="phoneNumberConfirm" name="phoneNumberConfirm" className={style.input_text_2} placeholder="인증번호를 입력해주세요."
+                                <input type="text" id="phoneNumberConfirm" name="phoneNumberConfirm"
+                                       // onChange={handleInputChange}
+                                       className={style.input_text_2} placeholder="인증번호를 입력해주세요."
                                        />
                                 <input className={style.btn_post} id="btn-auth" type="button" value="인증" />
                                 {/*<div className={btnStyle.btn_check}></div>*/}

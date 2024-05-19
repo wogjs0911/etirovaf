@@ -1,7 +1,7 @@
 import style from "./styled.module.css";
 import { useNavigate } from "react-router-dom";
 import Bookmark from "../Bookmark/index.tsx";
-import { DreamItemType } from "@myTypes/dream/internal.tsx";
+import { DreamItemType } from "@myTypes/dream/internal.ts";
 
 // ** 여기 수정하기!!, 리팩토링할 것!! interface 타입별 도메인별로 따로 파일 관리하기!!
 

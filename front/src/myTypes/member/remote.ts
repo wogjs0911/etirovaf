@@ -1,0 +1,29 @@
+export type MemberJoinRequest = {
+  identifier: string;
+  password: string;
+  nickname: string;
+  phoneNumber: string;
+};
+
+export type MemberLoginRequest = {
+  identifier: string;
+  password: string;
+};
+
+export type OAuthResponse = {
+  accessToken: string;
+  refreshToken: string;
+};
+
+export type MemberLoginResponse = {
+  accessToken: string;
+  refreshToken: string;
+};
+
+export type MemberInfoResponse = {
+  id: number | null;
+  nickname: string;
+  profileImageUrl: string;
+  identifier: string;
+  phoneNumber: string;
+};

@@ -2,7 +2,7 @@
 
 import style from "./styled.module.css";
 import NoticeItem from "../NoticeItem/index.tsx";
-import {DreamItemType} from "@myTypes/dream/internal.tsx";
+import {DreamItemType} from "@myTypes/dream/internal.ts";
 
 
 type NoticeListProps = {

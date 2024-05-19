@@ -11,14 +11,6 @@ export default defineConfig({
     host: true, // Here
     strictPort: true,
     port: 3000
-  },
-  // optimizeDeps: {
-  //   include: ['front'], // 번들링할 패키지 이름 추가
-  // },
-  // build: {
-  //   commonjsOptions: {
-  //     include: [/front/, /node_modules/],
-  //   },
-  // },
+  }
 })
 

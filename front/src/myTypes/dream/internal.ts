@@ -8,3 +8,8 @@ export type DreamItemType = {
     content?: string;
     createDate?: number;
 };
+
+export type PatternType = {
+    rule: RegExp;
+    message: string;
+};

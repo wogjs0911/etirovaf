@@ -2,7 +2,7 @@
 
 import style from "./styled.module.css";
 import { useNavigate } from "react-router-dom";
-import {DreamItemType} from "@myTypes/dream/internal.tsx";
+import {DreamItemType} from "@myTypes/dream/internal.ts";
 // import Bookmark from "../Bookmark/index.tsx";
 
 type NoticeListProps = {

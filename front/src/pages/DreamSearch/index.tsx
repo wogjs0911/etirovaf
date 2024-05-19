@@ -5,7 +5,7 @@ import Searchbar from "@components/Searchbar";
 import Notification from "@components/Notification";
 import Category from "@components/Category/index";
 import MostTopDreamList from "@components/MostTopDreamList";
-import {DreamItemType} from "@myTypes/dream/internal.tsx";
+import {DreamItemType} from "@myTypes/dream/internal.ts";
 // import Navigation from "@components/Navigation";
 
 // type DreamSearchProps = {

@@ -1,6 +1,6 @@
 import style from "./styled.module.css";
 import RecentDreamItem from "../RecentDreamItem/index.tsx";
-import {DreamItemType} from "@myTypes/dream/internal.tsx";
+import {DreamItemType} from "@myTypes/dream/internal.ts";
 
 
 type RecentDreamListProps = {

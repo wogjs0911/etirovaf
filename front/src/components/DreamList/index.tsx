@@ -1,6 +1,6 @@
 import style from "./styled.module.css";
 import DreamItem from "../DreamItem/index.tsx";
-import {DreamItemType} from "@myTypes/dream/internal.tsx";
+import {DreamItemType} from "@myTypes/dream/internal.ts";
 
 type DreamListProps = {
     dreams: DreamItemType[];

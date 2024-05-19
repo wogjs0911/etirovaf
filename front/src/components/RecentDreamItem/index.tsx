@@ -1,7 +1,7 @@
 import style from "./styled.module.css";
 import {useNavigate} from "react-router-dom";
 import Bookmark from "../Bookmark/index.tsx";
-import {DreamItemType} from "@myTypes/dream/internal.tsx";
+import {DreamItemType} from "@myTypes/dream/internal.ts";
 
 type RecentDreamListProps = {
     dream: DreamItemType;
