@@ -11,6 +11,8 @@ import DreamNotice from "@pages/DreamNotice";
 import Login from "@pages/Login";
 import Signup from "@pages/Signup";
 import MemberInfoProvider from '@components/_providers/MemberInfoProvider';
+import { Suspense } from 'react';
+import Fallback from '@components/Fallback/Fallback';
 
 function App() {
 
@@ -19,11 +21,24 @@ function App() {
           <Layout>
             <Routes>
               <Route path='/' element={<Index />}/>
-              <Route path='/home' element={<Home />}/>
+              <Route path='/home' element=
+                  {
+                    <Suspense fallback={<Fallback />}>
+                      <Home />
+                    </Suspense>
+                  }
+              />
               <Route path='/login' element={<Login />}/>
               <Route path='/signup' element={<Signup />}/>
               <Route path='/search' element={<DreamSearch />}/>
-              <Route path='/dream/:id' element={<Dream />}/>
+              <Route
+                  path='/dream/:id'
+                  element={
+                    <Suspense fallback={<Fallback />}>
+                      <Dream />
+                    </Suspense>
+                  }
+              />
               <Route path='/dream/create' element={<DreamCreate />}/>
               <Route path='/dreams/filter' element={<DreamFilter />}/>\
               <Route path='/dreams/notice' element={<DreamNotice />}/>

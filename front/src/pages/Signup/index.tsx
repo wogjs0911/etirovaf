@@ -41,7 +41,7 @@ const Signup = () => {
             <main className={style.m_t_31}>
                 {/* flex 시작 */}
                 <div className={style.sign_up_container}>
-                    <form id="signup-vue" action="signup" method="post" onSubmit={handleSubmit}>
+                    <form id="signup-vue" onSubmit={handleSubmit}>
                         <div className={style.input_field_2}>
                             <div className={style.input_info_label}>
                                 <label htmlFor="uid">

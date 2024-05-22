@@ -1,9 +1,9 @@
-import { getMemberInfo } from '@/apis/member';
+import { getMemberInfo } from '@apis/member';
 import { MemberInfoResponse } from '@myTypes/member/remote';
-import { getCookie } from '@/utils/_common/cookies';
+import { getCookie } from '@utils/_common/cookies';
 import { useEffect, useState } from 'react';
 
-export const defaultUserInfo: MemberInfoResponse = {
+export const defaultMemberInfo: MemberInfoResponse = {
   id: null,
   nickname: '',
   profileImageUrl: '',
@@ -12,7 +12,7 @@ export const defaultUserInfo: MemberInfoResponse = {
 };
 
 export const useIdentifyMember = () => {
-  const [memberInfo, setMemberInfo] = useState(defaultUserInfo);
+  const [memberInfo, setMemberInfo] = useState(defaultMemberInfo);
 
   useEffect(() => {
     const fetchController = new AbortController();

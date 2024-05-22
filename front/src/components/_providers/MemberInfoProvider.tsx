@@ -1,7 +1,7 @@
 import { createContext, PropsWithChildren, useContext } from 'react';
 import { MemberInfoResponse } from '@myTypes/member/remote';
 import { MemberInfoContextType } from '@myTypes/_common/member';
-import { useIdentifyMember } from '@/hooks/_common/useIdentifyMember';
+import { useIdentifyMember } from '@hooks/_common/useIdentifyMember';
 
 export const defaultMemberInfo: MemberInfoResponse = {
   id: null,

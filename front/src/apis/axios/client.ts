@@ -10,7 +10,7 @@ export const BASE_URL = `${
 }`;
 
 const client = axios.create({
-  baseURL: BASE_URL,
+  baseURL: 'http://localhost:8080',
   headers: {
     'Content-Type': 'application/json',
   },

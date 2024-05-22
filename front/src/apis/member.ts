@@ -1,18 +1,18 @@
-import client from '@apis/axios/client.ts';
+import client from '@apis/axios/client';
 import {
     MemberJoinRequest,
     OAuthResponse,
     MemberLoginRequest,
     MemberLoginResponse,
     MemberInfoResponse
-} from '@myTypes/member/remote.ts';
+} from '@myTypes/member/remote';
 
 export const signUp = (body: MemberJoinRequest) => {
     return client.post('/api/auth/signup', body);
 };
 
 export const naverLogin = async () => {
-    const { data } = await client.get<OAuthResponse>('/auth/oauth/naver');
+    const { data } = await client.get<OAuthResponse>('/api/auth/oauth/naver');
 
     return data;
 };

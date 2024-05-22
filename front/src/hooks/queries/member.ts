@@ -12,10 +12,10 @@ import {
 } from '@components/_providers/MemberInfoProvider.tsx';
 import { AxiosResponse } from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { setCookie } from '@/utils/_common/cookies';
+import { setCookie } from '@utils/_common/cookies';
 import logout from '@utils/member/logout';
 import { useSuspendedQuery } from './useSuspendedQuery';
-import QUERY_KEYS from '@/constants/@queryKeys/queryKeys';
+import QUERY_KEYS from '@constants/@queryKeys/queryKeys';
 
 export const useSignUp = () => {
   // const { triggerToast } = useToast();
