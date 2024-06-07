@@ -9,10 +9,13 @@ export const BASE_URL = `${
     import.meta.env.DEV_SERVER === 'true' ? import.meta.env.DEV_SERVER : import.meta.env.PROD_SERVER
 }`;
 
+let ACCESS_TOKEN = localStorage.getItem("accessToken");
+
 const client = axios.create({
   baseURL: 'http://localhost:8080',
   headers: {
-    'Content-Type': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${ACCESS_TOKEN}`,
   },
 });
 

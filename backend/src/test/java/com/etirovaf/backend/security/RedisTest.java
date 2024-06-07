@@ -59,20 +59,20 @@ public class RedisTest {
     @BeforeEach
     void test1() {
         Member member = new Member();
-        member.setUserId("wogjs0911@example.com");
+        member.setIdentifier("wogjs0911@example.com");
         member.setNickname("재헌느");
         member.setPassword("asd1234");
         member.setName("김재헌");
         member.setRole(Role.MEMBER);
 
-        authService.signup(SignupRequest.of(member));
+        authService.addMember(SignupRequest.of(member));
         System.out.println("회원가입 테스트 성공");
     }
 
     @Test
     void test2(){
         Member member = new Member();
-        member.setUserId("wogjs0911@example.com");
+        member.setIdentifier("wogjs0911@example.com");
         member.setPassword("asd1234");
 
         authService.login(LoginRequest.of(member));

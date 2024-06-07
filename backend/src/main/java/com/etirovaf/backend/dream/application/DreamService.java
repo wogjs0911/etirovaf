@@ -26,7 +26,7 @@ public class DreamService {
     }
 
     public boolean addDream(DreamInfoRequest dreamInfoRequest) throws ServiceException {
-//        Optional<Member> member = memberService.getMemberByUserId(dreamInfoRequest.getCreator().getUserId());
+//        Optional<Member> member = memberService.getMemberByIdentifier(dreamInfoRequest.getCreator().getIdentifier());
 //        if(member.isEmpty())
 //            throw new ServiceException(ResultCode.VALID_NOT_NULL);
 //        dreamInfoRequest.setCreator(member.get());

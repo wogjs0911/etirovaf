@@ -49,7 +49,7 @@ const Signup = () => {
                                 </label>
                             </div>
                             <div className={style.input_info_form}>
-                                <input type="text" id="uid" name="uid"
+                                <input type="text" id="identifier" name="identifier"
                                    onChange={handleInputChange}
                                    className={style.input_text_2}
                                    placeholder="아이디를 입력해주세요." />
@@ -66,7 +66,7 @@ const Signup = () => {
                                 </label>
                             </div>
                             <div className={style.input_info_form}>
-                                <input type="password" id="pwd" name="pwd"
+                                <input type="password" id="password" name="password"
                                        onChange={handleInputChange}
                                        className={style.input_text_2}
                                        placeholder="비밀번호를 입력해주세요." />

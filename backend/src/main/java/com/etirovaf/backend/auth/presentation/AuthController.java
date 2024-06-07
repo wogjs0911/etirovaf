@@ -24,18 +24,6 @@ public class AuthController {
 
     private final AuthService service;
 
-    @Operation(summary = "회원가입")
-    @PostMapping("/signup")
-    public ResponseEntity<ResponseHandler<SignupResponse>> signup(@RequestBody SignupRequest request){
-        return ResponseEntity
-                .ok()
-                .body(ResponseHandler.<SignupResponse>builder()
-                        .message("회원가입 성공")
-                        .data(service.signup(request))
-                        .build()
-                );
-    }
-
     @Operation(summary = "로그인")
     @PostMapping("/login")
     public ResponseEntity<ResponseHandler<LoginResponse>> login(@RequestBody LoginRequest loginRequest){

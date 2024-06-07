@@ -8,7 +8,7 @@ import {
 } from '@myTypes/member/remote';
 
 export const signUp = (body: MemberJoinRequest) => {
-    return client.post('/api/auth/signup', body);
+    return client.post('/api/member/add', body);
 };
 
 export const naverLogin = async () => {

@@ -26,13 +26,13 @@ public class QueryMemberController {
 
     @GetMapping("/list")
     @Operation(summary="회원목록", description = "회원 목록을 받아온다.", tags={"02.회원",})
-    public ResponseEntity<ResponseHandler<Optional<Member>>> getMember(@RequestParam String userId){
+    public ResponseEntity<ResponseHandler<Optional<Member>>> getMember(@RequestParam String identifier){
         log.info("getMemberByUsername");
         return ResponseEntity
                 .ok()
                 .body(ResponseHandler.<Optional<Member>>builder()
                         .message("SUCCESS")
-                        .data(service.getMemberByUserId(userId))
+                        .data(service.getMemberByIdentifier(identifier))
                         .build()
                 );
     }

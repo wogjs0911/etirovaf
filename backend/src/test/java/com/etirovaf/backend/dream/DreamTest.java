@@ -71,20 +71,20 @@ public class DreamTest {
     @BeforeEach
     void 회원가입() {
         Member member = new Member();
-        member.setUserId("wogjs0911@example.com");
+        member.setIdentifier("wogjs0911@example.com");
         member.setNickname("재헌느");
         member.setPassword("asd1234");
         member.setName("김재헌");
         member.setRole(Role.MEMBER);
 
-        authService.signup(SignupRequest.of(member));
+        authService.addMember(SignupRequest.of(member));
         System.out.println("회원가입 성공");
     }
 
     @Test
     @Transactional
     void 꿈글작성테스트() throws ServiceException {
-        Optional<Member> member = memberService.getMemberByUserId("wogjs0911@example.com");
+        Optional<Member> member = memberService.getMemberByIdentifier("wogjs0911@example.com");
 
         List<HashtagEntity> hashtag = new ArrayList<>();
         hashtag.add(new HashtagEntity("서강대"));
