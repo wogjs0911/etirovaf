@@ -1,10 +1,14 @@
 import style from "./styled.module.css";
 import globalStyle from "@styles/style.module.css";
 import utilStyle from "@styles/utils.module.css";
-// import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import GoogleLogin from "@components/GoogleLogin";
 import KakaoLogin from "@components/KakaoLogin";
+import {useForm} from "react-hook-form";
+import {MemberLoginRequest} from "@myTypes/member/remote.ts";
+import {useLogin} from "@hooks/queries/member.ts";
+
+
 
 const Login = () => {
 
@@ -20,6 +24,13 @@ const Login = () => {
     //     this.checkEmail();
     // }
 
+    const { register, handleSubmit } = useForm<MemberLoginRequest>();
+    const { login } = useLogin();
+
+    const onSubmit = (formData: MemberLoginRequest) => {
+        login(formData);
+    }
+
     return (
         <div className={`${globalStyle.canvas} ${style.f_family}`}>
 
@@ -32,16 +43,17 @@ const Login = () => {
             <main>
                 <div className={style.input_container}>
 
-                    <form>
+                    <form onSubmit={ handleSubmit(onSubmit) }>
 
                         <div className={style.input_field_1}>
                             <div className={style.input_info_label}>
-                                <label htmlFor="uid">
+                                <label htmlFor="identifier">
                                     <span className={style.input_info_title}>아이디</span>
                                 </label>
                             </div>
                             <div className={style.input_info_form}>
                                 <input type="text" className={style.input_text}
+                                       {...register('identifier', {required: true })}
                                        placeholder="아이디를 입력해주세요." autoFocus />
                             </div>
                         </div>
@@ -53,6 +65,7 @@ const Login = () => {
                             </div>
                             <div className={style.input_info_form}>
                                 <input type="password" className={style.input_text}
+                                       {...register('password', { required: true })}
                                        placeholder="비밀번호를 입력해주세요." />
                             </div>
                         </div>
@@ -69,9 +82,9 @@ const Login = () => {
                         </div>
                         {/*<div className={style.error}>{ errormsg }</div>*/}
                         <div className={style.login_btn_form}>
-                            <Link to={"/home"}>
+                            {/*<Link to={"/home"}>*/}
                                 <input className={style.btn_login} type="submit" value="로그인" />
-                            </Link>
+                            {/*</Link>*/}
                         </div>
                         <div>
                             <Link to={"/signup"} className={style.signup_text}>

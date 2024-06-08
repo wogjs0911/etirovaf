@@ -22,7 +22,7 @@ export const login = (body: MemberLoginRequest) => {
 };
 
 export const getMemberInfo = (signal?: AbortSignal) => {
-    return client.get<MemberInfoResponse>('/members/me', {
+    return client.get<MemberInfoResponse>('/api/member', {
         signal,
     });
 };

@@ -24,8 +24,8 @@ public class QueryMemberController {
 
     private final MemberService service;
 
-    @GetMapping("/list")
-    @Operation(summary="회원목록", description = "회원 목록을 받아온다.", tags={"02.회원",})
+    @GetMapping
+    @Operation(summary="회원정보", description = "회원정보를 받아온다.", tags={"02.회원",})
     public ResponseEntity<ResponseHandler<Optional<Member>>> getMember(@RequestParam String identifier){
         log.info("getMemberByUsername");
         return ResponseEntity

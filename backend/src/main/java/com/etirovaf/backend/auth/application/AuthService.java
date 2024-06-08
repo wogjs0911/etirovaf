@@ -33,9 +33,6 @@ public class AuthService {
     private final RefreshTokenRepository refreshTokenRepository;
 
     // 회원가입
-    /**
-     * TODO : 유효성 검증 추가 후 반환 타입 boolean으로 변경하기!
-     */
     @Transactional
     public boolean addMember(SignupRequest request) {
         SignupRequest signUpRequest = SignupRequest.toMember(request, encoder.encode(request.getPassword()));
@@ -45,9 +42,6 @@ public class AuthService {
     }
 
     // 로그인
-    /**
-     * TODO : 유효성 검증 추가 후 반환 타입 boolean으로 변경하기!
-     */
     @Transactional
     public LoginResponse login(LoginRequest request) {
         Member member = memberRepository.findByIdentifier(request.getIdentifier())
@@ -60,9 +54,6 @@ public class AuthService {
     }
 
     // 로그아웃
-    /**
-     * TODO : 유효성 검증 추가 후 반환 타입 boolean으로 변경하기!
-     */
     @Transactional
     public String logout() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -116,7 +107,6 @@ public class AuthService {
         saveRefreshTokenBySignup(refreshToken, signUpRequest);
         String accessToken = jwtTokenUtil.createAccessToken(signUpRequest.getIdentifier());
         redisTemplate.opsForValue().set("JWT_ACCESS_TOKEN:" + signUpRequest.getIdentifier(), accessToken);
-        System.out.printf("refreshToken: %s, accessToken : : %s\n\n", refreshToken, accessToken);
         return SignupResponse.of(refreshToken, accessToken);
     }
 

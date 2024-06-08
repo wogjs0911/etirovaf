@@ -32,9 +32,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {   // OncePerRequestFi
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         // Http 헤더에서 Authorization 값 가져오기
-        System.out.printf("request: %s\n\n", request);
         String authorizationHeader = request.getHeader("Authorization");
-        System.out.printf("authorizationHeader: %s\n\n", authorizationHeader);
         if(authorizationHeader != null && authorizationHeader.startsWith("Bearer ")){
             // 토큰을 가져와서 그 토큰을 디코딩하여 회원정보를 뽑아서 이용한다.
             String token = authorizationHeader.substring(7);
