@@ -7,12 +7,12 @@ import lombok.*;
 @Data
 @Builder
 public class LoginRequest {
-    private String userId;
+    private String identifier;
     private String password;
 
     public static LoginRequest of(Member entity) {
         return LoginRequest.builder()
-                .userId(entity.getUserId())
+                .identifier(entity.getIdentifier())
                 .password(entity.getPassword())
                 .build();
     }

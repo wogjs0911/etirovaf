@@ -29,26 +29,25 @@ public class JwtTokenUtil {
         this.refreshTokenValiditySeconds = refreshTokenValiditySeconds;
     }
 
-    public String createAccessToken(String usereId){
+    public String createAccessToken(String identifier){
         // Claim -> Jwt Token에 들어갈 정보 -> Claim에 loginId를 넣어줌
         Claims claims = Jwts.claims();
-        claims.put("TYPE_CLAIM_KEY", "Access");
-        claims.put("memberId", usereId);
-        return createToken(usereId, accessTokenValiditySeconds, claims);
+        claims.put("TYPE_CLAIM_KEY", "accessToken");
+        claims.put("identifier", identifier);
+        return createToken(identifier, accessTokenValiditySeconds, claims);
     }
 
-    public String createRefreshToken(String usereId){
+    public String createRefreshToken(String identifier){
         // Claim -> Jwt Token에 들어갈 정보 -> Claim에 loginId를 넣어줌
         Claims claims = Jwts.claims();
-        claims.put("TYPE_CLAIM_KEY", "Refresh");
-        claims.put("memberId", usereId);
-        return createToken(usereId, refreshTokenValiditySeconds, claims);
+        claims.put("TYPE_CLAIM_KEY", "refreshToken");
+        claims.put("identifier", identifier);
+        return createToken(identifier, refreshTokenValiditySeconds, claims);
     }
 
     private String createToken(String usereId, long validitySeconds, Claims claims){
         ZonedDateTime now = ZonedDateTime.now();
         ZonedDateTime tokenValidity = now.plusSeconds(validitySeconds);
-
         return Jwts.builder()
                 .setClaims(claims)  // token에 넣을 클레임(정보) 설정
                 .setIssuedAt(Date.from(now.toInstant()))    // 토큰 발급 시간
@@ -57,10 +56,10 @@ public class JwtTokenUtil {
                 .compact(); // 문자열로 압축
     }
 
-    // Claims에서 userId 추출
-    public String getUserId(String token){
+    // Claims에서 identifier 추출
+    public String getIdentifier(String token){
         return getClaims(token).getBody()
-                .get("userId", String.class);
+                .get("identifier", String.class);
     }
 
     // 발급된 Token의 만료시간 초과 여부
@@ -88,5 +87,4 @@ public class JwtTokenUtil {
                 .build()
                 .parseClaimsJws(token);
     }
-
 }

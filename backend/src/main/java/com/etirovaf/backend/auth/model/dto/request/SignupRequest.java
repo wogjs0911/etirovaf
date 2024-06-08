@@ -8,7 +8,7 @@ import lombok.*;
 @Builder
 public class SignupRequest {
     private Long id;
-    private String userId;
+    private String identifier;
     private String nickname;
     private String password;
     private String name;
@@ -16,10 +16,9 @@ public class SignupRequest {
 
     public static SignupRequest of(Member entity) {
         return SignupRequest.builder()
-                .userId(entity.getUserId())
+                .identifier(entity.getIdentifier())
                 .nickname(entity.getNickname())
                 .password(entity.getPassword())
-                .name(entity.getName())
                 .role(entity.getRole())
                 .build();
     }
@@ -27,10 +26,9 @@ public class SignupRequest {
     public static SignupRequest toMember(SignupRequest entity, String encodedPassword) {
         return SignupRequest.builder()
                 .id(entity.getId())
-                .userId(entity.getUserId())
+                .identifier(entity.getIdentifier())
                 .password(encodedPassword)
                 .nickname(entity.getNickname())
-                .name(entity.getName())
                 .role(Role.MEMBER)
                 .build();
     }

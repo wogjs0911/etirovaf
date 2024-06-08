@@ -21,18 +21,27 @@ import java.io.IOException;
 public class JwtTokenFilter extends OncePerRequestFilter {   // OncePerRequestFilter -> 한 번의 요청에 한 번만 실행되도록 보장
     private final CustomUserDetailService customUserDetailService;
     private final JwtTokenUtil jwtTokenUtil;
+
+    @Override
+    protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
+        String path = request.getRequestURI();
+        return path.startsWith("/api/member/add") || path.startsWith("/api/auth"); // 제외할 URL 패턴
+    }
+
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         // Http 헤더에서 Authorization 값 가져오기
         String authorizationHeader = request.getHeader("Authorization");
+        System.out.printf("after_login authorizationHeader: %s\n\n", authorizationHeader);
 
         if(authorizationHeader != null && authorizationHeader.startsWith("Bearer ")){
             // 토큰을 가져와서 그 토큰을 디코딩하여 회원정보를 뽑아서 이용한다.
             String token = authorizationHeader.substring(7);
 
             if(jwtTokenUtil.isExpired(token)){
-                String userId = jwtTokenUtil.getUserId(token);
-                UserDetails userDetails = customUserDetailService.loadUserByUsername(userId);
+                String identifier = jwtTokenUtil.getIdentifier(token);
+                UserDetails userDetails = customUserDetailService.loadUserByUsername(identifier);
 
                 // 첫번쩨 매개변수 : userDetails
                 // 두번째 매개변수 : 패스워드, 사용 안해서 null로

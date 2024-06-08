@@ -23,9 +23,9 @@ public class Member extends BaseResDto {
     private Long id;
 
     @Column(nullable = false, length = 50)
-    private String userId;
+    private String identifier;
 
-    @Column(nullable = false, length = 20)
+    @Column(nullable = true, length = 20)
     private String name;
 
     @Column(nullable = false, length = 20)
@@ -42,7 +42,7 @@ public class Member extends BaseResDto {
 
     public static Member of(MemberInfo info){
         return Member.builder()
-                .userId(info.getUserId())
+                .identifier(info.getIdentifier())
                 .nickname(info.getNickname())
                 .password(info.getPassword())
                 .role(info.getRole())
@@ -54,10 +54,9 @@ public class Member extends BaseResDto {
     public static Member saveMember(SignupRequest entity){
         return Member.builder()
                 .id(entity.getId())
-                .userId(entity.getUserId())
+                .identifier(entity.getIdentifier())
                 .password(entity.getPassword())
                 .nickname(entity.getNickname())
-                .name(entity.getName())
                 .role(entity.getRole())
                 .build();
     }

@@ -7,7 +7,7 @@ import lombok.*;
 @Data
 @Builder
 public class MemberInfo {
-    private String userId;
+    private String identifier;
     private String nickname;
     private String password;
     private String name;
@@ -15,7 +15,7 @@ public class MemberInfo {
 
     public static MemberInfo of(Member entity){
         return MemberInfo.builder()
-                .userId(entity.getUserId())
+                .identifier(entity.getIdentifier())
                 .build();
     }
 }

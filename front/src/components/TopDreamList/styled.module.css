@@ -12,7 +12,3 @@
 .dream_list_form::-webkit-scrollbar{
     display:none;
 }
-
-.dream_list{
-    scroll-snap-align: start;
-}

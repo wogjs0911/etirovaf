@@ -6,13 +6,13 @@ import lombok.*;
 @Data
 @Builder
 public class AuthInfoResponse {
-    private String userId;
+    private String identifier;
     private String nickname;
     private String name;
 
     public static AuthInfoResponse of(Member entity) {
         return AuthInfoResponse.builder()
-                .userId(entity.getUserId())
+                .identifier(entity.getIdentifier())
                 .nickname(entity.getNickname())
                 .name(entity.getName())
                 .build();

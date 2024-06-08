@@ -33,23 +33,18 @@ public class AuthService {
     private final RefreshTokenRepository refreshTokenRepository;
 
     // 회원가입
-    /**
-     * TODO : 유효성 검증 추가 후 반환 타입 boolean으로 변경하기!
-     */
     @Transactional
-    public SignupResponse signup(SignupRequest request) {
+    public boolean addMember(SignupRequest request) {
         SignupRequest signUpRequest = SignupRequest.toMember(request, encoder.encode(request.getPassword()));
         memberRepository.save(Member.saveMember(signUpRequest));
-        return makeAuthenticationBySingupResponse(request);
+        makeAuthenticationBySingupResponse(request);
+        return true;
     }
 
     // 로그인
-    /**
-     * TODO : 유효성 검증 추가 후 반환 타입 boolean으로 변경하기!
-     */
     @Transactional
     public LoginResponse login(LoginRequest request) {
-        Member member = memberRepository.findByUserId(request.getUserId())
+        Member member = memberRepository.findByIdentifier(request.getIdentifier())
                 .orElseThrow(() -> new EntityNotFoundException("해당하는 회원은 없습니다."));
 
         if(!encoder.matches(request.getPassword(), member.getPassword())){
@@ -59,9 +54,6 @@ public class AuthService {
     }
 
     // 로그아웃
-    /**
-     * TODO : 유효성 검증 추가 후 반환 타입 boolean으로 변경하기!
-     */
     @Transactional
     public String logout() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -69,16 +61,16 @@ public class AuthService {
         if(authentication != null && authentication.getPrincipal() instanceof UserDetails) {
             // userDetails에서 필요한 정보 추출
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-            String userId = userDetails.getUsername();
+            String identifier = userDetails.getUsername();
 
-            redisTemplate.delete("JWT_TOKE:" + userId);
+            redisTemplate.delete("JWT_TOKEN:" + identifier);
         }
         return "ok";
     }
 
     public SignupResponse reissueToken(ReissueTokenRequest reissueTokenRequest) throws ServiceException {
         checkTokenValid(reissueTokenRequest.getRefreshToken());
-        String memberId = findUserIdByRefreshToken(reissueTokenRequest.getRefreshToken());
+        String memberId = findIdentifierByRefreshToken(reissueTokenRequest.getRefreshToken());
         Member member = findMemberByRefreshToken(memberId);
         return makeAuthenticationBySingupResponse(SignupRequest.of(member));
     }
@@ -94,7 +86,7 @@ public class AuthService {
      * @param signUpRequest
      */
     private void saveRefreshTokenBySignup(String refreshToken, SignupRequest signUpRequest){
-        refreshTokenRepository.save(refreshToken, signUpRequest.getUserId());
+        refreshTokenRepository.save(refreshToken, signUpRequest.getIdentifier());
     }
 
     /**
@@ -103,7 +95,7 @@ public class AuthService {
      * @param loginRequest
      */
     private void saveRefreshTokenByLogin(String refreshToken, LoginRequest loginRequest){
-        refreshTokenRepository.save(refreshToken, loginRequest.getUserId());
+        refreshTokenRepository.save(refreshToken, loginRequest.getIdentifier());
     }
 
     /**
@@ -111,10 +103,10 @@ public class AuthService {
      * @param signUpRequest
      */
     private SignupResponse makeAuthenticationBySingupResponse(SignupRequest signUpRequest){
-        String refreshToken = jwtTokenUtil.createRefreshToken(signUpRequest.getUserId());
+        String refreshToken = jwtTokenUtil.createRefreshToken(signUpRequest.getIdentifier());
         saveRefreshTokenBySignup(refreshToken, signUpRequest);
-        String accessToken = jwtTokenUtil.createAccessToken(signUpRequest.getUserId());
-        redisTemplate.opsForValue().set("JWT_ACCESS_TOKEN:" + signUpRequest.getUserId(), accessToken);
+        String accessToken = jwtTokenUtil.createAccessToken(signUpRequest.getIdentifier());
+        redisTemplate.opsForValue().set("JWT_ACCESS_TOKEN:" + signUpRequest.getIdentifier(), accessToken);
         return SignupResponse.of(refreshToken, accessToken);
     }
 
@@ -123,10 +115,10 @@ public class AuthService {
      * @param loginRequest
      */
     private LoginResponse makeAuthenticationByLoginResponse(LoginRequest loginRequest){
-        String refreshToken = jwtTokenUtil.createRefreshToken(loginRequest.getUserId());
+        String refreshToken = jwtTokenUtil.createRefreshToken(loginRequest.getIdentifier());
         saveRefreshTokenByLogin(refreshToken, loginRequest);
-        String accessToken = jwtTokenUtil.createAccessToken(loginRequest.getUserId());
-        redisTemplate.opsForValue().set("JWT_ACCESS_TOKEN:" + loginRequest.getUserId(), accessToken);
+        String accessToken = jwtTokenUtil.createAccessToken(loginRequest.getIdentifier());
+        redisTemplate.opsForValue().set("JWT_ACCESS_TOKEN:" + loginRequest.getIdentifier(), accessToken);
         return LoginResponse.of(refreshToken, accessToken);
     }
 
@@ -136,15 +128,19 @@ public class AuthService {
      * @return
      * @throws ServiceException
      */
-    private String findUserIdByRefreshToken(String clientRefreshToken) throws ServiceException {
-        return refreshTokenRepository.findMemberIdByRefreshToken(clientRefreshToken)
+    private String findIdentifierByRefreshToken(String clientRefreshToken) throws ServiceException {
+        return refreshTokenRepository.findIdentifierByRefreshToken(clientRefreshToken)
                 .orElseThrow(() -> new ServiceException(ResultCode.REFRESH_TOKEN_EXPIRED));
     }
 
-    private Member findMemberByRefreshToken(String userId) throws ServiceException {
+    private Member findMemberByRefreshToken(String identifier) throws ServiceException {
         Member member = new Member();
-        member.setUserId(userId);
-        return memberRepository.findByUserId(member.getUserId())
+        member.setIdentifier(identifier);
+        return memberRepository.findByIdentifier(member.getIdentifier())
                 .orElseThrow(() -> new ServiceException(ResultCode.MEMBER_NOT_EXIST));
+    }
+
+    public String findIdentifierByToken(final String token) {
+        return jwtTokenUtil.getIdentifier(token);
     }
 }

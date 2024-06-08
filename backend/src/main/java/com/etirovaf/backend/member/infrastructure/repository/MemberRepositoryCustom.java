@@ -5,5 +5,5 @@ import com.etirovaf.backend.member.model.entity.Member;
 import java.util.Optional;
 
 public interface MemberRepositoryCustom {
-    Optional<Member> findByUserId(String userId);
+    Optional<Member> findByIdentifier(String identifier);
 }

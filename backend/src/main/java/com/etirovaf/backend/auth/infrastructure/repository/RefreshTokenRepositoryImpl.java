@@ -20,18 +20,18 @@ public class RefreshTokenRepositoryImpl implements RefreshTokenRepository {
     }
 
     @Override
-    public void save(String refreshToken, String userId) {
+    public void save(String refreshToken, String identifier) {
         final long liveTimeBySeconds = refreshTokenValiditySeconds / 1000;
         redisTemplate.opsForValue()
-                .set(refreshToken, "JWT_REFRESH_TOKEN:" + userId, liveTimeBySeconds, TimeUnit.SECONDS);
+                .set(refreshToken, "JWT_REFRESH_TOKEN:" + identifier, liveTimeBySeconds, TimeUnit.SECONDS);
     }
 
     @Override
-    public Optional<String> findMemberIdByRefreshToken(String refreshToken) {
-        String userId = redisTemplate.opsForValue().get(refreshToken);
-        if(userId == null) {
+    public Optional<String> findIdentifierByRefreshToken(String refreshToken) {
+        String identifier = redisTemplate.opsForValue().get(refreshToken);
+        if(identifier == null) {
             return Optional.empty();
         }
-        return Optional.of(userId);
+        return Optional.of(identifier);
     }
 }
