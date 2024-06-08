@@ -69,17 +69,17 @@ main {
     margin-right: 5px;
 }
 
-.detail_category[value="1"] {
+.detail_category[data-value="1"] {
     background-color: #f5cd81;
     color: #ffffff;
 }
 
-.detail_category[value="2"] {
+.detail_category[data-value="2"] {
     background-color: #08b8b8;
     color: #ffffff;
 }
 
-.detail_category[value="3"] {
+.detail_category[data-value="3"] {
     background-color: #f2b8b8;
     color: #ffffff;
 }
