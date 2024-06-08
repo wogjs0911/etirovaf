@@ -139,4 +139,8 @@ public class AuthService {
         return memberRepository.findByIdentifier(member.getIdentifier())
                 .orElseThrow(() -> new ServiceException(ResultCode.MEMBER_NOT_EXIST));
     }
+
+    public String findIdentifierByToken(final String token) {
+        return jwtTokenUtil.getIdentifier(token);
+    }
 }

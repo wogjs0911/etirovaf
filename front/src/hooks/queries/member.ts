@@ -65,7 +65,7 @@ export const useLogin = () => {
     (loginPayload: MemberLoginRequest) => login(loginPayload),
     {
       onSuccess(response) {
-        const { accessToken, refreshToken } = response.data;
+        const { accessToken, refreshToken } = response.data.data;
         setCookie('access_token', accessToken);
         setCookie('refresh_token', refreshToken);
         // triggerToast({ message: '로그인 성공!' });

@@ -82,9 +82,7 @@ const Login = () => {
                         </div>
                         {/*<div className={style.error}>{ errormsg }</div>*/}
                         <div className={style.login_btn_form}>
-                            {/*<Link to={"/home"}>*/}
                                 <input className={style.btn_login} type="submit" value="로그인" />
-                            {/*</Link>*/}
                         </div>
                         <div>
                             <Link to={"/signup"} className={style.signup_text}>

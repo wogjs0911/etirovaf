@@ -42,7 +42,7 @@ public class SecurityConfig {
                 .headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers( "/api/member/**").permitAll()
+                        .requestMatchers( "/api/member/add").permitAll()
                         .requestMatchers( "/api/auth/**").permitAll()
                         .anyRequest().authenticated()
                 )

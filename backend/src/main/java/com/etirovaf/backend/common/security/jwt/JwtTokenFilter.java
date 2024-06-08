@@ -25,7 +25,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {   // OncePerRequestFi
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
         String path = request.getRequestURI();
-        return path.startsWith("/api/member") || path.startsWith("/api/auth"); // 제외할 URL 패턴
+        return path.startsWith("/api/member/add") || path.startsWith("/api/auth"); // 제외할 URL 패턴
     }
 
 
@@ -33,6 +33,8 @@ public class JwtTokenFilter extends OncePerRequestFilter {   // OncePerRequestFi
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         // Http 헤더에서 Authorization 값 가져오기
         String authorizationHeader = request.getHeader("Authorization");
+        System.out.printf("after_login authorizationHeader: %s\n\n", authorizationHeader);
+
         if(authorizationHeader != null && authorizationHeader.startsWith("Bearer ")){
             // 토큰을 가져와서 그 토큰을 디코딩하여 회원정보를 뽑아서 이용한다.
             String token = authorizationHeader.substring(7);

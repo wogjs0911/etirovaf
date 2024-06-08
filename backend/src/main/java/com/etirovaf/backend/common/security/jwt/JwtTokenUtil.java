@@ -87,5 +87,4 @@ public class JwtTokenUtil {
                 .build()
                 .parseClaimsJws(token);
     }
-
 }

@@ -16,8 +16,10 @@ export type OAuthResponse = {
 };
 
 export type MemberLoginResponse = {
-  accessToken: string;
-  refreshToken: string;
+  data : {
+    accessToken: string;
+    refreshToken: string;
+  }
 };
 
 export type MemberInfoResponse = {
