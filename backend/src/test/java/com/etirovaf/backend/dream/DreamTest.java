@@ -1,7 +1,7 @@
 package com.etirovaf.backend.dream;
 
 import com.etirovaf.backend.auth.application.AuthService;
-import com.etirovaf.backend.auth.model.dto.request.SignupRequest;
+import com.etirovaf.backend.member.model.dto.request.SignupRequest;
 import com.etirovaf.backend.common.exception.ServiceException;
 import com.etirovaf.backend.dream.application.DreamService;
 import com.etirovaf.backend.dream.model.dto.request.DreamInfoRequest;
@@ -77,7 +77,7 @@ public class DreamTest {
         member.setName("김재헌");
         member.setRole(Role.MEMBER);
 
-        authService.addMember(SignupRequest.of(member));
+        memberService.addMember(SignupRequest.of(member));
         System.out.println("회원가입 성공");
     }
 

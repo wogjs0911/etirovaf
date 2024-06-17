@@ -1,6 +1,5 @@
 package com.etirovaf.backend.auth.model.dto.request;
 
-import com.etirovaf.backend.member.model.dto.request.MemberInfo;
 import com.etirovaf.backend.member.model.entity.Member;
 import lombok.*;
 

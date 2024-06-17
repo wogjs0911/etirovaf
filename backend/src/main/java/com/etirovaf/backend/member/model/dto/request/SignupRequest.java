@@ -1,4 +1,4 @@
-package com.etirovaf.backend.auth.model.dto.request;
+package com.etirovaf.backend.member.model.dto.request;
 
 import com.etirovaf.backend.member.model.entity.Member;
 import com.etirovaf.backend.member.model.entity.Role;
@@ -29,7 +29,7 @@ public class SignupRequest {
                 .identifier(entity.getIdentifier())
                 .password(encodedPassword)
                 .nickname(entity.getNickname())
-                .role(Role.MEMBER)
+                .role(entity.getRole())
                 .build();
     }
 }

@@ -1,6 +1,6 @@
 package com.etirovaf.backend.member.model.entity;
 
-import com.etirovaf.backend.auth.model.dto.request.SignupRequest;
+import com.etirovaf.backend.member.model.dto.request.SignupRequest;
 import com.etirovaf.backend.common.exception.BaseResDto;
 import com.etirovaf.backend.dream.model.entity.Dream;
 import com.etirovaf.backend.member.model.dto.request.MemberInfo;
