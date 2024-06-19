@@ -4,11 +4,13 @@ import { MemberInfoContextType } from '@myTypes/_common/member';
 import { useIdentifyMember } from '@hooks/_common/useIdentifyMember';
 
 export const defaultMemberInfo: MemberInfoResponse = {
-  id: null,
-  nickname: '',
-  profileImageUrl: '',
-  identifier: '',
-  phoneNumber: '',
+  data : {
+    id: null,
+    nickname: '',
+    profileImageUrl: '',
+    identifier: '',
+    phoneNumber: '',
+  }
 };
 
 export const memberInfoContext = createContext<MemberInfoContextType>({
