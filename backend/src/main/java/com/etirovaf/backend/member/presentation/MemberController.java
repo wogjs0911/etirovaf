@@ -23,7 +23,6 @@ public class MemberController {
     @Operation(summary="회원가입", description = "회원을 목록에 저장한다.", tags={"02.회원",})
     public ResponseEntity<ResponseHandler<Boolean>> addMember(@RequestBody SignupRequest signupRequest){
         log.info("addMember");
-        signupRequest.setRole(Role.MEMBER);
         return ResponseEntity
                 .ok()
                 .body(ResponseHandler.<Boolean>builder()

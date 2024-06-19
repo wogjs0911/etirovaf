@@ -57,7 +57,7 @@ public class Member extends BaseResDto {
                 .identifier(entity.getIdentifier())
                 .password(entity.getPassword())
                 .nickname(entity.getNickname())
-                .role(entity.getRole())
+                .role(Role.MEMBER)
                 .build();
     }
 }
