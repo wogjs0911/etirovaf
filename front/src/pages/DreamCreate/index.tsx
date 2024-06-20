@@ -4,6 +4,10 @@ import utilStyle from "@styles/utils.module.css";
 import btnStyle from "@styles/button.module.css";
 import {Link} from "react-router-dom"
 import style from "./styled.module.css";
+import useFormInput from "@hooks/_common/useFormInput.ts";
+import {DreamValueType} from "@myTypes/dream/internal.ts";
+import {useCreateDream} from "@hooks/queries/dream.ts";
+import {FormEvent} from "react";
 // import ErrorModal from "@components/ErrorModal/index";
 
 // const mockData = [
@@ -47,6 +51,25 @@ const DreamCreate = () => {
     //     nav(`/search/${params.q}`);
     // };
 
+    const { formState: dreamFormData, handleInputChange } =
+        useFormInput<DreamValueType>({
+            organizer: '',
+            title: '',
+            place: '',
+            hashTag: [],
+            deadline: '',
+            content: ''
+        });
+
+    const { createDream } = useCreateDream();
+
+    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        createDream({
+            ...dreamFormData
+        });
+    };
+
     return (
         /*<!-- =================== create2 ======================= -->*/
         <section className={style.create2_form}>
@@ -68,11 +91,7 @@ const DreamCreate = () => {
                 {/* =================== create2 : main ===================== */}
                 <main className={`${utilStyle.d_fl_jf}`}>
 
-                    <form method="post"
-                          // enctype="multipart/form-data"
-                          /*ref="form"*/
-                    >
-
+                    <form onSubmit={handleSubmit}>
                         <div>
                             <input type="submit" className={style.create2_post} value="올리기"/>
                         </div>
@@ -124,7 +143,8 @@ const DreamCreate = () => {
                             <div className={style.select_box}>
                                 {/*<label htmlFor="title" className={globalStyle.input_field_txt}>제목</label>*/}
                                 <input type="text" className={style.input_field} id="title" name="title"
-                                placeholder="제목을 입력해주세요..."/>
+                                       onChange={handleInputChange}
+                                       placeholder="제목을 입력해주세요..."/>
                             </div>
                         </div>
 
@@ -134,6 +154,7 @@ const DreamCreate = () => {
                                 <label className={style.input_info_title}>마감일자</label>
                                 <div id="btn_date" className={`${style.select_box_date} ${utilStyle.d_fl_ac} ${utilStyle.jf_sb}`}>
                                     <input className={style.date_pic} type="datetime-local" data-placeholder="날짜를 선택해주세요." required
+                                           onChange={handleInputChange}
                                            aria-required="true" name="deadline"/>
                                 </div>
                             </div>
@@ -144,7 +165,8 @@ const DreamCreate = () => {
                                     <div className={style.people_count_box}>
                                         {/*<input className={style.btn_minus} id="people-count" type="button" value=""*/}
                                         {/*/>*/}
-                                        <input type="text" className={style.people_count_num} name="numPeople" id="result"/>
+                                        <input type="text" className={style.people_count_num} name="numPeople" id="result"
+                                               onChange={handleInputChange}/>
                                         {/*<input className={style.btn_plus} id="people-count" type="button" value=""*/}
                                         {/*/>*/}
                                     </div>
@@ -156,7 +178,9 @@ const DreamCreate = () => {
                         <div className={`${style.input_info_form}`}>
                             <label className={style.input_info_title}>모임장소</label>
                             <div className={style.select_box}>
-                                <input type="text" className={style.input_field} name="place" id="place" placeholder="모임장소를 입력해주세요..." hidden/>
+                                <input type="text" className={style.input_field} name="place" id="place"
+                                       onChange={handleInputChange}
+                                       placeholder="모임장소를 입력해주세요..." hidden/>
                                 {/*<div className={`${globalStyle.input_field} ${style.input_address}`}>신촌역 3번 출구</div>*/}
                             </div>
                         </div>
@@ -164,7 +188,9 @@ const DreamCreate = () => {
                         <div className={style.input_info_form}>
                             <label className={style.input_info_title}>내용</label>
                             <div className={`${style.select_box} ${style.select_content}`}>
-                                <textarea className={`${style.input_field_textarea} ${style.input_content}`} placeholder="내용을 입력해주세요..."
+                                <textarea className={`${style.input_field_textarea} ${style.input_content}`}
+                                          onChange={handleInputChange}
+                                          placeholder="내용을 입력해주세요..."
                                           name="content" id="content" cols={30} rows={10}/>
                             </div>
                         </div>

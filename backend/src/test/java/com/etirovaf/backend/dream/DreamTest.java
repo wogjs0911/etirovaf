@@ -91,7 +91,7 @@ public class DreamTest {
         hashtag.add(new HashtagEntity("정문"));
         hashtag.add(new HashtagEntity("법"));
 
-        dreamService.addDream(DreamInfoRequest.builder()
+        dreamService.createDream(DreamInfoRequest.builder()
                 .title("서강대에서 법 관련 공부할 사람?")
                 .place("서강대 정문")
                 .deadline("20240405")

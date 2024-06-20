@@ -8,6 +8,7 @@ type DreamListProps = {
 }
 
 const DreamItem = ({ dream } : DreamListProps) => {
+
     const nav = useNavigate();
 
     const onClickItem = () => {

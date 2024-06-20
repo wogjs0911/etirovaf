@@ -2,6 +2,10 @@ const QUERY_KEYS = {
   member: {
     member: 'member',
     naver_oauth: 'naver_login',
+  },
+  dream: {
+    list: 'dreamList',
+    detail: 'dreamDetail'
   }
 } as const;
 
