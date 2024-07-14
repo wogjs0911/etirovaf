@@ -39,10 +39,11 @@ jobs:
         path: |
           ~/.gradle/caches
           ~/.gradle/wrapper
-        key: ${{ needs.setup.outputs.build-cache-key }}
+        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
         restore-keys: |
           ${{ runner.os }}-gradle-
           
+    - uses: actions/cache@v4    
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
 
