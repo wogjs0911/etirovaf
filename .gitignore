@@ -1,9 +1,12 @@
+# HELP.md는 제외
 HELP.md
-.gradle
+
+# .gradle 디렉토리는 제외
+.gradle/
+
+# build 디렉토리는 제외, 하지만 libs는 포함 (빌드 결과물)
 build/
-!gradle/wrapper/gradle-wrapper.jar
-!**/src/main/**/build/
-!**/src/test/**/build/
+!build/libs/
 
 ### STS ###
 .apt_generated
@@ -13,18 +16,18 @@ build/
 .settings
 .springBeans
 .sts4-cache
+
+# bin 디렉토리 제외
 bin/
-!**/src/main/**/bin/
-!**/src/test/**/bin/
 
 ### IntelliJ IDEA ###
 .idea
 *.iws
 *.iml
 *.ipr
+
+# out 디렉토리 제외
 out/
-!**/src/main/**/out/
-!**/src/test/**/out/
 
 ### NetBeans ###
 /nbproject/private/
@@ -67,3 +70,9 @@ dist-ssr
 application.yml
 docker-compose.yml
 database
+
+# Gradle Wrapper 관련 파일 및 폴더는 포함
+!gradle/wrapper/gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.properties
+!gradlew
+!gradlew.bat
