@@ -25,7 +25,7 @@ public class QueryDreamController {
     private final DreamService service;
 
     @GetMapping
-    @Operation(summary="꿈 관련 글 단건 조회", description = "꿈 관련 게시글 중 한 건을 받아온다.", tags={"03.꿈",})
+    @Operation(summary="꿈 관련 글 단건 조회", description = "꿈 관련 게시글 한 건을 조회한다.", tags={"03.꿈",})
     public ResponseEntity<ResponseHandler<Optional<Dream>>> getDream(@RequestParam String title){
         log.info("getDreamByTitle");
         return ResponseEntity
@@ -38,7 +38,7 @@ public class QueryDreamController {
     }
 
     @GetMapping("/list")
-    @Operation(summary="꿈 관련 전체 글 목록 조회", description = "꿈 관련 글 전체 목록을 받아온다.", tags={"03.꿈",})
+    @Operation(summary="꿈 관련 전체 글 목록 조회", description = "꿈 관련 글 전체 목록을 조회한다.", tags={"03.꿈",})
     public ResponseEntity<ResponseHandler<List<Dream>>> getDreamList(){
         log.info("getAllDreamList");
         return ResponseEntity

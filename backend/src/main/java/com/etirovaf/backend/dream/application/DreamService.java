@@ -25,7 +25,7 @@ public class DreamService {
         return repository.findAll();
     }
 
-    public boolean addDream(DreamInfoRequest dreamInfoRequest) throws ServiceException {
+    public boolean createDream(DreamInfoRequest dreamInfoRequest) throws ServiceException {
 //        Optional<Member> member = memberService.getMemberByIdentifier(dreamInfoRequest.getCreator().getIdentifier());
 //        if(member.isEmpty())
 //            throw new ServiceException(ResultCode.VALID_NOT_NULL);

@@ -23,9 +23,11 @@ export type MemberLoginResponse = {
 };
 
 export type MemberInfoResponse = {
-  id: number | null;
-  nickname: string;
-  profileImageUrl: string;
-  identifier: string;
-  phoneNumber: string;
+  data : {
+    id: number | null;
+    nickname: string;
+    profileImageUrl: string;
+    identifier: string;
+    phoneNumber: string;
+  }
 };

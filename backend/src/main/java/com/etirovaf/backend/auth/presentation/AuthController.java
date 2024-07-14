@@ -39,13 +39,13 @@ public class AuthController {
 
     @Operation(summary = "Refresh 토큰 재발급")
     @PostMapping("/reissue")
-    public ResponseEntity<ResponseHandler<SignupResponse>> reissue(@RequestBody ReissueTokenRequest reissueTokenRequest) throws ServiceException {
-        SignupResponse signupResponse = service.reissueToken(reissueTokenRequest);
+    public ResponseEntity<ResponseHandler<LoginResponse>> reissue(@RequestBody ReissueTokenRequest reissueTokenRequest) throws ServiceException {
+        LoginResponse loginResponse = service.reissueToken(reissueTokenRequest);
         return ResponseEntity
                 .ok()
-                .body(ResponseHandler.<SignupResponse>builder()
+                .body(ResponseHandler.<LoginResponse>builder()
                         .message("Refresh 토큰 재발급")
-                        .data(signupResponse)
+                        .data(loginResponse)
                         .build()
                 );
     }

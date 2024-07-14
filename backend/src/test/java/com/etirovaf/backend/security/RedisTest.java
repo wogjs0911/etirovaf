@@ -1,7 +1,8 @@
 package com.etirovaf.backend.security;
 
 import com.etirovaf.backend.auth.model.dto.request.LoginRequest;
-import com.etirovaf.backend.auth.model.dto.request.SignupRequest;
+import com.etirovaf.backend.member.application.MemberService;
+import com.etirovaf.backend.member.model.dto.request.SignupRequest;
 import com.etirovaf.backend.auth.application.AuthService;
 import com.etirovaf.backend.member.model.entity.Member;
 import com.etirovaf.backend.member.model.entity.Role;
@@ -29,6 +30,9 @@ public class RedisTest {
 
     @Autowired
     private AuthService authService;
+
+    @Autowired
+    private MemberService memberService;
 
 
     public static final String MYSQL_DB = "mysqldb";
@@ -65,7 +69,7 @@ public class RedisTest {
         member.setName("김재헌");
         member.setRole(Role.MEMBER);
 
-        authService.addMember(SignupRequest.of(member));
+        memberService.addMember(SignupRequest.of(member));
         System.out.println("회원가입 테스트 성공");
     }
 

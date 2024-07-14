@@ -1,6 +1,6 @@
 package com.etirovaf.backend.member.model.entity;
 
-import com.etirovaf.backend.auth.model.dto.request.SignupRequest;
+import com.etirovaf.backend.member.model.dto.request.SignupRequest;
 import com.etirovaf.backend.common.exception.BaseResDto;
 import com.etirovaf.backend.dream.model.entity.Dream;
 import com.etirovaf.backend.member.model.dto.request.MemberInfo;
@@ -57,7 +57,7 @@ public class Member extends BaseResDto {
                 .identifier(entity.getIdentifier())
                 .password(entity.getPassword())
                 .nickname(entity.getNickname())
-                .role(entity.getRole())
+                .role(Role.MEMBER)
                 .build();
     }
 }

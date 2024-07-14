@@ -2,13 +2,15 @@
 
 import style from "./styled.module.css";
 import utilStyle from "@styles/utils.module.css";
-import { useState, useEffect } from "react";
 import Searchbar from "@components/Searchbar";
 import Notification from "@components/Notification";
 import Category from "@components/Category";
 import TopDreamList from "@components/TopDreamList";
 import RecentDreamList from "@components/RecentDreamList";
-import { Link } from "react-router-dom";
+import {Link, useNavigate } from "react-router-dom";
+import {useMemberInfoContext} from "@components/_providers/MemberInfoProvider.tsx";
+import {useLogout} from "@hooks/queries/member.ts";
+import {useEffect, useState} from "react";
 
 interface Dream {
     id: number;
@@ -56,11 +58,21 @@ const mockData: Dream[] = [
 
 const Home = () => {
     const [dreams, setDreams] = useState<Dream[]>(mockData);
+    const { memberInfo } = useMemberInfoContext();
+    const nav = useNavigate();
+
+    const { logout } = useLogout();
+
+    const handleLogout = () => {
+        logout();
+        nav('/home');
+    }
 
     const setInitData = async () => {
         // Here, you could fetch data from an API if needed
         setDreams(mockData); // For now, using mock data
     };
+
 
     useEffect(() => {
         setInitData();
@@ -69,9 +81,17 @@ const Home = () => {
     return (
         <div className={style.container}>
             <div className={style.header}>
-                <Link to="/login" className={style.login_btn_form}>
-                    <input className={style.btn_login} type="submit" value="로그인" />
-                </Link>
+                { memberInfo.data.identifier ? (
+                    <div className={style.login_btn_form}>
+                        <input className={style.btn_login} type="submit"
+                               onClick={handleLogout} value="로그아웃" />
+                    </div>
+                ) : (
+                    <Link to="/login" className={style.login_btn_form}>
+                        <input className={style.btn_login} type="submit" value="로그인" />
+                    </Link>
+                )}
+
                 <div className={utilStyle.d_fl_jf}>
                     <div className={style.searchBox}>
                         <Searchbar q={''}/>
