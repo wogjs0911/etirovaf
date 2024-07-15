@@ -79,7 +79,7 @@ jobs:
           docker build -t ${{ secrets.DOCKER_REPOSITORY }}:nginx .
           docker push ${{ secrets.DOCKER_REPOSITORY }}:nginx
 
-      # nginx.conf 경로 변경 후 도커 컴포즈 실행
+      # nginx.conf 경로 변경 후 도커 컴포즈 실행!
       # 도커 허브에서 jar파일 및 pull후에 컴포즈 up
       - name: Deploy to Dev
         uses: appleboy/ssh-action@master
