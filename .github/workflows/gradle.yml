@@ -81,13 +81,10 @@ jobs:
 
       ## frontend 도커 이미지 빌드 후 도커허브에 push하기
       - name: frontend docker build and push
-        strategy:
-          matrix:
-            environment: [dev, prod]
         run: |
           cd ./front # frontend 프로젝트 디렉토리로 이동
-          docker build -f Dockerfile.${{ matrix.environment }} -t ${{ secrets.DOCKER_REPOSITORY }}/frontend:${{ matrix.environment }} .
-          docker push ${{ secrets.DOCKER_REPOSITORY }}/frontend:${{ matrix.environment }}
+          docker build -f Dockerfile.prod -t ${{ secrets.DOCKER_REPOSITORY }}/frontend:prod .
+          docker push ${{ secrets.DOCKER_REPOSITORY }}/frontend:prod
 
       ## Docker Hub에서 MySQL 이미지 pull 후 태그 변경 및 push
       - name: Pull and push MySQL image
