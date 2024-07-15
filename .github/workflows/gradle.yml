@@ -76,7 +76,7 @@ jobs:
       - name: web nginx docker build and push
         run: |
           cd ./nginx
-          docker build -t ${{ secrets.DOCKER_REPOSITORY }}:nginx ./nginx
+          docker build -t ${{ secrets.DOCKER_REPOSITORY }}:nginx .
           docker push ${{ secrets.DOCKER_REPOSITORY }}:nginx
 
       # nginx.conf 경로 변경 후 도커 컴포즈 실행!
