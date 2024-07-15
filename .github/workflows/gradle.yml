@@ -83,7 +83,7 @@ jobs:
       - name: frontend docker build and push
         run: |
           cd ./frontend # frontend 프로젝트 디렉토리로 이동
-          docker build -t ${{ secrets.DOCKER_REPOSITORY }}:frontend ./front/dist
+          docker build -t ${{ secrets.DOCKER_REPOSITORY }}:frontend .
           docker push ${{ secrets.DOCKER_REPOSITORY }}:frontend
 
       ## Docker Hub에서 MySQL 이미지 pull 후 태그 변경 및 push
@@ -142,5 +142,5 @@ jobs:
       - name: web docker build and push
         run: |
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-          docker build -t ${{ secrets.DOCKER_REPOSITORY }}/frontend ./front/dist # Build the Docker image
+          docker build -t ${{ secrets.DOCKER_REPOSITORY }}/frontend . # Build the Docker image
           docker push ${{ secrets.DOCKER_REPOSITORY }}/frontend  # Push the image
