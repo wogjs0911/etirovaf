@@ -73,11 +73,11 @@ jobs:
           docker push ${{ secrets.DOCKER_REPOSITORY }}:backend
 
       ## nginx 도커 이미지 빌드 후 도커허브에 push
-      - name: web nginx docker build and push
-        run: |
-          cd ./nginx
-          docker build -t ${{ secrets.DOCKER_REPOSITORY }}:nginx .
-          docker push ${{ secrets.DOCKER_REPOSITORY }}:nginx
+#      - name: web nginx docker build and push
+#        run: |
+#          cd ./nginx
+#          docker build -t ${{ secrets.DOCKER_REPOSITORY }}:nginx .
+#          docker push ${{ secrets.DOCKER_REPOSITORY }}:nginx
 
       # nginx.conf 경로 변경 후 도커 컴포즈 실행!
       # 도커 허브에서 jar파일 및 pull후에 컴포즈 up!
