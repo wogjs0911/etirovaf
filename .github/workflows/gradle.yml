@@ -82,7 +82,7 @@ jobs:
       ## frontend 도커 이미지 빌드 후 도커허브에 push하기
       - name: frontend docker build and push
         run: |
-          cd ./frontend # frontend 프로젝트 디렉토리로 이동
+          cd ./front # frontend 프로젝트 디렉토리로 이동
           docker build -t ${{ secrets.DOCKER_REPOSITORY }}:frontend .
           docker push ${{ secrets.DOCKER_REPOSITORY }}:frontend
 
@@ -141,6 +141,7 @@ jobs:
 
       - name: web docker build and push
         run: |
+          cd ./front
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
           docker build -t ${{ secrets.DOCKER_REPOSITORY }}/frontend . # Build the Docker image
           docker push ${{ secrets.DOCKER_REPOSITORY }}/frontend  # Push the image
