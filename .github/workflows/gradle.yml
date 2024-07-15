@@ -73,9 +73,9 @@ jobs:
           docker push ${{ secrets.DOCKER_REPOSITORY }}:backend
 
       ## nginx 도커 이미지 빌드 후 도커허브에 push
-      - name: Pull and push nginx image
+      - name: nginx docker build and push
         run: |
-          docker pull nginx:latest # nginx 최신 버전 이미지 pull
+          cd ./nginx
           docker build -t ${{ secrets.DOCKER_REPOSITORY }}:nginx .
           docker push ${{ secrets.DOCKER_REPOSITORY }}:nginx
 
