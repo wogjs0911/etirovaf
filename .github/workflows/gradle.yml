@@ -30,13 +30,13 @@ jobs:
         run: cd backend && chmod +x ./gradlew
 
       - name: Make directory for deliver
-        run: mkdir deploy
+        run: cd backend && mkdir deploy
 
       - name: Build with Gradle
-        run: ./gradlew clean build -x test
+        run: cd backend && ./gradlew clean build -x test
 
       - name: Copy jar
-        run: cp ./build/libs/*.jar ./deploy/
+        run: cd backend && cp ./build/libs/*.jar ./deploy/
 
       # NOTE: The Gradle Wrapper is the default and recommended way to run Gradle (https://docs.gradle.org/current/userguide/gradle_wrapper.html).
       # If your project does not have the Gradle Wrapper configured, you can use the following configuration to run Gradle with a specified version.
