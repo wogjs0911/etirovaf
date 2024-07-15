@@ -73,15 +73,36 @@ jobs:
           docker push ${{ secrets.DOCKER_REPOSITORY }}:backend
 
       ## nginx 도커 이미지 빌드 후 도커허브에 push
-#      - name: web nginx docker build and push
-#        run: |
-#          cd ./nginx
-#          docker build -t ${{ secrets.DOCKER_REPOSITORY }}:nginx .
-#          docker push ${{ secrets.DOCKER_REPOSITORY }}:nginx
+      - name: Pull and push nginx image
+        run: |
+          docker pull nginx:latest # nginx 최신 버전 이미지 pull
+          docker build -t ${{ secrets.DOCKER_REPOSITORY }}:nginx .
+          docker push ${{ secrets.DOCKER_REPOSITORY }}:nginx
+
+      ## frontend 도커 이미지 빌드 후 도커허브에 push하기
+      - name: frontend docker build and push
+        run: |
+          cd ./frontend # frontend 프로젝트 디렉토리로 이동
+          docker build -t ${{ secrets.DOCKER_REPOSITORY }}:frontend .
+          docker push ${{ secrets.DOCKER_REPOSITORY }}:frontend
+
+      ## Docker Hub에서 MySQL 이미지 pull 후 태그 변경 및 push
+      - name: Pull and push MySQL image
+        run: |
+          docker pull mysql # MySQL 최신 버전 이미지 pull
+          docker tag mysql:latest ${{ secrets.DOCKER_REPOSITORY }}:database # 이미지 태그 변경
+          docker push ${{ secrets.DOCKER_REPOSITORY }}:database # 변경된 태그로 push
+
+      ## Docker Hub에서 Redis 이미지 pull 후 태그 변경 및 push
+      - name: Pull and push Redis image
+        run: |
+          docker pull redis # Redis 최신 버전 이미지 pull
+          docker tag redis:latest ${{ secrets.DOCKER_REPOSITORY }}:redis # 이미지 태그 변경
+          docker push ${{ secrets.DOCKER_REPOSITORY }}:redis # 변경된 태그로 push
 
       # Install dependencies
-      - name: Install dependencies
-        run: sudo apt-get update && sudo apt-get install -y libcrypt1
+#      - name: Install dependencies
+#        run: sudo apt-get update && sudo apt-get install -y libcrypt1
 
       # nginx.conf 경로 변경 후 도커 컴포즈 실행
       # 도커 허브에서 jar파일 및 pull후에 컴포즈 up
@@ -95,6 +116,9 @@ jobs:
             docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
             sudo docker pull ${{ secrets.DOCKER_REPOSITORY }}:backend
             sudo docker pull ${{ secrets.DOCKER_REPOSITORY }}:nginx
+            sudo docker pull ${{ secrets.DOCKER_REPOSITORY }}:frontend
+            sudo docker pull ${{ secrets.DOCKER_REPOSITORY }}:redis
+            sudo docker pull ${{ secrets.DOCKER_REPOSITORY }}:database
             cd /home/ec2-user
             sudo cp /home/ec2-user/nginx/nginx.conf /home/ec2-user/nginx/nginx.conf.bak
             docker-compose down
