@@ -81,10 +81,13 @@ jobs:
 
       ## frontend 도커 이미지 빌드 후 도커허브에 push하기
       - name: frontend docker build and push
+        strategy:
+          matrix:
+            environment: [dev, prod]
         run: |
           cd ./front # frontend 프로젝트 디렉토리로 이동
-          docker build -t ${{ secrets.DOCKER_REPOSITORY }}:frontend .
-          docker push ${{ secrets.DOCKER_REPOSITORY }}:frontend
+          docker build -f Dockerfile.${{ matrix.environment }} -t ${{ secrets.DOCKER_REPOSITORY }}/frontend:${{ matrix.environment }} .
+          docker push ${{ secrets.DOCKER_REPOSITORY }}/frontend:${{ matrix.environment }}
 
       ## Docker Hub에서 MySQL 이미지 pull 후 태그 변경 및 push
       - name: Pull and push MySQL image
@@ -125,15 +128,16 @@ jobs:
             docker rmi $(docker images -q) || true
             docker-compose up -d
 
-  deploy_frontend:  # New frontend deployment job
+  deploy_frontend:
     name: Deploy Frontend
     runs-on: ubuntu-latest
+    needs: build  # Ensure backend build is successful before deploying frontend
     strategy:
       matrix:
-        node-version: [22.4.1] # Use Node.js 20.3.1
+        node-version: [20.3.1]
+        environment: [dev, prod] # Build for both dev and prod environments
     steps:
-      - uses: actions/checkout@v2 # Checkout the code
-
+      - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
@@ -141,7 +145,7 @@ jobs:
 
       - name: web docker build and push
         run: |
-          cd ./front
+          cd front  # Change to your frontend directory
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-          docker build -t ${{ secrets.DOCKER_REPOSITORY }}/frontend . # Build the Docker image
-          docker push ${{ secrets.DOCKER_REPOSITORY }}/frontend  # Push the image
+          docker build -f Dockerfile.${{ matrix.environment }} -t ${{ secrets.DOCKER_REPOSITORY }}/frontend:${{ matrix.environment }} .
+          docker push ${{ secrets.DOCKER_REPOSITORY }}/frontend:${{ matrix.environment }}
