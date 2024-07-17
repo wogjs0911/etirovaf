@@ -1,0 +1,30 @@
+name: Deploy Frontend
+
+on:
+  push:
+    branches: [ "main", "dev", "dev2", "build/**" ]
+  pull_request:
+    branches: [ "main", "dev", "dev2", "build/**" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [22.4.1]
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+
+    - name: frontend docker build and push
+      run: |
+        docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+        docker build -t ${{ secrets.DOCKER_REPOSITORY }}:frontend ./front
+        docker push ${{ secrets.DOCKER_REPOSITORY }}:frontend
