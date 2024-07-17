@@ -87,11 +87,11 @@ jobs:
           host: ${{ secrets.AWS_DEV_HOSTNAME }}
           key: ${{ secrets.AWS_DEV_PRIVATE_KEY }}
           script: |
+            docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
             if [ "$(docker ps -qa)" ]; then
             sudo docker rm -f $(docker ps -qa)
             fi
             sudo docker pull ${{ secrets.DOCKER_REPOSITORY }}/backend
-            sudo docker pull ${{ secrets.DOCKER_REPOSITORY }}/frontend
             sudo docker pull ${{ secrets.DOCKER_REPOSITORY }}/nginx
-            sudo docker-compose -f /home/ec2-user/github/workspace/docker-compose.yml up -d
+            sudo docker-compose -f /home/ec2-user/docker-compose.yml up -d
             docker image prune -f
