@@ -8,7 +8,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -25,7 +24,7 @@ jobs:
       - name: frontend docker build and push
         run: |
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-          docker build -f Dockerfile.prod -t ${{ secrets.DOCKER_REPOSITORY }}:frontend ./front
+          docker build -f Dockerfile.prod -t ${{ secrets.DOCKER_REPOSITORY }}:frontend .
           docker push ${{ secrets.DOCKER_REPOSITORY }}:frontend
 
       - name: Docker login
@@ -40,6 +39,6 @@ jobs:
           key: ${{ secrets.AWS_DEV_PRIVATE_KEY }}
           script: |
             sudo docker rm -f $(docker ps -qa)
-            sudo docker pull ${{ secrets.DOCKER_REPO }}/frontend
+            sudo docker pull ${{ secrets.DOCKER_REPOSITORY }}/frontend
             docker-compose up -d
             docker image prune -f
