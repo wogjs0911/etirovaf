@@ -78,6 +78,10 @@ jobs:
           docker build -t ${{ secrets.DOCKER_REPOSITORY }}:nginx .
           docker push ${{ secrets.DOCKER_REPOSITORY }}:nginx
 
+      - name: Docker login
+        run: |
+          echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+
       # nginx.conf 경로 변경 후 도커 컴포즈 실행
       # 도커 허브에서 jar파일 및 pull후에 컴포즈 up
       - name: Deploy to Dev
@@ -87,7 +91,6 @@ jobs:
           host: ${{ secrets.AWS_DEV_HOSTNAME }}
           key: ${{ secrets.AWS_DEV_PRIVATE_KEY }}
           script: |
-            docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} --password-stdin
             if [ "$(docker ps -qa)" ]; then
             sudo docker rm -f $(docker ps -qa)
             fi
