@@ -22,9 +22,7 @@ services:
     networks:
       - etirovaf-network
   backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
+    image: etirovaf/backend
     restart: always
     ports:
       - '8080:8080'
@@ -43,11 +41,7 @@ services:
     networks:
       - etirovaf-network
   frontend:
-    build:
-      context: ./front
-      args:
-        - BUILD_TYPE=prod  # 기본 빌드 타입 설정
-      dockerfile: Dockerfile.prod
+    image: etirovaf/frontend
     restart: always
     ports:
       - '3000:3000'
@@ -58,8 +52,8 @@ services:
     networks:
       - etirovaf-network
   nginx:
-    image: nginx:latest
     container_name: nginx
+    image: etirovaf/nginx
     restart: unless-stopped
     ports:
       - '80:80'
