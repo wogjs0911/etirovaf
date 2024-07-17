@@ -71,7 +71,7 @@ jobs:
           username: ec2-user
           host: ${{ secrets.AWS_DEV_HOSTNAME }}
           key: ${{ secrets.AWS_DEV_PRIVATE_KEY }}
-          source: "./.env"
+          source: ".env"
           target: "/home/ubuntu/"
 
       ## springboot 도커 이미지 빌드 후 도커허브에 push하기
