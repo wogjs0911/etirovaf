@@ -1,3 +1,4 @@
+
 name: Deploy Frontend
 
 on:
@@ -27,11 +28,9 @@ jobs:
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
           docker build -f Dockerfile.prod -t ${{ secrets.DOCKER_REPOSITORY }}:frontend .
           docker push ${{ secrets.DOCKER_REPOSITORY }}:frontend
-
       - name: Docker login
         run: |
           echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
-
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@master
         with:
@@ -40,6 +39,6 @@ jobs:
           key: ${{ secrets.AWS_DEV_PRIVATE_KEY }}
           script: |
             sudo docker rm -f $(docker ps -qa)
-            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPOSITORY }}:frontend
+            sudo docker pull ${{ secrets.DOCKER_REPOSITORY }}/frontend
             docker-compose up -d
             docker image prune -f
