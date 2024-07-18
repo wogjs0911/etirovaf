@@ -39,6 +39,7 @@ jobs:
 
       - name: Create env file
         run: |
+#          touch ./.env
           echo MYSQL_ROOT_PASSWORD=${{ secrets.MYSQL_ROOT_PASSWORD }} >> .env
           echo MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }} >> .env
           echo SPRING_DATASOURCE_URL=${{ secrets.SPRING_DATASOURCE_URL }} >> .env
@@ -68,15 +69,15 @@ jobs:
       - name: web springboot docker build and push
         run: |
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-          docker build -t ${{ secrets.DOCKER_REPOSITORY }}:backend ./backend
-          docker push ${{ secrets.DOCKER_REPOSITORY }}:backend
+          docker build -t ${{ secrets.DOCKER_REPOSITORY }}/backend ./backend
+          docker push ${{ secrets.DOCKER_REPOSITORY }}/backend
 
       ## nginx 도커 이미지 빌드 후 도커허브에 push
       - name: nginx docker build and push
         run: |
           cd ./nginx
-          docker build -t ${{ secrets.DOCKER_REPOSITORY }}:nginx .
-          docker push ${{ secrets.DOCKER_REPOSITORY }}:nginx
+          docker build -t ${{ secrets.DOCKER_REPOSITORY }}/nginx .
+          docker push ${{ secrets.DOCKER_REPOSITORY }}/nginx
 
       - name: Docker login
         run: |
