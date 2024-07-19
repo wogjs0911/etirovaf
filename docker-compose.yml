@@ -22,7 +22,7 @@ services:
     networks:
       - etirovaf-network
   backend:
-    image: etirovaf/backend
+    image: wogjs0911/etirovaf:backend
     restart: always
     ports:
       - '8080:8080'
@@ -41,7 +41,7 @@ services:
     networks:
       - etirovaf-network
   frontend:
-    image: etirovaf/frontend
+    image: wogjs0911/etirovaf:frontend
     restart: always
     ports:
       - '3000:3000'
@@ -53,7 +53,7 @@ services:
       - etirovaf-network
   nginx:
     container_name: nginx
-    image: etirovaf/nginx
+    image: wogjs0911/etirovaf:nginx
     restart: unless-stopped
     ports:
       - '80:80'
