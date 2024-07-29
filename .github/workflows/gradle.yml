@@ -96,8 +96,8 @@ jobs:
             if [ "$(docker ps -qa)" ]; then
             sudo docker rm -f $(docker ps -qa)
             fi
-            sudo docker pull ${{ secrets.DOCKER_REPOSITORY }}:frontend
-            sudo docker pull ${{ secrets.DOCKER_REPOSITORY }}:backend
-            sudo docker pull ${{ secrets.DOCKER_REPOSITORY }}:nginx
+            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPOSITORY }}:frontend
+            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPOSITORY }}:backend
+            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPOSITORY }}:nginx
             sudo docker-compose -f /home/ec2-user/docker-compose.yml up -d
             docker image prune -f
