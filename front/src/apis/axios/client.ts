@@ -12,8 +12,8 @@ export const BASE_URL = `${
 let ACCESS_TOKEN = localStorage.getItem("accessToken");
 
 const client = axios.create({
-  // baseURL: 'http://localhost:8080',
-  baseURL: '/api',
+  // baseURL: 'http://localhost:8080/api',
+  baseURL: 'http://3.34.140.6:8080/api',
   headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${ACCESS_TOKEN}`,
