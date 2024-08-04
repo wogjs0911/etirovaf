@@ -24,10 +24,10 @@ services:
   backend:
     image: wogjs0911/etirovaf:backend
     restart: always
+    expose:
+      - 8080
     ports:
       - '8080:8080'
-      - '5005:5005'
-      - '5006:5006'
     environment:
       SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
       SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
@@ -35,6 +35,8 @@ services:
       TZ: Asia/Seoul
     volumes:
       - ./backend:/home/deploy/app/backend
+    env_file:
+      - .env
     depends_on:
       - database
       - redis
@@ -43,8 +45,8 @@ services:
   frontend:
     image: wogjs0911/etirovaf:frontend
     restart: always
-    ports:
-      - '3000:3000'
+    expose:
+      - 3000
     volumes:
       - ./front/src:/app/src:ro
     depends_on:
