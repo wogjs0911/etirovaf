@@ -80,7 +80,7 @@ jobs:
           cd ./nginx
           docker build -t ${{ secrets.DOCKER_REPOSITORY }}:nginx .
           docker push ${{ secrets.DOCKER_REPOSITORY }}:nginx
-      # 도커 허브에서 jar파일 및 pull후에 컴포즈 up
+      # 도커 허브에서 jar파일 및 pull후에 컴포즈 up!!
       - name: Deploy to Dev
         uses: appleboy/ssh-action@master
         with:
