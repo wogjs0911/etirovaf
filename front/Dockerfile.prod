@@ -1,8 +1,9 @@
 FROM node:alpine as builder
 WORKDIR /app
-COPY package.json .
-RUN npm install
-COPY . .
+COPY package*.json ./
+RUN npm install # npm ci 대신 npm install 사용
+RUN npm install typescript # TypeScript 설치
+COPY ./ ./
 RUN npm run build
 
 FROM nginx
