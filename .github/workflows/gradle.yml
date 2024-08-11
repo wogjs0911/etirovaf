@@ -36,7 +36,8 @@ jobs:
         env:
           MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
           MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
-          SPRING_DATASOURCE_URL: ${{ secrets.SPRING_DATASOURCE_URL }}
+          DATASOURCE_ENDPOINT: ${{ secrets.DATASOURCE_ENDPOINT }}
+          DATASOURCE_SCHEMA: ${{ secrets.DATASOURCE_SCHEMA }}
           SPRING_DATASOURCE_USERNAME: ${{ secrets.SPRING_DATASOURCE_USERNAME }}
           SPRING_DATASOURCE_PASSWORD: ${{ secrets.SPRING_DATASOURCE_PASSWORD }}
 
@@ -47,7 +48,8 @@ jobs:
         run: |
           echo MYSQL_ROOT_PASSWORD=${{ secrets.MYSQL_ROOT_PASSWORD }} >> .env
           echo MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }} >> .env
-          echo SPRING_DATASOURCE_URL=${{ secrets.SPRING_DATASOURCE_URL }} >> .env
+          echo DATASOURCE_ENDPOINT=${{ secrets.DATASOURCE_ENDPOINT }} >> .env
+          echo DATASOURCE_SCHEMA=${{ secrets.DATASOURCE_SCHEMA }} >> .env
           echo SPRING_DATASOURCE_USERNAME=${{ secrets.SPRING_DATASOURCE_USERNAME }} >> .env
           echo SPRING_DATASOURCE_PASSWORD=${{ secrets.SPRING_DATASOURCE_PASSWORD }} >> .env
 
