@@ -58,8 +58,7 @@ services:
     ports:
       - '80:80'
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/conf.d:ro
-      - ./front/default.conf:/etc/nginx/conf.d:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
       - ./front/build:/usr/share/nginx/html # React 빌드 결과물 마운트 (배포 시에만 필요!)
     depends_on:
       - frontend
