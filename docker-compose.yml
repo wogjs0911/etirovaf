@@ -1,0 +1,70 @@
+services:
+  database:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      TZ: Asia/Seoul
+    ports:
+      - '3306:3306'
+    volumes:
+      - ./database/data:/var/lib/mysql
+      - ./database/conf.d:/etc/mysql/conf.d
+      - ./database/db/initdb.d:/docker-entrypoint-initdb.d
+    networks:
+      - etirovaf-network
+  redis:
+    container_name: redis
+    image: redis
+    ports:
+      - '6379:6379'
+    networks:
+      - etirovaf-network
+  backend:
+    image: wogjs0911/etirovaf:backend
+    restart: always
+    ports:
+      - '8080:8080'
+      - '5005:5005'
+      - '5006:5006'
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://${DATASOURCE_ENDPOINT}:3306/${DATASOURCE_SCHEMA}?useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
+      TZ: Asia/Seoul
+    volumes:
+      - ./backend:/home/deploy/app/backend
+    depends_on:
+      - database
+      - redis
+    networks:
+      - etirovaf-network
+  frontend:
+    image: wogjs0911/etirovaf:frontend
+    restart: always
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./front/src:/app/src:ro
+    depends_on:
+      - backend
+    networks:
+      - etirovaf-network
+  nginx:
+    container_name: nginx
+    image: wogjs0911/etirovaf:nginx
+    restart: unless-stopped
+    ports:
+      - '80:80'
+    volumes:
+      - ./front/dist:/usr/share/nginx/html # React 빌드 결과물 마운트 (배포 시에만 필요!)
+    depends_on:
+      - frontend
+      - backend
+    networks:
+      - etirovaf-network
+
+networks:
+  etirovaf-network:
+    driver: bridge

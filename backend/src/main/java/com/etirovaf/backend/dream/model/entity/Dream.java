@@ -37,6 +37,7 @@ public class Dream extends BaseResDto {
     @Column(nullable = false, length = 200)
     private String content;
 
+    @Column(nullable = true)
     private String image;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)

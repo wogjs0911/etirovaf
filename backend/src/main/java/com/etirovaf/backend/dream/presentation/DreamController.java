@@ -9,10 +9,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,10 +22,10 @@ import java.util.List;
 public class DreamController {
     private final DreamService service;
 
-    @GetMapping("/add")
-    @Operation(summary="꿈 관련 글 작성", description = "꿈 관련 글을 목록에 저장한다.", tags={"03.드림목록",})
-    public boolean addDream(@RequestBody DreamInfoRequest dreamInfoRequest) throws ServiceException {
-        log.info("addDream");
-        return service.addDream(dreamInfoRequest);
+    @PostMapping("/reg")
+    @Operation(summary="꿈 관련 글 작성", description = "꿈 관련 글을 등록한다.", tags={"03.드림목록",})
+    public boolean createDream(@RequestBody DreamInfoRequest dreamInfoRequest) throws ServiceException {
+        log.info("createDream");
+        return service.createDream(dreamInfoRequest);
     }
 }

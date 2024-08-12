@@ -12,7 +12,9 @@ export const BASE_URL = `${
 let ACCESS_TOKEN = localStorage.getItem("accessToken");
 
 const client = axios.create({
-  baseURL: 'http://localhost:8080',
+  // baseURL: 'http://localhost:8080/api',
+  // baseURL: 'http://3.34.140.6:8080/api',
+  baseURL: '/api',
   headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${ACCESS_TOKEN}`,
@@ -41,7 +43,7 @@ client.interceptors.response.use(
           const refreshToken = getCookie('refresh_token');
           try {
             // refresh token으로 새로운 access token을 발급받는 API를 호출합니다.
-            const { data } = await client.post('/api/auth/reissue', { refreshToken });
+            const { data } = await client.post('/auth/reissue', { refreshToken });
             // 새로 받은 access token으로 기본 header를 설정합니다.
             client.defaults.headers.common.Authorization = `Bearer ${data.access_token}`;
             // 원래의 요청에도 새로운 access token을 설정합니다.

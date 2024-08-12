@@ -4,11 +4,13 @@ import { getCookie } from '@utils/_common/cookies';
 import { useEffect, useState } from 'react';
 
 export const defaultMemberInfo: MemberInfoResponse = {
-  id: null,
-  nickname: '',
-  profileImageUrl: '',
-  identifier: '',
-  phoneNumber: '',
+  data : {
+    id: null,
+    identifier: '',
+    nickname: '',
+    phoneNumber: '',
+    profileImageUrl: '',
+  }
 };
 
 export const useIdentifyMember = () => {

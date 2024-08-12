@@ -3,9 +3,7 @@ package com.etirovaf.backend.auth.application;
 import com.etirovaf.backend.auth.infrastructure.repository.RefreshTokenRepository;
 import com.etirovaf.backend.auth.model.dto.request.LoginRequest;
 import com.etirovaf.backend.auth.model.dto.request.ReissueTokenRequest;
-import com.etirovaf.backend.auth.model.dto.request.SignupRequest;
 import com.etirovaf.backend.auth.model.dto.response.LoginResponse;
-import com.etirovaf.backend.auth.model.dto.response.SignupResponse;
 import com.etirovaf.backend.common.exception.ResultCode;
 import com.etirovaf.backend.common.exception.ServiceException;
 import com.etirovaf.backend.common.security.jwt.JwtTokenUtil;
@@ -31,15 +29,6 @@ public class AuthService {
     private final JwtTokenUtil jwtTokenUtil;
     private final RedisTemplate<String, Object> redisTemplate;
     private final RefreshTokenRepository refreshTokenRepository;
-
-    // 회원가입
-    @Transactional
-    public boolean addMember(SignupRequest request) {
-        SignupRequest signUpRequest = SignupRequest.toMember(request, encoder.encode(request.getPassword()));
-        memberRepository.save(Member.saveMember(signUpRequest));
-        makeAuthenticationBySingupResponse(request);
-        return true;
-    }
 
     // 로그인
     @Transactional
@@ -68,25 +57,16 @@ public class AuthService {
         return "ok";
     }
 
-    public SignupResponse reissueToken(ReissueTokenRequest reissueTokenRequest) throws ServiceException {
+    public LoginResponse reissueToken(ReissueTokenRequest reissueTokenRequest) throws ServiceException {
         checkTokenValid(reissueTokenRequest.getRefreshToken());
         String memberId = findIdentifierByRefreshToken(reissueTokenRequest.getRefreshToken());
         Member member = findMemberByRefreshToken(memberId);
-        return makeAuthenticationBySingupResponse(SignupRequest.of(member));
+        return makeAuthenticationByLoginResponse(LoginRequest.of(member));
     }
 
     private void checkTokenValid(String refreshToken) throws ServiceException {
         if(!jwtTokenUtil.isExpired(refreshToken))
             throw new ServiceException(ResultCode.REFRESH_TOKEN_EXPIRED);
-    }
-
-    /**
-     * 회원가입 시, RefreshToken DB에 저장
-     * @param refreshToken
-     * @param signUpRequest
-     */
-    private void saveRefreshTokenBySignup(String refreshToken, SignupRequest signUpRequest){
-        refreshTokenRepository.save(refreshToken, signUpRequest.getIdentifier());
     }
 
     /**
@@ -96,18 +76,6 @@ public class AuthService {
      */
     private void saveRefreshTokenByLogin(String refreshToken, LoginRequest loginRequest){
         refreshTokenRepository.save(refreshToken, loginRequest.getIdentifier());
-    }
-
-    /**
-     * 회원가입 시, refreshToken, accessToken 생성
-     * @param signUpRequest
-     */
-    private SignupResponse makeAuthenticationBySingupResponse(SignupRequest signUpRequest){
-        String refreshToken = jwtTokenUtil.createRefreshToken(signUpRequest.getIdentifier());
-        saveRefreshTokenBySignup(refreshToken, signUpRequest);
-        String accessToken = jwtTokenUtil.createAccessToken(signUpRequest.getIdentifier());
-        redisTemplate.opsForValue().set("JWT_ACCESS_TOKEN:" + signUpRequest.getIdentifier(), accessToken);
-        return SignupResponse.of(refreshToken, accessToken);
     }
 
     /**

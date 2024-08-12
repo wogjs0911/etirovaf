@@ -8,21 +8,21 @@ import {
 } from '@myTypes/member/remote';
 
 export const signUp = (body: MemberJoinRequest) => {
-    return client.post('/api/member/add', body);
+    return client.post('/member/add', body);
 };
 
 export const naverLogin = async () => {
-    const { data } = await client.get<OAuthResponse>('/api/auth/oauth/naver');
+    const { data } = await client.get<OAuthResponse>('/auth/oauth/naver');
 
     return data;
 };
 
 export const login = (body: MemberLoginRequest) => {
-    return client.post<MemberLoginResponse>('/api/auth/login', body);
+    return client.post<MemberLoginResponse>('/auth/login', body);
 };
 
 export const getMemberInfo = (signal?: AbortSignal) => {
-    return client.get<MemberInfoResponse>('/api/member', {
+    return client.get<MemberInfoResponse>('/member', {
         signal,
     });
 };
