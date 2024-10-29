@@ -57,14 +57,14 @@ public class AuthService {
         return "ok";
     }
 
-    public LoginResponse reissueToken(ReissueTokenRequest reissueTokenRequest) throws ServiceException {
+    public LoginResponse reissueToken(ReissueTokenRequest reissueTokenRequest) {
         checkTokenValid(reissueTokenRequest.getRefreshToken());
         String memberId = findIdentifierByRefreshToken(reissueTokenRequest.getRefreshToken());
         Member member = findMemberByRefreshToken(memberId);
         return makeAuthenticationByLoginResponse(LoginRequest.of(member));
     }
 
-    private void checkTokenValid(String refreshToken) throws ServiceException {
+    private void checkTokenValid(String refreshToken) {
         if(!jwtTokenUtil.isExpired(refreshToken))
             throw new ServiceException(ResultCode.REFRESH_TOKEN_EXPIRED);
     }
@@ -96,12 +96,12 @@ public class AuthService {
      * @return
      * @throws ServiceException
      */
-    private String findIdentifierByRefreshToken(String clientRefreshToken) throws ServiceException {
+    private String findIdentifierByRefreshToken(String clientRefreshToken) {
         return refreshTokenRepository.findIdentifierByRefreshToken(clientRefreshToken)
                 .orElseThrow(() -> new ServiceException(ResultCode.REFRESH_TOKEN_EXPIRED));
     }
 
-    private Member findMemberByRefreshToken(String identifier) throws ServiceException {
+    private Member findMemberByRefreshToken(String identifier) {
         Member member = new Member();
         member.setIdentifier(identifier);
         return memberRepository.findByIdentifier(member.getIdentifier())
