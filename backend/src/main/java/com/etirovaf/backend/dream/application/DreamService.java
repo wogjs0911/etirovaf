@@ -1,7 +1,5 @@
 package com.etirovaf.backend.dream.application;
 
-import com.etirovaf.backend.common.exception.ResultCode;
-import com.etirovaf.backend.common.exception.ServiceException;
 import com.etirovaf.backend.dream.infrastructure.repository.DreamRepository;
 import com.etirovaf.backend.dream.model.dto.request.DreamInfoRequest;
 import com.etirovaf.backend.dream.model.entity.Dream;
@@ -28,10 +26,8 @@ public class DreamService {
     }
 
     public boolean createDream(DreamInfoRequest dreamInfoRequest) {
-        Optional<Member> member = memberService.getMemberByIdentifier(dreamInfoRequest.getMember().getIdentifier());
-        if(member.isEmpty())
-            throw new ServiceException(ResultCode.VALID_NOT_NULL);
-        dreamInfoRequest.setMember(member.get());
+        Member member = memberService.getMemberByIdentifier(dreamInfoRequest.getMember().getIdentifier());
+        dreamInfoRequest.setMember(member);
         repository.save(Dream.saveDream(dreamInfoRequest));
         return true;
     }

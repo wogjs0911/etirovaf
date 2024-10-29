@@ -3,16 +3,11 @@ package com.etirovaf.backend.dream.presentation;
 import com.etirovaf.backend.common.exception.ServiceException;
 import com.etirovaf.backend.dream.application.DreamService;
 import com.etirovaf.backend.dream.model.dto.request.DreamInfoRequest;
-import com.etirovaf.backend.dream.model.entity.HashtagEntity;
-import com.etirovaf.backend.member.model.entity.Member;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/dream")

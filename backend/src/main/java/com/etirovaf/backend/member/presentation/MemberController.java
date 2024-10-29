@@ -3,7 +3,6 @@ package com.etirovaf.backend.member.presentation;
 import com.etirovaf.backend.member.model.dto.request.SignupRequest;
 import com.etirovaf.backend.common.domain.ResponseHandler;
 import com.etirovaf.backend.member.application.MemberService;
-import com.etirovaf.backend.member.model.entity.Role;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;

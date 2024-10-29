@@ -1,6 +1,5 @@
 package com.etirovaf.backend.auth.infrastructure.repository;
 
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;

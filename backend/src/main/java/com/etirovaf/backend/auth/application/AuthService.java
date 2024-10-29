@@ -9,10 +9,8 @@ import com.etirovaf.backend.common.exception.ServiceException;
 import com.etirovaf.backend.common.security.jwt.JwtTokenUtil;
 import com.etirovaf.backend.member.infrastructure.repository.MemberRepository;
 import com.etirovaf.backend.member.model.entity.Member;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -34,10 +32,10 @@ public class AuthService {
     @Transactional
     public LoginResponse login(LoginRequest request) {
         Member member = memberRepository.findByIdentifier(request.getIdentifier())
-                .orElseThrow(() -> new EntityNotFoundException("해당하는 회원은 없습니다."));
+                .orElseThrow(() -> new ServiceException(ResultCode.MEMBER_NOT_EXIST));
 
         if(!encoder.matches(request.getPassword(), member.getPassword())){
-            throw new BadCredentialsException("비밀번호가 일치하지 않습니다.");
+            throw new ServiceException(ResultCode.VALID_NOT_PASSWORD);
         }
         return makeAuthenticationByLoginResponse(request);
     }
