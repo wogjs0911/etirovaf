@@ -34,4 +34,18 @@ public class DreamInfoRequest {
                 .member(entity.getMember())
                 .build();
     }
+
+    public static DreamInfoRequest withMember(DreamInfoRequest dreamInfoRequest, Member entity) {
+        return DreamInfoRequest.builder()
+                .id(dreamInfoRequest.getId())
+                .title(dreamInfoRequest.getTitle())
+                .place(dreamInfoRequest.getPlace())
+                .deadline(dreamInfoRequest.getDeadline())
+                .organizer(dreamInfoRequest.getOrganizer())
+                .content(dreamInfoRequest.getContent())
+                .image(dreamInfoRequest.getImage())
+                .hashtag(dreamInfoRequest.getHashtag())
+                .member(entity)
+                .build();
+    }
 }

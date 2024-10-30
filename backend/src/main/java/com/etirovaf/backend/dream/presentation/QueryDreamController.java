@@ -26,11 +26,11 @@ public class QueryDreamController {
 
     @GetMapping
     @Operation(summary="꿈 관련 글 단건 조회", description = "꿈 관련 게시글 한 건을 조회한다.", tags={"03.꿈",})
-    public ResponseEntity<ResponseHandler<Optional<Dream>>> getDream(@RequestParam String title){
+    public ResponseEntity<ResponseHandler<Dream>> getDream(@RequestParam String title){
         log.info("getDreamByTitle");
         return ResponseEntity
                 .ok()
-                .body(ResponseHandler.<Optional<Dream>>builder()
+                .body(ResponseHandler.<Dream>builder()
                         .message("SUCCESS")
                         .data(service.getDreamByTitle(title))
                         .build()
