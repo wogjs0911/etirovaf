@@ -1,6 +1,8 @@
 package com.etirovaf.backend.common.resolver;
 
 import com.etirovaf.backend.auth.application.AuthService;
+import com.etirovaf.backend.common.exception.ResultCode;
+import com.etirovaf.backend.common.exception.ServiceException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.HttpHeaders;
@@ -35,7 +37,7 @@ public class MemberIdentifierArgumentResolver implements HandlerMethodArgumentRe
 
     private void checkHeader(final String authorizationHeader) {
         if (authorizationHeader == null || !authorizationHeader.startsWith(BEARER)) {
-            throw new BadCredentialsException("인증 헤더가 적절하지 않습니다.");
+            throw new ServiceException(ResultCode.ACCESS_NO_AUTH);
         }
     }
 }

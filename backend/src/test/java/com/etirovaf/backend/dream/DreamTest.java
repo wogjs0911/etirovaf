@@ -99,7 +99,7 @@ public class DreamTest {
                 .content("dreamContent")
                 .hashtag(hashtag)
                 .member(member)
-                .build());
+                .build(), member.getIdentifier());
 
         System.out.println("꿈 글 작성 성공");
     }

@@ -3,6 +3,7 @@ package com.etirovaf.backend.dream.model.entity;
 import com.etirovaf.backend.common.exception.BaseResDto;
 import com.etirovaf.backend.dream.model.dto.request.DreamInfoRequest;
 import com.etirovaf.backend.member.model.entity.Member;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -45,7 +46,8 @@ public class Dream extends BaseResDto {
     private List<HashtagEntity> hashtag = new ArrayList<>(); // 테이블 따로 빼기(다대일 vs 일대다)
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name= "member_id")  // xtoOne은 Fk쪽에 LAZY 설정
+    @JoinColumn(name = "member_id") // xtoOne은 Fk쪽에 LAZY 설정
+    @JsonBackReference
     private Member member;
 
     public static Dream of(DreamInfoRequest entity){

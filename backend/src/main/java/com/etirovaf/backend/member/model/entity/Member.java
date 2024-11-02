@@ -4,6 +4,7 @@ import com.etirovaf.backend.member.model.dto.request.SignupRequest;
 import com.etirovaf.backend.common.exception.BaseResDto;
 import com.etirovaf.backend.dream.model.entity.Dream;
 import com.etirovaf.backend.member.model.dto.request.MemberInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -38,6 +39,7 @@ public class Member extends BaseResDto {
     private Role role;
 
     @OneToMany(mappedBy = "member")
+    @JsonManagedReference
     private List<Dream> dream = new ArrayList<>();
 
     public static Member of(MemberInfo info){

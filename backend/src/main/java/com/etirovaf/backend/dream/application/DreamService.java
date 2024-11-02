@@ -8,6 +8,7 @@ import com.etirovaf.backend.dream.model.entity.Dream;
 import com.etirovaf.backend.member.application.MemberService;
 import com.etirovaf.backend.member.model.entity.Member;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,12 +26,16 @@ public class DreamService {
     }
 
     public List<Dream> getAllDreamList() {
-        return repository.findAll();
+        List<Dream> dreamList = repository.findAll();
+        if (dreamList.isEmpty()) {
+            throw new ServiceException(ResultCode.VALID_NOT_NULL);
+        }
+        return dreamList;
     }
 
     @Transactional
-    public boolean createDream(DreamInfoRequest dreamInfoRequest) {
-        Member member = memberService.getMemberByIdentifier(dreamInfoRequest.getMember().getIdentifier());
+    public boolean createDream(DreamInfoRequest dreamInfoRequest, String identifier) {
+        Member member = memberService.getMemberByIdentifier(identifier);
         DreamInfoRequest updateDreamInfoRequest = DreamInfoRequest.withMember(dreamInfoRequest, member);
         repository.save(Dream.saveDream(updateDreamInfoRequest));
         return true;

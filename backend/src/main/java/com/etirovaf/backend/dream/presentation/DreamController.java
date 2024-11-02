@@ -1,6 +1,7 @@
 package com.etirovaf.backend.dream.presentation;
 
 import com.etirovaf.backend.common.exception.ServiceException;
+import com.etirovaf.backend.common.resolver.MemberIdentifier;
 import com.etirovaf.backend.dream.application.DreamService;
 import com.etirovaf.backend.dream.model.dto.request.DreamInfoRequest;
 import io.swagger.v3.oas.annotations.Operation;
@@ -19,8 +20,8 @@ public class DreamController {
 
     @PostMapping("/reg")
     @Operation(summary="꿈 관련 글 작성", description = "꿈 관련 글을 등록한다.", tags={"03.드림목록",})
-    public boolean createDream(@RequestBody DreamInfoRequest dreamInfoRequest) throws ServiceException {
+    public boolean createDream(@RequestBody DreamInfoRequest dreamInfoRequest, @MemberIdentifier String identifier) throws ServiceException {
         log.info("createDream");
-        return service.createDream(dreamInfoRequest);
+        return service.createDream(dreamInfoRequest, identifier);
     }
 }
