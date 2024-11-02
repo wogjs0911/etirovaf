@@ -10,12 +10,18 @@ type RecentDreamListProps = {
 const RecentDreamList = ({ dreams } : RecentDreamListProps) => {
     return (
         <div className={style.dream_list_form}>
-            {dreams.map((dream) => (
-                <RecentDreamItem
-                    dream={dream}
-                    key={dream.id}
-                    {...dream} />
-            )) }
+            {dreams.length > 0 ? (
+                dreams
+                    .filter((dream) => dream) // undefined나 null 값 제거
+                    .map((dream) => (
+                    <RecentDreamItem
+                        dream={dream}
+                        key={dream.dreamId || ''}
+                        {...dream} />
+                ))
+            ): (
+                <p>No dreams available.</p>
+            )}
         </div>
     );
 };

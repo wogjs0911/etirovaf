@@ -1,10 +1,10 @@
 export type DreamItemType = {
-    id: number;
-    organizer: string;
-    title: string;
-    place: string;
+    dreamId?: null | number;
+    organizer?: string;
+    title?: string;
+    place?: string;
     hashTag?: string;
-    deadline: string;
+    deadline?: string;
     content?: string;
     createDate?: number;
 };
@@ -25,5 +25,16 @@ export type DreamValueType = {
     createDate?: number;
 
     // categoryId: null | number;
-    // roadmapTags: { name: string }[];
+};
+
+export type DreamItemDetailType = {
+    organizer: string;
+    title: string;
+    place: string;
+    hashTag?: { name: string }[];
+    deadline: string;
+    content?: string;
+    createDate?: number;
+
+    // categoryId: null | number;
 };

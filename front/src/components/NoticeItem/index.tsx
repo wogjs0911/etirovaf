@@ -13,7 +13,7 @@ const NoticeItem = ( { dream } : NoticeListProps) => {
     const nav = useNavigate();
 
     const onClickItem = () => {
-        nav(`/dream/${dream.id}`, {state: {'id': dream.id}});
+        nav(`/dream/${dream.dreamId}`, {state: {'dreamId': dream.dreamId}});
     }
 
     return (
