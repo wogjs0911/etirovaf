@@ -8,13 +8,9 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/dream")
@@ -24,9 +20,24 @@ import java.util.Optional;
 public class QueryDreamController {
     private final DreamService service;
 
-    @GetMapping
+    @GetMapping("/{id}")
     @Operation(summary="꿈 관련 글 단건 조회", description = "꿈 관련 게시글 한 건을 조회한다.", tags={"03.꿈",})
-    public ResponseEntity<ResponseHandler<Dream>> getDream(@RequestParam String title){
+    public ResponseEntity<ResponseHandler<Dream>> getDream(
+            @PathVariable Long id){
+        log.info("getDreamByTitle");
+        return ResponseEntity
+                .ok()
+                .body(ResponseHandler.<Dream>builder()
+                        .message("SUCCESS")
+                        .data(service.getDream(id))
+                        .build()
+                );
+    }
+
+
+    @GetMapping
+    @Operation(summary="꿈 관련 글 제목으로 검색", description = "꿈 관련 게시글 한 건을 제목으로 검색한다.", tags={"03.꿈",})
+    public ResponseEntity<ResponseHandler<Dream>> getDreamByTitle(@RequestParam String title){
         log.info("getDreamByTitle");
         return ResponseEntity
                 .ok()

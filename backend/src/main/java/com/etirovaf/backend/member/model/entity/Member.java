@@ -16,14 +16,14 @@ import java.util.List;
 @Getter @Setter @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@ToString(exclude = "dream") // 순환 참조 방지를 위해 dream 필드를 제외
 public class Member extends BaseResDto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 50, unique = true)
     private String identifier;
 
     @Column(nullable = true, length = 20)
@@ -38,8 +38,8 @@ public class Member extends BaseResDto {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @OneToMany(mappedBy = "member")
-    @JsonManagedReference
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference // 순환 참조 방지
     private List<Dream> dream = new ArrayList<>();
 
     public static Member of(MemberInfo info){

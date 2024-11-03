@@ -13,6 +13,7 @@ import java.util.List;
 public class DreamInfoResponse {
     private Long id;
     private String title;
+    private Integer numPeople;
     private String place;
     private String deadline;
     private String organizer;
@@ -25,6 +26,7 @@ public class DreamInfoResponse {
         return DreamInfoResponse.builder()
                 .id(entity.getId())
                 .title(entity.getTitle())
+                .numPeople(entity.getNumPeople())
                 .place(entity.getPlace())
                 .deadline(entity.getDeadline())
                 .organizer(entity.getOrganizer())

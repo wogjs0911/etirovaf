@@ -13,6 +13,7 @@ import java.util.List;
 public class DreamInfoRequest {
     private Long id;
     private String title;
+    private Integer numPeople;
     private String place;
     private String deadline;
     private String organizer;
@@ -25,6 +26,7 @@ public class DreamInfoRequest {
         return DreamInfoRequest.builder()
                 .id(entity.getId())
                 .title(entity.getTitle())
+                .numPeople(entity.getNumPeople())
                 .place(entity.getPlace())
                 .deadline(entity.getDeadline())
                 .organizer(entity.getOrganizer())
@@ -39,6 +41,7 @@ public class DreamInfoRequest {
         return DreamInfoRequest.builder()
                 .id(dreamInfoRequest.getId())
                 .title(dreamInfoRequest.getTitle())
+                .numPeople(dreamInfoRequest.getNumPeople())
                 .place(dreamInfoRequest.getPlace())
                 .deadline(dreamInfoRequest.getDeadline())
                 .organizer(dreamInfoRequest.getOrganizer())

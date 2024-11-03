@@ -11,13 +11,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table
+@Table(name = "dream")
 @Getter
 @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@ToString(exclude = "member") // 순환 참조 방지를 위해 member 필드를 제외
 public class Dream extends BaseResDto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,6 +25,9 @@ public class Dream extends BaseResDto {
 
     @Column(nullable = false, length = 50)
     private String title;
+
+    @Column(nullable = true)
+    private Integer numPeople;
 
     @Column(nullable = false, length = 50)
     private String place;
@@ -46,7 +49,7 @@ public class Dream extends BaseResDto {
     private List<HashtagEntity> hashtag = new ArrayList<>(); // 테이블 따로 빼기(다대일 vs 일대다)
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_id") // xtoOne은 Fk쪽에 LAZY 설정
+    @JoinColumn(name = "member_id", nullable = false)
     @JsonBackReference
     private Member member;
 
@@ -67,6 +70,7 @@ public class Dream extends BaseResDto {
         return Dream.builder()
                 .id(entity.getId())
                 .title(entity.getTitle())
+                .numPeople(entity.getNumPeople())
                 .place(entity.getPlace())
                 .deadline(entity.getDeadline())
                 .organizer(entity.getOrganizer())

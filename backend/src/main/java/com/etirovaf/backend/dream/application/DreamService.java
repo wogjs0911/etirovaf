@@ -20,6 +20,11 @@ public class DreamService {
     private final MemberService memberService;
     private final DreamRepository repository;
 
+    public Dream getDream(Long id) {
+        return repository.findDreamById(id)
+                .orElseThrow(() -> new ServiceException(ResultCode.VALID_NOT_NULL));
+    }
+
     public Dream getDreamByTitle(String title) {
         return repository.findDreamByTitle(title)
                 .orElseThrow(() -> new ServiceException(ResultCode.VALID_NOT_NULL));
