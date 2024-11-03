@@ -15,7 +15,7 @@ const MostTopDreamList = ({ dreams } : MostTopDreamItemProps) => {
                     .map((dream) => (
                     <MostTopDreamItem
                         dream={dream}
-                        key={dream.dreamId || ''}
+                        key={dream.id || ''}
                         {...dream} />
                 ))
             ): (

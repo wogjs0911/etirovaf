@@ -1,5 +1,9 @@
+export type DreamItemDataType = {
+    data: DreamItemType[];
+};
+
 export type DreamItemType = {
-    dreamId?: null | number;
+    id?: null | number;
     organizer?: string;
     title?: string;
     place?: string;
@@ -14,10 +18,14 @@ export type PatternType = {
     message: string;
 };
 
+export type DreamInfoResponse = {
+    data: DreamValueType;
+};
 
 export type DreamValueType = {
     organizer: string;
     title: string;
+    numPeople: number;
     place: string;
     hashTag?: { name: string }[];
     deadline: string;

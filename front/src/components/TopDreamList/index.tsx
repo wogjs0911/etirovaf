@@ -15,7 +15,7 @@ const TopDreamList = ({ dreams } : TopDreamListProps) => {
                     .map((dream) => (
                     <TopDreamItem
                         dream={dream}
-                        key={dream.dreamId || ''}
+                        key={dream.id || ''}
                         {...dream} />
                 ))
             ): (
@@ -39,7 +39,7 @@ export default TopDreamList;
 //                 <TopDreamItem
 //                     className={style.dream_list}
 //                     dream={dream}
-//                     key={dream.dreamId}
+//                     key={dream.id}
 //                     {...dream} />
 //             )) }
 //         </div>

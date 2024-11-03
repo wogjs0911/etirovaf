@@ -5,7 +5,7 @@ import {FILTER_COND} from "@constants/dream/dreamFilter.ts";
 type FilterCondType = (typeof FILTER_COND)[keyof typeof FILTER_COND];
 
 export type DreamListRequest = {
-    // dreamId: number;
+    // id: number;
     lastCreatedAt?: any;
     size?: number;
     filterCond?: FilterCondType;
@@ -13,6 +13,6 @@ export type DreamListRequest = {
 };
 
 export type DreamItemResponse = {
-    responses: DreamItemType[];
+    data: DreamItemType[];
     hasNext: boolean;
 };

@@ -17,6 +17,7 @@ const DreamCreate = () => {
         useFormInput<DreamValueType>({
             organizer: '',
             title: '',
+            numPeople: 0,
             place: '',
             hashTag: [],
             deadline: '',

@@ -11,7 +11,7 @@ const TopDreamItem= ({ dream } : TopDreamListProps) => {
     const navigate = useNavigate();
 
     const onClickItem = () => {
-        navigate(`/dream/${dream.dreamId}`, { state: { id: dream.dreamId } });
+        navigate(`/dream/${dream.id}`, { state: { id: dream.id } });
     };
 
     return (
@@ -65,7 +65,7 @@ export default TopDreamItem;
 //     const nav = useNavigate();
 //
 //     const onClickItem = () => {
-//         nav(`/dream/${id}`, {state: {'dreamId': id}});
+//         nav(`/dream/${id}`, {state: {'id': id}});
 //     }
 //
 //     return (

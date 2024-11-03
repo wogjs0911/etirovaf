@@ -1,10 +1,11 @@
 // import {useMutation, useQueryClient} from "@tanstack/react-query";
 import {useInfiniteQuery, useMutation} from "@tanstack/react-query";
 import {useNavigate} from "react-router-dom";
-import {dream, getDreamList} from "@apis/dream.ts";
+import {dream, getDreamDetail, getDreamList} from "@apis/dream.ts";
 import {DreamValueType} from "@myTypes/dream/internal.ts";
 import QUERY_KEYS from "@constants/@queryKeys/queryKeys.ts";
 import {DreamListRequest} from "@myTypes/dream/remote.ts";
+import {useSuspendedQuery} from "@hooks/queries/useSuspendedQuery.ts";
 // import QUERY_KEYS from "@constants/@queryKeys/queryKeys.ts";
 
 export const useCreateDream = () => {
@@ -29,7 +30,7 @@ export const useCreateDream = () => {
 
 
 export const useDreamList = (params : DreamListRequest) => {
-    // const { dreamId } = params;
+    // const { id } = params;
 
     const { data, fetchNextPage } = useInfiniteQuery(
         [QUERY_KEYS.dream.list],
@@ -37,14 +38,23 @@ export const useDreamList = (params : DreamListRequest) => {
         {
             getNextPageParam: (lastPage) =>
                 lastPage.hasNext
-                    ? lastPage.responses[lastPage.responses.length - 1]?.dreamId
+                    ? lastPage.data[lastPage.data.length - 1]?.id
                     : undefined,
         }
     );
 
-    const responses = data?.pages.flatMap((page) => page.responses) || [];
+    const responses = data?.pages.flatMap((page) => page.data) || [];
 
     const hasNext = Boolean(data?.pages[data.pages.length - 1]?.hasNext);
 
     return { dreamListResponse: { responses, hasNext }, fetchNextPage };
+};
+
+export const useDreamDetail = (dreamId: number) => {
+    const { data } = useSuspendedQuery(
+        [QUERY_KEYS.dream.detail, dreamId],
+        () => getDreamDetail(dreamId),
+        {}
+    );
+    return { dreamInfo: data };
 };

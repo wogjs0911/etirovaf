@@ -15,7 +15,7 @@ const DreamList = ({ dreams } : DreamListProps) => {
                     .map((dream) => (
                     <DreamItem
                         dream={dream}
-                        key={dream.dreamId || ''}
+                        key={dream.id || ''}
                         {...dream} />
                     ))
             ): (

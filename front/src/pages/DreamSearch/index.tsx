@@ -1,69 +1,37 @@
-import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom"
+import {useSearchParams} from "react-router-dom"
 import style from "./styled.module.css";
 import Searchbar from "@components/Searchbar";
 import Notification from "@components/Notification";
 import Category from "@components/Category/index";
 import MostTopDreamList from "@components/MostTopDreamList";
-import {DreamItemType} from "@myTypes/dream/internal.ts";
-// import Navigation from "@components/Navigation";
-
-// type DreamSearchProps = {
-//     dreams: DreamItemType[];
-// }
-
-const mockData : DreamItemType[] = [
-    {
-        id: 0,
-        title: "백엔드 개발자 직업 체험 모집",
-        organizer: "고려대학교",
-        place: "안암역 2번 출구",
-        content: "고려대학교 컴퓨터공학과에서 백엔드 개발자 체험에 참여하실 분들 모집합니다.",
-        hashTag: "개발자",
-        deadline: "5일전",
-        createDate: new Date().getTime(),
-    },
-    {
-        id: 1,
-        title: "웹 디자이너 직업 체험 모집",
-        organizer: "연세대학교",
-        place: "강남역 2번 출구",
-        content: "연세대학교에서 웹 디자인에 참여하실 분들 모집합니다.",
-        hashTag: "디자이너",
-        deadline: "3일전",
-        createDate: new Date().getTime(),
-    },
-    {
-        id: 2,
-        title: "웹 기획자 직업 체험 모집",
-        organizer: "KAIST",
-        place: "논현역 2번 출구",
-        content: "카이스트에서 웹 개발에 기획 체험에 참여하실 분들 모집합니다.",
-        hashTag: "기획자",
-        deadline: "1일전",
-        createDate: new Date().getTime(),
-    }
-]
+import {useDreamList} from "@hooks/queries/dream.ts";
+import {useInfiniteScroll} from "@hooks/_common/useInfiniteScroll.ts";
+import Index from "@components/_common/wavyLoading";
 
 const DreamSearch = () => {
-    // const params = useParams();
     const [ searchParams ] = useSearchParams();
     const q = searchParams.get("q") || "";
+    // useEffect (() => {
+    //     setInitData();
+    // }, [q]);
 
-    const [dreams, setDreams] = useState<DreamItemType[]>(mockData);
+    // const { id } = useValidParams<{ id: string }>();
+    // const [sortedOption, setSortedOption] = useState<
+    //     (typeof dreamFilter)[keyof typeof dreamFilter]
+    // >(dreamFilter['1']);
+    const {
+        dreamListResponse: { responses: dreamList, hasNext },
+        fetchNextPage,
+    } = useDreamList({
+        // id: Number(id),
+        // filterCond:
+        //     sortedOption === dreamFilter['1'] ? FILTER_COND.latest : FILTER_COND.deadline,
+    });
 
-    const setInitData = async () => {
-        // const data = await fetchDream(params.q);
-        setDreams(mockData);
-    }
-
-    useEffect (() => {
-        setInitData();
-    }, [q]);
-
-    // const onClickItem = () => {
-    //     nav(`/search/${params.q}`);
-    // };
+    const loadMoreRef = useInfiniteScroll({
+        hasNextPage: hasNext,
+        fetchNextPage,
+    });
 
     return (
         <div className={style.container}>
@@ -86,7 +54,8 @@ const DreamSearch = () => {
                     </div>
                 </div>
                 <div className={style.top_list}>
-                    <MostTopDreamList dreams={dreams}/>
+                    <MostTopDreamList dreams={dreamList}/>
+                    {hasNext && <Index loadMoreRef={loadMoreRef} />}
                 </div>
             </div>
         </div>

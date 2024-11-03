@@ -16,7 +16,7 @@ const NoticeList = ({ dreams } : NoticeListProps) => {
             {dreams.map((dream) => (
                 <NoticeItem
                     dream={dream}
-                    key={dream.dreamId}
+                    key={dream.id}
                     {...dream} />
             )) }
         </div>

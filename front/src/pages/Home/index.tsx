@@ -33,7 +33,7 @@ const Home = () => {
         dreamListResponse: { responses: dreamList, hasNext },
         fetchNextPage,
     } = useDreamList({
-        // dreamId: Number(id),
+        // id: Number(id),
         // filterCond:
         //     sortedOption === dreamFilter['1'] ? FILTER_COND.latest : FILTER_COND.deadline,
     });

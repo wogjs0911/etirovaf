@@ -16,7 +16,7 @@ const RecentDreamList = ({ dreams } : RecentDreamListProps) => {
                     .map((dream) => (
                     <RecentDreamItem
                         dream={dream}
-                        key={dream.dreamId || ''}
+                        key={dream.id || ''}
                         {...dream} />
                 ))
             ): (
