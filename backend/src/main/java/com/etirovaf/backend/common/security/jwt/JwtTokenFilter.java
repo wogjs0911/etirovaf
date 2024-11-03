@@ -25,7 +25,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {   // OncePerRequestFi
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) {
         String path = request.getRequestURI();
-        return path.startsWith("/api/member/add") || path.startsWith("/api/auth") || path.startsWith("/api/dream/list"); // 제외할 URL 패턴
+        return path.startsWith("/api/member/add") || path.startsWith("/api/auth") || path.startsWith("/api/dream/list") || path.startsWith("/api/dream"); // 제외할 URL 패턴
     }
 
 

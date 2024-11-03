@@ -43,7 +43,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers( "/api/member/**").permitAll()
                         .requestMatchers( "/api/auth/**").permitAll()
-                        .requestMatchers( "/api/dream/list").permitAll()
+                        .requestMatchers( "/api/dream/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .exceptionHandling(exception -> exception
