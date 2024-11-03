@@ -10,54 +10,11 @@ import RecentDreamList from "@components/RecentDreamList";
 import {Link, useNavigate } from "react-router-dom";
 import {useMemberInfoContext} from "@components/_providers/MemberInfoProvider.tsx";
 import {useLogout} from "@hooks/queries/member.ts";
-import {useEffect, useState} from "react";
-
-interface Dream {
-    id: number;
-    title: string;
-    organizer: string;
-    place: string;
-    content: string;
-    hashTag: string;
-    deadline: string;
-    createDate: number; // Time in milliseconds since epoch
-}
-
-const mockData: Dream[] = [
-    {
-        id: 0,
-        title: "백엔드 개발자 직업 체험 모집",
-        organizer: "고려대학교",
-        place: "안암역 2번 출구",
-        content: "고려대학교 컴퓨터공학과에서 백엔드 개발자 체험에 참여하실 분들 모집합니다.",
-        hashTag: "개발자",
-        deadline: "5일 전",
-        createDate: new Date().getTime(),
-    },
-    {
-        id: 1,
-        title: "웹 디자이너 직업 체험 모집",
-        organizer: "연세대학교",
-        place: "강남역 2번 출구",
-        content: "연세대학교에서 웹 디자인에 참여하실 분들 모집합니다.",
-        hashTag: "디자이너",
-        deadline: "3일 전",
-        createDate: new Date().getTime(),
-    },
-    {
-        id: 2,
-        title: "웹 기획자 직업 체험 모집",
-        organizer: "KAIST",
-        place: "논현역 2번 출구",
-        content: "카이스트에서 웹 개발에 기획 체험에 참여하실 분들 모집합니다.",
-        hashTag: "기획자",
-        deadline: "1일 전",
-        createDate: new Date().getTime(),
-    },
-];
+import {useInfiniteScroll} from "@hooks/_common/useInfiniteScroll.ts";
+import {useDreamList} from "@hooks/queries/dream.ts";
+import Index from "@components/_common/wavyLoading";
 
 const Home = () => {
-    const [dreams, setDreams] = useState<Dream[]>(mockData);
     const { memberInfo } = useMemberInfoContext();
     const nav = useNavigate();
 
@@ -68,15 +25,23 @@ const Home = () => {
         nav('/home');
     }
 
-    const setInitData = async () => {
-        // Here, you could fetch data from an API if needed
-        setDreams(mockData); // For now, using mock data
-    };
+    // const { id } = useValidParams<{ id: string }>();
+    // const [sortedOption, setSortedOption] = useState<
+    //     (typeof dreamFilter)[keyof typeof dreamFilter]
+    // >(dreamFilter['1']);
+    const {
+        dreamListResponse: { responses: dreamList, hasNext },
+        fetchNextPage,
+    } = useDreamList({
+        // id: Number(id),
+        // filterCond:
+        //     sortedOption === dreamFilter['1'] ? FILTER_COND.latest : FILTER_COND.deadline,
+    });
 
-
-    useEffect(() => {
-        setInitData();
-    }, []);
+    const loadMoreRef = useInfiniteScroll({
+        hasNextPage: hasNext,
+        fetchNextPage,
+    });
 
     return (
         <div className={style.container}>
@@ -108,7 +73,7 @@ const Home = () => {
                     <div className={style.f_blue}>자세히 보기</div>
                 </div>
                 <div className={style.top_list}>
-                    <TopDreamList dreams={dreams} />
+                    <TopDreamList dreams={dreamList} />
                 </div>
             </div>
             <div className={style.top_list_form}>
@@ -117,7 +82,8 @@ const Home = () => {
                     <div className={style.f_blue}>자세히 보기</div>
                 </div>
                 <div className={style.recent_list}>
-                    <RecentDreamList dreams={dreams} />
+                    <RecentDreamList dreams={dreamList} />
+                    {hasNext && <Index loadMoreRef={loadMoreRef} />}
                 </div>
             </div>
         </div>

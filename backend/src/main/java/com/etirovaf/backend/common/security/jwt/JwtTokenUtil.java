@@ -1,5 +1,7 @@
 package com.etirovaf.backend.common.security.jwt;
 
+import com.etirovaf.backend.common.exception.ResultCode;
+import com.etirovaf.backend.common.exception.ServiceException;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
@@ -71,12 +73,12 @@ public class JwtTokenUtil {
             Date now = new Date();
             return expiredDate.after(now);
         } catch (ExpiredJwtException e) {
-            throw new BadCredentialsException("JWT token has expired", e);
+            throw new ServiceException(ResultCode.ACCESS_TOKEN_EXPIRED);
         } catch (SecurityException
                 | MalformedJwtException
                 | UnsupportedJwtException
                 | IllegalArgumentException e) {
-            throw new BadCredentialsException("Error validating JWT token", e);
+            throw new ServiceException(ResultCode.ACCESS_NO_AUTH);
         }
     }
 

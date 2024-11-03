@@ -3,10 +3,8 @@ package com.etirovaf.backend.auth.presentation;
 import com.etirovaf.backend.auth.model.dto.request.LoginRequest;
 import com.etirovaf.backend.auth.model.dto.request.ReissueTokenRequest;
 import com.etirovaf.backend.auth.model.dto.response.LoginResponse;
-import com.etirovaf.backend.auth.model.dto.response.SignupResponse;
 import com.etirovaf.backend.auth.application.AuthService;
 import com.etirovaf.backend.common.domain.ResponseHandler;
-import com.etirovaf.backend.common.exception.ServiceException;
 import com.etirovaf.backend.member.model.entity.Member;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -39,7 +37,7 @@ public class AuthController {
 
     @Operation(summary = "Refresh 토큰 재발급")
     @PostMapping("/reissue")
-    public ResponseEntity<ResponseHandler<LoginResponse>> reissue(@RequestBody ReissueTokenRequest reissueTokenRequest) throws ServiceException {
+    public ResponseEntity<ResponseHandler<LoginResponse>> reissue(@RequestBody ReissueTokenRequest reissueTokenRequest) {
         LoginResponse loginResponse = service.reissueToken(reissueTokenRequest);
         return ResponseEntity
                 .ok()

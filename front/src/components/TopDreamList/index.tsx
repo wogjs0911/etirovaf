@@ -9,13 +9,18 @@ type TopDreamListProps = {
 const TopDreamList = ({ dreams } : TopDreamListProps) => {
     return (
         <div className={style.dream_list_form}>
-            {dreams.map((dream) => (
-                <TopDreamItem
-                    dream={dream}
-                    key={dream.id}
-                    {...dream}
-                />
-            ))}
+            {dreams.length > 0 ? (
+                dreams
+                    .filter((dream) => dream) // undefined나 null 값 제거
+                    .map((dream) => (
+                    <TopDreamItem
+                        dream={dream}
+                        key={dream.id || ''}
+                        {...dream} />
+                ))
+            ): (
+                <p>No dreams available.</p>
+            )}
         </div>
     );
 };

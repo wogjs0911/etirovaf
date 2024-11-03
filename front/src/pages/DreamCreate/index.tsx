@@ -10,51 +10,14 @@ import {useCreateDream} from "@hooks/queries/dream.ts";
 import {FormEvent} from "react";
 // import ErrorModal from "@components/ErrorModal/index";
 
-// const mockData = [
-//     {
-//         id: 0,
-//         title: "백엔드 개발자 직업 체험 모집",
-//         organizer: "고려대학교",
-//         place: "안암역 2번 출구",
-//         content: "고려대학교 컴퓨터공학과에서 백엔드 개발자 체험에 참여하실 분들 모집합니다.",
-//         hashTag: "개발자",
-//         deadline: "5일전",
-//         createDate: new Date().getTime(),
-//     },
-//     {
-//         id: 1,
-//         title: "웹 디자이너 직업 체험 모집",
-//         organizer: "연세대학교",
-//         place: "강남역 2번 출구",
-//         content: "연세대학교에서 웹 디자인에 참여하실 분들 모집합니다.",
-//         hashTag: "디자이너",
-//         deadline: "3일전",
-//         createDate: new Date().getTime(),
-//     },
-//     {
-//         id: 2,
-//         title: "웹 기획자 직업 체험 모집",
-//         organizer: "KAIST",
-//         place: "논현역 2번 출구",
-//         content: "카이스트에서 웹 개발에 기획 체험에 참여하실 분들 모집합니다.",
-//         hashTag: "기획자",
-//         deadline: "1일전",
-//         createDate: new Date().getTime(),
-//     }
-// ]
 
 const DreamCreate = () => {
-
-    // const nav = useNavigate();
-
-    // const onClickItem = () => {
-    //     nav(`/search/${params.q}`);
-    // };
 
     const { formState: dreamFormData, handleInputChange } =
         useFormInput<DreamValueType>({
             organizer: '',
             title: '',
+            numPeople: 0,
             place: '',
             hashTag: [],
             deadline: '',

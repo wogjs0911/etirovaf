@@ -2,74 +2,13 @@
 import style from "./styled.module.css";
 import globalStyle from "@styles/style.module.css";
 import utilStyle from "@styles/utils.module.css";
-import {Link} from "react-router-dom";
-// import Navigation from "@components/Navigation/index";
-
-interface Dream {
-    id: number;
-    title: string;
-    organizer: string;
-    place: string;
-    content: string;
-    hashTag: string;
-    deadline: string;
-    createDate: number;
-}
-
-
-// const mockData : Dream[] = [
-//     {
-//         id: 0,
-//         title: "백엔드 개발자 직업 체험 모집",
-//         organizer: "고려대학교",
-//         place: "안암역 2번 출구",
-//         content: "고려대학교 컴퓨터공학과에서 백엔드 개발자 체험에 참여하실 분들 모집합니다.",
-//         hashTag: "개발자",
-//         deadline: "5일전",
-//         createDate: new Date().getTime(),
-//     },
-//     {
-//         id: 1,
-//         title: "웹 디자이너 직업 체험 모집",
-//         organizer: "연세대학교",
-//         place: "강남역 2번 출구",
-//         content: "연세대학교에서 웹 디자인에 참여하실 분들 모집합니다.",
-//         hashTag: "디자이너",
-//         deadline: "3일전",
-//         createDate: new Date().getTime(),
-//     },
-//     {
-//         id: 2,
-//         title: "웹 기획자 직업 체험 모집",
-//         organizer: "KAIST",
-//         place: "논현역 2번 출구",
-//         content: "카이스트에서 웹 개발에 기획 체험에 참여하실 분들 모집합니다.",
-//         hashTag: "기획자",
-//         deadline: "1일전",
-//         createDate: new Date().getTime(),
-//     }
-// ]
-
+import {Link, useParams} from "react-router-dom";
+import {useDreamDetail} from "@hooks/queries/dream.ts";
 
 const Dream = () => {
-    // const params = useParams();
-    // const { state } = useLocation<{ id: number }>(); // Ensure the state has the expected structure
-    // const id = state?.id;
-    // const [dream, setDream] = useState<Dream | null>(null); // State can be null if not found
-
-    // const setInitData = async () => {
-    //     // const data = fetchDream(params.id);
-    //     setDream(mockData);
-    //     console.log(dream);
-    // }
-
-    // useEffect(() => {
-    //     setInitData();
-    // }, [id]);
-
-    // if(!id){
-    //     return <div>Loading ....</div>;
-    // }
+    const params = useParams<{ id: string }>(); // params가 id 문자열을 포함하는 것으로 가정
+    const dreamId = Number(params.id); // id를 number로 변환
+    const { dreamInfo } = useDreamDetail(dreamId);
 
     return(
             <div className={style.detail}>
@@ -155,29 +94,29 @@ const Dream = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className={style.detail_heading_title}>웹 기획자 직업 체험 모집</div>
-                                <div className={style.detail_heading_organ}>연세대학교</div>
+                                <div className={style.detail_heading_title}>{ dreamInfo.data.title }</div>
+                                <div className={style.detail_heading_organ}>{ dreamInfo.data.organizer }</div>
                             </section>
                              {/* detail_info : detail_main _ item3 */}
                             <section className={`${style.canvas} ${style.detail_info}`}>
                                     <h1 className={utilStyle.d_none}>info</h1>
                                     <div className={style.detail_in}>
                                         <div className={style.detail_info_title}>모집인원</div>
-                                        <div className={style.detail_info_txt}>30명</div>
+                                        <div className={style.detail_info_txt}>{ dreamInfo.data.numPeople }</div>
                                     </div>
                                     <div className={style.detail_in}>
                                         <div className={style.detail_info_title}>마감일자</div>
-                                        <div className={style.detail_info_txt}>2023.12.31</div>
+                                        <div className={style.detail_info_txt}>{ dreamInfo.data.deadline }</div>
                                     </div>
                                     <div className={style.detail_in}>
                                         <div className={style.detail_info_title}>모임장소</div>
-                                        <div className={style.detail_info_txt}>신촌역 3번 출구</div>
+                                        <div className={style.detail_info_txt}>{ dreamInfo.data.place }</div>
                                     </div>
                             </section>
                             {/*detail_writing : detail_main _ item4*/}
                             <section className={`${style.canvas} ${style.detail_writing} ${style.detail_info}`}>
                                 <h1 className={utilStyle.d_none}>writing</h1>
-                                <div className={style.detail_paragraph}>연세대학교에서 웹 개발에 기획 체험에 참여하실 분들 모집합니다..</div>
+                                <div className={style.detail_paragraph}>{ dreamInfo.data.content }</div>
                                 <div className={style.list_hashtag_testwrap}>
                                     <div className={style.list_hashtag_form}>
                                         <span className={style.list_hashtag}>

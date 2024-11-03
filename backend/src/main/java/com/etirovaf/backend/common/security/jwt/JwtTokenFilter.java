@@ -1,13 +1,13 @@
 package com.etirovaf.backend.common.security.jwt;
 
 
-import jakarta.persistence.EntityNotFoundException;
+import com.etirovaf.backend.common.exception.ResultCode;
+import com.etirovaf.backend.common.exception.ServiceException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -23,9 +23,9 @@ public class JwtTokenFilter extends OncePerRequestFilter {   // OncePerRequestFi
     private final JwtTokenUtil jwtTokenUtil;
 
     @Override
-    protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
+    protected boolean shouldNotFilter(HttpServletRequest request) {
         String path = request.getRequestURI();
-        return path.startsWith("/api/member/add") || path.startsWith("/api/auth"); // 제외할 URL 패턴
+        return path.startsWith("/api/member/add") || path.startsWith("/api/auth") || path.startsWith("/api/dream/list") || path.startsWith("/api/dream"); // 제외할 URL 패턴
     }
 
 
@@ -51,10 +51,10 @@ public class JwtTokenFilter extends OncePerRequestFilter {   // OncePerRequestFi
                         new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
                 SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
             } else {
-                throw new EntityNotFoundException("해당하는 회원이 없습니다.");
+                throw new ServiceException(ResultCode.MEMBER_NOT_EXIST);
             }
         } else {
-            throw new BadCredentialsException("유효하지 않은 토큰입니다.");
+            throw new ServiceException(ResultCode.ACCESS_NO_AUTH);
         }
         filterChain.doFilter(request, response);
     }

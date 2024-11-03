@@ -152,6 +152,11 @@
     margin-left: 4px
 }
 
+.list_hashtags {
+    display: flex;
+    flex-direction: column;
+}
+
 .list_hashtag_form {
     grid-area: hash;
     background-color: rgba(213, 210, 210, 0.51);

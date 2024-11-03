@@ -27,7 +27,6 @@ import java.io.File;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @SpringBootTest
 @Testcontainers
@@ -84,7 +83,7 @@ public class DreamTest {
     @Test
     @Transactional
     void 꿈글작성테스트() throws ServiceException {
-        Optional<Member> member = memberService.getMemberByIdentifier("wogjs0911@example.com");
+        Member member = memberService.getMemberByIdentifier("wogjs0911@example.com");
 
         List<HashtagEntity> hashtag = new ArrayList<>();
         hashtag.add(new HashtagEntity("서강대"));
@@ -99,8 +98,8 @@ public class DreamTest {
                 .image("imag64_720p")
                 .content("dreamContent")
                 .hashtag(hashtag)
-                .member(member.get())
-                .build());
+                .member(member)
+                .build(), member.getIdentifier());
 
         System.out.println("꿈 글 작성 성공");
     }

@@ -7,7 +7,6 @@ type RecentDreamListProps = {
     dream: DreamItemType;
 }
 
-
 const RecentDreamItem = ({ dream } : RecentDreamListProps) => {
     const nav = useNavigate();
 

@@ -1,6 +1,8 @@
 package com.etirovaf.backend.member.application;
 
 import com.etirovaf.backend.auth.infrastructure.repository.RefreshTokenRepository;
+import com.etirovaf.backend.common.exception.ResultCode;
+import com.etirovaf.backend.common.exception.ServiceException;
 import com.etirovaf.backend.common.security.jwt.JwtTokenUtil;
 import com.etirovaf.backend.member.model.dto.request.SignupRequest;
 import com.etirovaf.backend.member.model.entity.Member;
@@ -52,7 +54,8 @@ public class MemberService {
         refreshTokenRepository.save(refreshToken, signUpRequest.getIdentifier());
     }
 
-    public Optional<Member> getMemberByIdentifier(String identifier) {
-        return repository.findByIdentifier(identifier);
+    public Member getMemberByIdentifier(String identifier) {
+        return repository.findByIdentifier(identifier)
+                .orElseThrow(() -> new ServiceException(ResultCode.MEMBER_NOT_EXIST));
     }
 }

@@ -1,7 +1,5 @@
 package com.etirovaf.backend.config;
 
-import com.etirovaf.backend.member.application.MemberService;
-import com.etirovaf.backend.member.infrastructure.repository.MemberRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
